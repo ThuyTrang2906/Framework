@@ -355,3 +355,8 @@ D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.dll
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\ref\WebApplication.dll
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.pdb
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.genruntimeconfig.cache
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietsach.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\cart.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\khuyenmai.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\payment.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\taikhoan.cshtml.g.cs
