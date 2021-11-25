@@ -20,7 +20,8 @@ namespace WebApplication.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            return View(context.GetBook());
         }
 
         public IActionResult Privacy()
