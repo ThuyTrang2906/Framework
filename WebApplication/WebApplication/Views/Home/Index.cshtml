@@ -165,7 +165,6 @@
                                             </label>
                                             <!-- form-check.// -->
 
-
                                         </div>
                                         <!-- card-body.// -->
                                     </div>
@@ -513,15 +512,17 @@
                                 </div>
                             </div>
                             <div class="row_discount discount-slide">
-                                <a href="/khuyenmai" class="col_discount l-4 c-11 discount-link">
+
+                                <a class="col_discount l-4 c-11 discount-link" asp-area="" asp-controller="Client" asp-action="khuyenmai">
                                     <img src="~/assets/img/banner6.png" alt="" class="discount-img" />
                                 </a>
-                                <a href="/khuyenmai" class="col_discount l-4 c-11">
+                                <a class="col_discount l-4 c-11 discount-link" asp-area="" asp-controller="Client" asp-action="khuyenmai">
                                     <img src="~/assets/img/banner7.png" alt="" class="discount-img" />
                                 </a>
-                                <a href="/khuyenmai" class="col_discount l-4 c-11">
+                                <a class="col_discount l-4 c-11 discount-link" asp-area="" asp-controller="Client" asp-action="khuyenmai">
                                     <img src="~/assets/img/banner8.png" alt="" class="discount-img" />
                                 </a>
+                                
                             </div>
                         </div>
 
@@ -572,9 +573,10 @@
                                 {
                                     <div class="grid__column-2-4">
 
-                                        <a class="home-product-item" href="">
+                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Tensach">
                                             <div class="home-product-item__img"
-                                                 style="background-image: url(@item.Hinhanh);"></div>
+                                                 style="background-image: url(@item.Hinhanh);">
+                                            </div>
                                             <h4 class="home-product-item__name">
                                                @item.Tensach
                                             </h4>
@@ -595,8 +597,6 @@
                                                     <i class="fas fa-star"></i>
                                                 </div>
                                                 <span class="home-product-item__sold">57 đã bán</span>
-                                            </div>
-
                                             <div class="home-product-item__favourite">
                                                 <i class="fas fa-check"></i>
                                                 <span>Yêu thích</span>
@@ -604,6 +604,7 @@
                                             <div class="home-product-item__sale-off">
                                                 <span class="home-product-item__sale-off-percent">@item.Giamgia%</span>
                                                 <span class="home-product-item__sale-off-label">GIẢM</span>
+                                            </div>
                                             </div>
                                         </a>
 
