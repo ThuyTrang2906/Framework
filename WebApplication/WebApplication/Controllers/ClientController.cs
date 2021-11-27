@@ -15,7 +15,12 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        [HttpGet]
+        public IActionResult chitietsach()
+        {
+            return View();
+        }
+
+        /*[HttpGet]
         [Route("/Client/chitietsach/{name}")]
         public IActionResult chitietsach(String name)
         {
@@ -27,9 +32,9 @@ namespace WebApplication.Controllers
             mymodel.book = bo;
             mymodel.books = books;
             return View(mymodel);
-        }
+        }*/
 
-         public IActionResult EnterAccount() {
+        public IActionResult EnterAccount() {
             return View();     
         }
 
