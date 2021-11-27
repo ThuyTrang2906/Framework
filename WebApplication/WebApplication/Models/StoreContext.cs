@@ -118,7 +118,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into client_accounts values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, @ngaytao, @sl_giohang, @sodt, @tinhtrang)";
+                var str = "insert into client_accounts  values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, current_timestamp(), @sl_giohang, @sodt, @tinhtrang)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("danhsach_km", "0");
                 cmd.Parameters.AddWithValue("diachigh", "null");
@@ -131,12 +131,10 @@ namespace WebApplication.Models
                 cmd.Parameters.AddWithValue("matk", kh.Matk);
                 cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
                 cmd.Parameters.AddWithValue("ngaysinh", "null");
-                cmd.Parameters.AddWithValue("ngaytao", "null");
+                cmd.Parameters.AddWithValue("ngaytao", "current_timestamp()");
                 cmd.Parameters.AddWithValue("sl_giohang",0);
                 cmd.Parameters.AddWithValue("sodt", "null");
                 cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
-                
-
 
                 return (cmd.ExecuteNonQuery());
 

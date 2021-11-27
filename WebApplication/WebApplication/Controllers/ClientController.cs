@@ -29,9 +29,6 @@ namespace WebApplication.Controllers
             return View(mymodel);
         }
 
-         public IActionResult EnterAccount() {
-            return View();     
-        }
 
         [HttpPost]
         public IActionResult DangKy(client_accounts kh)
