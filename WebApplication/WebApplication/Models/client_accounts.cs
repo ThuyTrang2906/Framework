@@ -7,9 +7,9 @@ namespace WebApplication.Models
 {
     public class client_accounts
     {
-        private string danhsach_km, diachigh, diachigoc, email, giohang, gioitinh, hoten, matk, matkhau, sl_giohang, sodt, tinhtrang;
+        private string danhsach_km, diachigh, diachigoc, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
         private DateTime ngaysinh, ngaytao;
-        private int diem;
+        private int diem, sl_giohang ;
 
         public string Danhsach_km { get => danhsach_km; set => danhsach_km = value; }
         public string Diachigh { get => diachigh; set => diachigh = value; }
@@ -23,12 +23,12 @@ namespace WebApplication.Models
         public string Matkhau { get => matkhau; set => matkhau = value; }
         public DateTime Ngaysinh { get => ngaysinh; set => ngaysinh = value; }
         public DateTime Ngaytao { get => ngaytao; set => ngaytao = value; }
-        public string Sl_giohang { get => sl_giohang; set => sl_giohang = value; }
+        public int Sl_giohang { get => sl_giohang; set => sl_giohang = value; }
         public string Sodt { get => sodt; set => sodt = value; }
         public string Tinhtrang { get => tinhtrang; set => tinhtrang = value; }
 
         public client_accounts() {  }
-        public client_accounts(string danhsach_km, string diachigh, string diachigoc, int diem, string email, string giohang, string gioitinh, string hoten, string matk, string matkhau, DateTime ngaysinh, DateTime ngaytao, string sl_giohang, string sodt, string tinhtrang)
+        public client_accounts(string danhsach_km, string diachigh, string diachigoc, int diem, string email, string giohang, string gioitinh, string hoten, string matk, string matkhau, DateTime ngaysinh, DateTime ngaytao, int sl_giohang, string sodt, string tinhtrang)
         {
 
             this.danhsach_km = danhsach_km;

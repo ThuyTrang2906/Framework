@@ -43,7 +43,7 @@
                         </ul>
 
                         <ul class="header__navbar-list">
-                            <li class="header__language-select">
+                            <div class="header__language-select">
                                 <span class="header__language-select-label">Ngôn ngữ</span>
                                 <i class="header__language-select-icon ti-angle-down"></i>
                                 <ul class="header__language-option">
@@ -57,7 +57,7 @@
                                         <i class=" ti-check"></i>
                                     </li>
                                 </ul>
-                            </li>
+                            </div>
                             <li class="header__navbar-item">
                                 <div href="" class="header__navbar-item--link open-login-noti">
                                     <i class="header__navbar-icon ti-bell "></i>
@@ -75,11 +75,11 @@
                                     Đăng nhập
                                 </div>
                             </li>
-                            <li class="header__navbar-item" asp-area="" asp-controller="Client" asp-action="EnterAccount">
+                            <a class="header__navbar-item">
                                 <div href="" class="header__navbar-item--link open-signup">
                                     Đăng ký
                                 </div>
-                            </li>
+                            </a>
                         </ul>
                     </nav>
 
@@ -105,7 +105,7 @@
                                         </div>
                                         <div class="auth-form__group">
                                             <label class="auth-form__label">Mật khẩu</label>
-                                            <input type="text" class="auth-form__input" placeholder="Nhập mật khẩu">
+                                            <input type="password" class="auth-form__input" placeholder="Nhập mật khẩu">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -132,58 +132,61 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Sign up -->
-                    <!--<div class="modal modal-logup">
-                <div class="modal__overlay"></div>
+                    <form action="/Client/DangKy" method="post">
 
-                <div class="modal__body">-->
-                    <!--register form-->
-                    <!--<div class="auth-form">
-                        <div class="auth-form__container">
-                            <div class="auth-form__header">
-                                <h3 class="auth-form__heading">ĐĂNG KÝ</h3>
-                            </div>
-                            <div class="modals-close">
-                                <i class="ti-close"></i>
-                            </div>
+                        <div class="modal modal-logup">
+                            <div class="modal__overlay"></div>
 
-                            <div class="auth-form__form">
-                                <div class="auth-form__group">
-                                    <label class="auth-form__label">Tên tài khoản</label>
-                                    <input type="text" class="auth-form__input" placeholder="Nhập tên tài khoản">
-                                </div>
-                                <div class="auth-form__group">
-                                    <label class="auth-form__label">Email</label>
-                                    <input type="text" class="auth-form__input" placeholder="Nhập Email">
-                                </div>
-                                <div class="auth-form__group">
-                                    <label class="auth-form__label">Mật khẩu</label>
-                                    <input type="text" class="auth-form__input" placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="auth-form__group">
-                                    <label class="auth-form__label">Xác nhận mật khẩu</label>
-                                    <input type="text" class="auth-form__input" placeholder="Nhập lại mật khẩu">
-                                </div>
-                            </div>
+                            <div class="modal__body">
 
-                            <div class="auth-form__controls">
-                                <button class="btn btn--primary btn__signin">Đăng ký</button>
-                            </div>
+                                <div class="auth-form">
+                                    <div class="auth-form__container">
+                                        <div class="auth-form__header">
+                                            <h3 class="auth-form__heading">ĐĂNG KÝ</h3>
+                                        </div>
+                                        <div class="modals-close">
+                                            <i class="ti-close"></i>
+                                        </div>
 
-                            <div class="auth-form__socials">
-                                <a href="" class="auth-form__socials--fb btn btn--with-icon">
-                                    <i class="auth-form__socials-icon fab fa-facebook-square"></i>
-                                    <span class="auth-form__socials-title">
-                                        Kết nối với Facebook
-                                    </span>
-                                </a>
+                                        <div class="auth-form__form">
+                                            <div class="auth-form__group">
+                                                <label class="auth-form__label">Tên tài khoản</label>
+                                                <input type="text" class="auth-form__input" name="matk" placeholder="Nhập tên tài khoản">
+                                            </div>
+                                            <div class="auth-form__group">
+                                                <label class="auth-form__label">Email</label>
+                                                <input type="text" class="auth-form__input" name="email" placeholder="Nhập Email">
+                                            </div>
+                                            <div class="auth-form__group">
+                                                <label class="auth-form__label">Mật khẩu</label>
+                                                <input type="password" class="auth-form__input" name="matkhau" placeholder="Nhập mật khẩu">
+                                            </div>
+                                            <div class="auth-form__group">
+                                                <label class="auth-form__label">Xác nhận mật khẩu</label>
+                                                <input type="password" class="auth-form__input" name="matkhau" placeholder="Nhập lại mật khẩu">
+                                            </div>
+                                        </div>
+
+                                        <div class="auth-form__controls">
+                                            <button class="btn btn--primary btn__signin">Đăng ký</button>
+                                        </div>
+
+                                        <div class="auth-form__socials">
+                                            <a href="" class="auth-form__socials--fb btn btn--with-icon">
+                                                <i class="auth-form__socials-icon fab fa-facebook-square"></i>
+                                                <span class="auth-form__socials-title">
+                                                    Kết nối với Facebook
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>-->
-                    <!-- header-with-search -->
+                    </form>
+                    <!-- header-with-search-->
                     <div class="header-with-search">
                         <div class="header__logo">
                             <a href="#" class="header__logo-link">
@@ -193,7 +196,7 @@
 
                         <div class="header__search">
                             <input type="text" class="header__search-input" placeholder="Nhập sản phẩm muốn tìm kiếm">
-                            <!-- Search button -->
+                            Search button
                             <button class="header__search-btn">
                                 <i class="header__search-btn-icon fas fa-search"></i>
                             </button>
@@ -204,115 +207,121 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
             </header>
             <!-- End header -->
             
+=======
+    </header>
+    <!-- End header -->
+                    <!--
+>>>>>>> c65497cc869169e8f0bbe6a65f3cfbd7db82da07
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-            <footer class="footer">
-                <div class="container bottom_border">
-                    <div class="row">
-                        <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-                            <h5 class="headin5_amrc col_white_amrc pt2">CHĂM SÓC KHÁCH HÀNG</h5>
-                            <!--headin5_amrc-->
-                            <ul class="footer_ul_amrc">
-                                <li><a href="http://webenlance.com">Các câu hỏi thường gặp</a></li>
-                                <li><a href="http://webenlance.com">Gửi yêu cầu hỗ trợ</a></li>
-                                <li><a href="http://webenlance.com">Hướng dẫn đặt hàng</a></li>
-                                <li><a href="http://webenlance.com">Phương thức vận chuyển</a></li>
-                                <li><a href="http://webenlance.com">Chính sách đổi trả</a></li>
-                            </ul>
-                            <p><i class="fa fa-phone"></i> +1900 1529 </p>
-                            <p><i class="fa fa fa-envelope"></i> dabook@book.com </p>
+                    <footer class="footer">
+                        <div class="container bottom_border">
+                            <div class="row">
+                                <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">CHĂM SÓC KHÁCH HÀNG</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a href="http://webenlance.com">Các câu hỏi thường gặp</a></li>
+                                        <li><a href="http://webenlance.com">Gửi yêu cầu hỗ trợ</a></li>
+                                        <li><a href="http://webenlance.com">Hướng dẫn đặt hàng</a></li>
+                                        <li><a href="http://webenlance.com">Phương thức vận chuyển</a></li>
+                                        <li><a href="http://webenlance.com">Chính sách đổi trả</a></li>
+                                    </ul>
+                                    <p><i class="fa fa-phone"></i> +1900 1529 </p>
+                                    <p><i class="fa fa fa-envelope"></i> dabook@book.com </p>
+                                </div>
+
+
+                                <div class=" col-sm-4 col-md  col-6 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">GIỚI THIỆU</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a href="http://webenlance.com">Điều khoản sử dụng</a></li>
+                                        <li><a href="http://webenlance.com">Chính sách bảo mật thanh toán</a></li>
+                                        <li><a href="http://webenlance.com">Chính sách bảo mật thông tin</a></li>
+                                        <li><a href="http://webenlance.com">Chính sách giải quyết khiếu nại</a></li>
+                                        <li><a href="http://webenlance.com">Giới thiệu xu</a></li>
+                                        <li><a href="http://webenlance.com">Chính sách bán hàng</a></li>
+                                    </ul>
+                                    <!--footer_ul_amrc ends here-->
+                                </div>
+
+
+                                <div class=" col-sm-4 col-md  col-6 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">TÀI KHOẢN CỦA TÔI</h5>
+                                    <!--headin5_amrc-->
+                                    <ul class="footer_ul_amrc">
+                                        <li><a href="http://webenlance.com">Đăng nhập</a></li>
+                                        <li><a href="http://webenlance.com">Đăng ký</a></li>
+                                        <li><a href="http://webenlance.com">Thay đổi địa chỉ giao hàng</a></li>
+                                        <li><a href="http://webenlance.com">Chi tiết tài khoản</a></li>
+                                        <li><a href="http://webenlance.com">Lịch sử mua hàng</a></li>
+                                        <li><a href="http://webenlance.com">Điểm tích lũy</a></li>
+                                    </ul>
+                                    <!--footer_ul_amrc ends here-->
+                                </div>
+
+
+                                <div class=" col-sm-4 col-md  col-12 col">
+                                    <h5 class="headin5_amrc col_white_amrc pt2">THEO DÕI CHÚNG TÔI</h5>
+                                    <!--headin5_amrc ends here-->
+
+                                    <ul class="footer_ul2_amrc">
+                                        <li>
+                                            <a href="#"><i class="fab fa-facebook fleft padding-right"></i></a>
+                                            <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.facebook.com/</a></p>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fab fa-linkedin fleft padding-right"></i></a>
+                                            <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.linkedin.com/</a></p>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fab fa-twitter fleft padding-right"></i></a>
+                                            <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.twitter.com/</a></p>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fab fa-instagram fleft padding-right"></i></a>
+                                            <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.instagram.com/</a></p>
+                                        </li>
+                                    </ul>
+                                    <!--footer_ul2_amrc ends here-->
+                                </div>
+                            </div>
                         </div>
 
+                        <div class="container">
+                            <!--foote_bottom_ul_amrc ends here-->
+                            <p class="text-center">2021 | Bản quyền thuộc về công ty <a href="#">DaBook - DaBook.com</a></p>
 
-                        <div class=" col-sm-4 col-md  col-6 col">
-                            <h5 class="headin5_amrc col_white_amrc pt2">GIỚI THIỆU</h5>
-                            <!--headin5_amrc-->
-                            <ul class="footer_ul_amrc">
-                                <li><a href="http://webenlance.com">Điều khoản sử dụng</a></li>
-                                <li><a href="http://webenlance.com">Chính sách bảo mật thanh toán</a></li>
-                                <li><a href="http://webenlance.com">Chính sách bảo mật thông tin</a></li>
-                                <li><a href="http://webenlance.com">Chính sách giải quyết khiếu nại</a></li>
-                                <li><a href="http://webenlance.com">Giới thiệu xu</a></li>
-                                <li><a href="http://webenlance.com">Chính sách bán hàng</a></li>
+                            <ul class="social_footer_ul">
+                                <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
                             </ul>
-                            <!--footer_ul_amrc ends here-->
+                            <!--social_footer_ul ends here-->
                         </div>
 
+                    </footer>
 
-                        <div class=" col-sm-4 col-md  col-6 col">
-                            <h5 class="headin5_amrc col_white_amrc pt2">TÀI KHOẢN CỦA TÔI</h5>
-                            <!--headin5_amrc-->
-                            <ul class="footer_ul_amrc">
-                                <li><a href="http://webenlance.com">Đăng nhập</a></li>
-                                <li><a href="http://webenlance.com">Đăng ký</a></li>
-                                <li><a href="http://webenlance.com">Thay đổi địa chỉ giao hàng</a></li>
-                                <li><a href="http://webenlance.com">Chi tiết tài khoản</a></li>
-                                <li><a href="http://webenlance.com">Lịch sử mua hàng</a></li>
-                                <li><a href="http://webenlance.com">Điểm tích lũy</a></li>
-                            </ul>
-                            <!--footer_ul_amrc ends here-->
-                        </div>
-
-
-                        <div class=" col-sm-4 col-md  col-12 col">
-                            <h5 class="headin5_amrc col_white_amrc pt2">THEO DÕI CHÚNG TÔI</h5>
-                            <!--headin5_amrc ends here-->
-
-                            <ul class="footer_ul2_amrc">
-                                <li>
-                                    <a href="#"><i class="fab fa-facebook fleft padding-right"></i></a>
-                                    <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.facebook.com/</a></p>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-linkedin fleft padding-right"></i></a>
-                                    <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.linkedin.com/</a></p>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-twitter fleft padding-right"></i></a>
-                                    <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.twitter.com/</a></p>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fab fa-instagram fleft padding-right"></i></a>
-                                    <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.instagram.com/</a></p>
-                                </li>
-                            </ul>
-                            <!--footer_ul2_amrc ends here-->
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container">
-                    <!--foote_bottom_ul_amrc ends here-->
-                    <p class="text-center">2021 | Bản quyền thuộc về công ty <a href="#">DaBook - DaBook.com</a></p>
-
-                    <ul class="social_footer_ul">
-                        <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
-                        <li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
-                    </ul>
-                    <!--social_footer_ul ends here-->
-                </div>
-
-            </footer>
-
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
-            @await RenderSectionAsync("Scripts", required: false)
-            <script src="~/js/signInSignUp.js"></script>
+                    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+                    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+                    <script src="~/js/site.js" asp-append-version="true"></script>
+                    @await RenderSectionAsync("Scripts", required: false)
+                    <script src="~/js/signInSignUp.js"></script>
 
 
 
 
 
-        </body>
+</body>
     </html>
 

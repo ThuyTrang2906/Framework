@@ -20,7 +20,7 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        /*[HttpGet]
+        [HttpGet]
         [Route("/Client/chitietsach/{name}")]
         public IActionResult chitietsach(String name)
         {
@@ -32,11 +32,8 @@ namespace WebApplication.Controllers
             mymodel.book = bo;
             mymodel.books = books;
             return View(mymodel);
-        }*/
-
-        public IActionResult EnterAccount() {
-            return View();     
         }
+
 
         [HttpPost]
         public IActionResult DangKy(client_accounts kh)
