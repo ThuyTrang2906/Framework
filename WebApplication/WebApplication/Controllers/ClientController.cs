@@ -15,23 +15,19 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public IActionResult chitietsach()
+        /*public IActionResult chitietsach()
         {
             return View();
-        }
+        }*/
 
-        [HttpGet]
-        [Route("/Client/chitietsach/{name}")]
         public IActionResult chitietsach(String name)
         {
-            string Name = "Indian Summer";
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            Book bo = context.ViewBook(Name);
-            List<Book> books = context.DsLienQuan(Name);
-            dynamic mymodel = new ExpandoObject();
-            mymodel.book = bo;
-            mymodel.books = books;
-            return View(mymodel);
+            Book book = context.ViewBook(name);
+            List<Book> booklist = context.DsLienQuan(name);
+            ViewBag.book = book;
+            ViewBag.books = booklist;
+            return View();
         }
 
 
