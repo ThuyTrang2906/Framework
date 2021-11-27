@@ -28,5 +28,24 @@ namespace WebApplication.Controllers
             mymodel.books = books;
             return View(mymodel);
         }
+
+         public IActionResult EnterAccount() {
+            return View();     
+        }
+
+        [HttpPost]
+        public IActionResult DangKy(client_accounts kh)
+        {
+            int count;
+
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.DangKy(kh);
+
+            if (count > 0)
+                ViewData["thongbao"] = "Insert thành công";
+            else
+                ViewData["thongbao"] = "Insert không thành công";
+            return View();
+        }
     }
 }

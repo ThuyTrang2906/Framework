@@ -211,18 +211,17 @@
 
     <!-- Lưu mã khuyến mãi cho tài khoản -->
     <script>
-    var list = document.querySelectorAll('.btn__save');
-    Array.prototype.forEach.call(list, function (element,index) {
-        var value = element.name;
+        var list = document.querySelectorAll('.btn__save');
+        Array.prototype.forEach.call(list, function (element, index) {
+            var value = element.name;
             element.href = "/luukhuyenmai/" + value;
-    });
+        });
     </script>
 
     <script>
-        var stt=0;
-        $('.btn__save').click(function(){
-            if(stt > 3)
-            {
+        var stt = 0;
+        $('.btn__save').click(function () {
+            if (stt > 3) {
                 $('btn__save').removeClass('btn__save--primary');
                 $('btn__save').addClass('btn__save--disable');
             }

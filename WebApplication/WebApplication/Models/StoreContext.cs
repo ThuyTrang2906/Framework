@@ -112,5 +112,35 @@ namespace WebApplication.Models
             }
             return list;
         }
+
+        public int DangKy(client_accounts kh)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into client_accounts values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, @ngaytao, @sl_giohang, @sodt, @tinhtrang)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("danhsach_km", "0");
+                cmd.Parameters.AddWithValue("diachigh", "null");
+                cmd.Parameters.AddWithValue("diachigoc", "null");
+                cmd.Parameters.AddWithValue("diem", 0);
+                cmd.Parameters.AddWithValue("email", kh.Email);
+                cmd.Parameters.AddWithValue("giohang", "null");
+                cmd.Parameters.AddWithValue("gioitinh", "null");
+                cmd.Parameters.AddWithValue("hoten", "null");
+                cmd.Parameters.AddWithValue("matk", kh.Matk);
+                cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
+                cmd.Parameters.AddWithValue("ngaysinh", "null");
+                cmd.Parameters.AddWithValue("ngaytao", "null");
+                cmd.Parameters.AddWithValue("sl_giohang",0);
+                cmd.Parameters.AddWithValue("sodt", "null");
+                cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
+                
+
+
+                return (cmd.ExecuteNonQuery());
+
+            }
+        }
     }
 }
