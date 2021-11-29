@@ -17,7 +17,6 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
-    <link rel="stylesheet" href="~/css/base.css" />
     <link rel="stylesheet" href="~/css/book_detail.css" />
     <link rel="stylesheet"
           href="~/assets/fonts/themify-icons/themify-icons.css" />
@@ -31,26 +30,24 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <div class="pd-wrap">
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: #f5f5f5">
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <div class="container" style="background-color: #fff; border-radius: 4px;  margin-bottom: 20px">
+    <div class="container" style="background-color: #fff; border-radius: 4px;  margin: 20px 0">
         <div class="row">
-            <div class="col-md-6">
-                <div id="slider" class="owl-carousel product-slider">
+            <div class="col-md-6" style="background-color: #fff">
+                <div id="slider" class=" product-slider">
                     <div class="item">
                         <img src="@ViewBag.book.Hinhanh" />
                     </div>
-                    <div class="item">
+                    @*<div class="item">
                         <img src="https://vcdn1-giaitri.vnecdn.net/2007/10/15/harry-7n-1348828782.jpg?w=480&h=0&q=100&dpr=1&fit=crop&s=txbVYg7pv4wkH1wgforq6A" />
                     </div>
                     <div class="item">
@@ -67,14 +64,14 @@
                     </div>
                     <div class="item">
                         <img src="https://vcdn.tikicdn.com/media/catalog/product/n/x/nxbtre_full_21422017_044234.u2769.d20170227.t140710.991739.jpg" />
-                    </div>
+                    </div>*@
                 </div>
 
                 <div id="thumb" class="owl-carousel product-thumb">
                     <div class="item" name="hinhanh">
                         <img src="@ViewBag.book.Hinhanh" />
                     </div>
-                    <div class="item">
+                    @*<div class="item">
                         <img src="https://vcdn1-giaitri.vnecdn.net/2007/10/15/harry-7n-1348828782.jpg?w=480&h=0&q=100&dpr=1&fit=crop&s=txbVYg7pv4wkH1wgforq6A" />
                     </div>
                     <div class="item">
@@ -91,7 +88,7 @@
                     </div>
                     <div class="item">
                         <img src="https://vcdn.tikicdn.com/media/catalog/product/n/x/nxbtre_full_21422017_044234.u2769.d20170227.t140710.991739.jpg" />
-                    </div>
+                    </div>*@
                 </div>
             </div>
             <div class="col-md-6">
@@ -129,7 +126,7 @@
                             <div class="qtyplus">+</div>
                         </form>
                         <a href="" class="round-black-btn">Thêm vào giỏ hàng</a>
-                        
+
                     </div>
                 </div>
                 <div class="info-item col-auto border">
@@ -167,6 +164,7 @@
             </div>
 
             <div class="swiper featured-slider">
+                <h2 class="product__label">Sản phẩm tương tự</h2>
                 <div class="swiper-wrapper" style="height: auto; width: 100%">
                     @foreach (Book item in ViewBag.books)
                     {

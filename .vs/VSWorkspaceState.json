@@ -3,13 +3,9 @@
     "",
     "\\WebApplication",
     "\\WebApplication\\WebApplication",
-    "\\WebApplication\\WebApplication\\Controllers",
-    "\\WebApplication\\WebApplication\\Models",
     "\\WebApplication\\WebApplication\\Views",
-    "\\WebApplication\\WebApplication\\Views\\Client",
-    "\\WebApplication\\WebApplication\\Views\\Home",
     "\\WebApplication\\WebApplication\\Views\\Shared"
   ],
-  "SelectedNode": "\\WebApplication\\WebApplication.sln",
+  "SelectedNode": "\\WebApplication\\WebApplication\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }
