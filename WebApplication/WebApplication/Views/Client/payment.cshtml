@@ -1,14 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title>Document</title>
+    <title>DaBook Shop</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="~/css/payment.css">
+    <link rel="stylesheet" href="/client_styles/assets/css/payment.css">
     <link rel="stylesheet"
-          href="~/assets/fonts/themify-icons/themify-icons.css" />
+          href="/client_styles/assets/fonts/themify-icons/themify-icons.css" />
     <link rel="stylesheet"
-          href="~/assets/fonts/fontawesome-free-5.15.4/fontawesome-free-5.15.4-web/css/all.min.css" />
+          href="/client_styles/assets/fonts/fontawesome-free-5.15.4/fontawesome-free-5.15.4-web/css/all.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 
@@ -21,33 +22,36 @@
                 <a href="">Thay đổi</a>
             </div>
             <div class="shipping__info--user">
-                <span> <i class="far fa-id-badge" style="color: rgb(0, 132, 255); padding: 10px;"></i> Tần Thùy Trang</span>
-                <span>0943738385</span>
+                <span> <i class="far fa-id-badge" style="color: rgb(0, 132, 255); padding: 10px;"></i> {{client_accounts.hoten}}</span>
+                <span>{{client_accounts.sodt}}</span>
             </div>
-            <span> <i class="ti-location-pin" style="color: rgb(0, 132, 255); padding: 8px"></i> Xóm 4, Thôn 10, Xã EaKtur, Huyện CưKuin, tỉnh Đăk Lăk</span>
+            <span> <i class="ti-location-pin" style="color: rgb(0, 132, 255); padding: 8px"></i> {{client_accounts.diachigoc}}</span>
         </div>
 
         <div class="col-8 bill__info">
             <div class="shipping__address--header " style="padding: 10px;">
                 <span style="font-size: 1.6rem;">Được giao bởi <i style="color: rgb(0, 132, 255);">DaBookStore</i> </span>
             </div>
-            <div class="bill__info--product">
+            {{#each sach}}
+            <div class="hoadon bill__info--product">
                 <div class="col-6 col-pro layout-inline">
-                    <img class="cart__img" src="https://rigo.vn/wp-content/uploads/2018/06/74_HarryPottertap7HarryPottervaBaoboiTuthan_rigo.jpg" alt="">
-                    <p class="item__name">Harry Potter và bảo bối tử thần Harry Potter và bảo bối tử thần Harry Potter và bảo bối tử thần Harry Potter và bảo bối tử thần</p>
+                    <img class="hinhanh cart__img" src="{{this.hinhanh}}" alt="">
+                    <p class="tensach item__name">{{this.tensach}}</p>
                 </div>
-
+                <div class="theloai" hidden>{{this.theloai}}</div>
+                <div class="giaban" hidden>{{this.giaban}}</div>
                 <div class="col col-price ">
-                    <span>Số lượng: 1</span>
+                    <span>Số lượng: <span class="soluong">{{this.SoLuong}}</span></span>
                 </div>
 
                 <div class="col col-price  ">
-                    <span>179.000 đ</span>
+                    <span class="tongtien">{{this.TongTien}}</span>
                 </div>
             </div>
+            {{/each}}
             <div class="bill__info--time">
-                <span>Giao vào: Thứ 2, 15/11/2021</span>
-                <span style="color: #333; padding: 0 10px">Được giao bởi <img class="delivery__logo" src="~/assets/img/delivery.png" alt=""></span>
+                <span class="ngayship">Giao vào: {{shipday}}</span>
+                <span style="color: #333; padding: 0 10px">Được giao bởi <img class="delivery__logo" src="/client_styles/assets/img/delivery.png" alt=""></span>
             </div>
         </div>
 
@@ -56,16 +60,26 @@
                 <h2>Chọn hình thức thanh toán</h2>
             </div>
             <div class="payment__info--selection">
-                <input name="pay" type="radio" value="live" /> <img class="pay__img" src="~/assets/img/pay.png" alt=""> Thanh toán bằng tiền mặt khi nhận hàng
+                <input class="thanhtoantienmat" name="pay" type="radio" value="live" /> <img class="pay__img" src="/client_styles/assets/img/pay.png" alt=""> Thanh toán bằng tiền mặt khi nhận hàng
             </div>
+            {{!-- <label class="payment__info--selection">
+                <input name="pay" type="radio" value="live"/>
+                <img class="pay__img" src="/client_styles/assets/img/pay.png" alt="">
+                <span class="">Thanh toán bằng tiền mặt khi nhận hàng</span>
+            </label>
+            <label class="payment__info--selection">
+                <input name="pay" type="radio" value="momo"/>
+                <img class="pay__img" src="/client_styles/assets/img/MoMo_Logo.png" alt="">
+                <span class="">Thanh toán trực tuyến qua ví Momo</span>
+            </label> --}}
             <div class="payment__info--selection">
-                <input name="momo" type="radio" value="momo" /> <img class="pay__img" src="~/assets/img/MoMo_Logo.png" alt=""> Thanh toán trực tuyến qua ví Momo
+                <input class="thanhtoanmomo" name="pay" type="radio" value="momo" /> <img class="pay__img" src="/client_styles/assets/img/MoMo_Logo.png" alt=""> Thanh toán trực tuyến qua ví Momo
             </div>
         </div>
 
         <div class="col-4 border" style="padding-top:80px;">
             <div class="cart-store">
-                <img class="cart-logo-img" src="~/assets/img/logo.png" alt="">
+                <img class="cart-logo-img" src="/client_styles/assets/img/logo.png" alt="">
                 <span class="cart-label">DaBook Store</span>
             </div>
 
@@ -76,7 +90,7 @@
                 </div>
                 <div class="cart-delivery" style="padding: 2px 0;">
                     <span style="color: #666;">Tạm tính </span>
-                    <span style="color: #666;">(0) sản phẩm </span>
+                    <span style="color: #666;">({{soluong}}) sản phẩm </span>
                 </div>
                 <div class="cart-delivery" style="padding: 6px 0 14px;">
                     <span style="color: #666;">Phí giao hàng</span>
@@ -85,27 +99,174 @@
                 <ul class="list-cart">
                     <li class="list-cart-item">
                         <div class="input__sale">
-                            <input class="form__code-sale" id="input__code-sale" type="input" placeholder="Nhập mã khuyến mãi">
-                            <button type="submit" class="btn__apply" id="apply">Áp dụng</button>
+                            <input class="makm form__code-sale" id="input__code-sale" type="input" placeholder="Nhập mã khuyến mãi">
+                            <button class="apdung btn__apply" id="apply">Áp dụng</button>
                         </div>
                         <div class="cart__sale">
                             <span>Giảm giá:</span>
-                            <span>0 đ</span>
+                            <span class="giamgia">0</span>
                         </div>
                         <div class="cart__total">
                             <span>Tổng tiền:</span>
-                            <span>197.000đ</span>
+                            <span class="thanhtien">{{tongtien}}</span>
                         </div>
                     </li>
 
                 </ul>
             </div>
 
-            <a href="">
-                <button type="submit" class="btn__buy-book" id="buy">Đặt sách</button>
+            <a class="linktott" href="/payment">
+                <button type="submit" class="mua btn__buy-book" id="buy">Đặt sách</button>
             </a>
 
         </div>
     </div>
+    <script>
+        var khuyenmaidanhap = []
+        var danhsachkhuyenmai = []
+        var matk = $('.ten-dang-nhap').text()
+        $.ajax({
+            url: "/vouchernguoidung",
+            method: "POST",
+            data: JSON.stringify({
+                matk: matk
+            }),
+            success: function (status) {
+                danhsachkhuyenmai = status.danhsach_km
+            },
+            contentType: 'application/json',
+        })
+
+        $('.apdung').on('click', function () {
+
+            //console.log(khuyenmaidanhap)
+            var madanhap = $('.makm').val()
+            var matk = $('.ten-dang-nhap').text()
+            var flag = false
+            for (var i = 0; i < khuyenmaidanhap.length; i++) {
+                if (madanhap === khuyenmaidanhap[i]) flag = true
+            }
+            if (flag) {
+                alert('Mã đã được bạn áp dụng')
+            }
+            else {
+                //console.log(matk)
+                $.ajax({
+                    url: "/xacnhankhuyenmai",
+                    method: "POST",
+                    data: JSON.stringify({
+                        madanhap: madanhap,
+                        matk: matk
+                    }),
+                    success: function (status) {
+                        if (status.flag === 'Fail') {
+                            alert(status.msg)
+                        } else {
+                            var today = new Date()
+                            var vouday = new Date(status.msg.ngaykt)
+                            console.log(today)
+                            console.log(status.msg.ngaykt)
+                            if (vouday < today) {
+                                alert("Voucher đã quá hạn sử dụng")
+                            }
+                            else {
+                                var thanhtien = $('.thanhtien').text()
+                                var thanhtien_int = parseInt(thanhtien)
+                                //console.log(danhsachkhuyenmai)
+                                if (thanhtien >= parseInt(status.msg.dieukien)) {
+                                    $('.thanhtien').text(thanhtien - thanhtien * (parseInt(status.msg.phantram) / 100))
+                                    var giamgia = parseInt($('.giamgia').text())
+                                    $('.giamgia').text(giamgia + thanhtien * (parseInt(status.msg.phantram) / 100))
+                                    khuyenmaidanhap.push(madanhap)
+                                }
+                            }
+                        }
+                    },
+                    contentType: 'application/json',
+                })
+            }
+            $('.makm').val('')
+
+        })
+
+
+        $('.mua').on('click', function () {
+            var listhoadon = $('.hoadon')
+            var listProduct = []
+            var username = $('.ten-dang-nhap').text()
+            var checkMomo = $('.thanhtoanmomo')
+            var checkTienMat = $('.thanhtoantienmat')
+            var loaithanhtoan = ''
+            var thanhtien = parseInt($('.thanhtien').text())
+            var tinhtrangthanhtoan = ''
+            console.log(username)
+            listhoadon.each(function (e) {
+                const Sach = {
+                    tensach: $(this).find('.tensach').text(),
+                    hinhanh: $(this).find('.hinhanh').text(),
+                    theloai: $(this).find('.theloai').text(),
+                    soluong: parseInt($(this).find('.soluong').text()),
+                    tongtien: parseInt($(this).find('.tongtien').text()),
+                    giaban: parseInt($(this).find('.giaban').text())
+                }
+                if (checkMomo.prop('checked') === true) {
+                    tinhtrangthanhtoan = "Đã thanh toán"
+                    loaithanhtoan = 'Trực tuyến'
+                } else {
+                    tinhtrangthanhtoan = "Chưa thanh toán"
+                    loaithanhtoan = 'Trực tiếp'
+                }
+                listProduct.push(Sach)
+            })
+
+            var khuyenmaicon = []
+            var soluongcon = 0
+            for (var i = 0; i < danhsachkhuyenmai.length; i++) {
+                var flag = true
+                for (var k = 0; k < khuyenmaidanhap.length; k++) {
+                    if (danhsachkhuyenmai[i].manhap === khuyenmaidanhap[k]) {
+                        flag = false
+                    }
+                }
+                if (flag === true) {
+                    khuyenmaicon[soluongcon] = danhsachkhuyenmai[i]
+                    soluongcon++
+                }
+            }
+            console.log('Khuyen mai con')
+            console.log(khuyenmaicon)
+            //console.log(listProduct)
+            //console.log(username)
+            // console.log(loaithanhtoan)
+            //console.log(thanhtien)
+
+            var donhang = {
+                matk: username,
+                hinhthucthanhtoan: loaithanhtoan,
+                tongtien: thanhtien,
+                tinhtrangthanhtoan: tinhtrangthanhtoan,
+                tinhtrangdonhang: "chờ xác nhận",
+                ds_sach: listProduct,
+            }
+            console.log(donhang)
+            var donhang = JSON.stringify(donhang)
+            $('.linktott').attr('href', '/payment?donhang=' + donhang)
+
+            $.ajax({
+                url: '/updanhsachkm',
+                method: 'POST',
+                data: JSON.stringify({
+                    matk: username,
+                    danhsach_km: khuyenmaicon
+                }),
+                contentType: 'application/json'
+            })
+
+        })
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
+
