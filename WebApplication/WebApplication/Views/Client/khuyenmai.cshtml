@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model IEnumerable<WebApplication.Models.vouchers>;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -98,31 +99,34 @@
                     <img src="/client_styles/assets/img/3.png" alt="">
                 </div>
                 <div class="list-card">
-                    {{#each khuyenmai}}
-                    {{#ifCond this.loai '==' 'mã giảm giá'}}
-                    <div class="sale__card">
-                        <div class="sale__card-img">
-                            <img src="/client_styles/assets/img/logo_mgg.png" class="sale__voucher-logo">
-                        </div>
-                        <div class="sale__card-content">
-                            <div class="card-container">
-                                <h3 class="card-title khachhang" value="{{this.makm}}">Giảm {{this.phantram}}%</h3>
-                                <p class="card-text sale__card-text">Nhập mã {{this.manhap}}</p>
-                                <p class="card-text sale__card-text"><small class="text-muted">HSD: {{this.ngaykt}}</small></p>
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Loai == "mã giảm giá")
+                        {
+                            <div class="sale__card">
+                                <div class="sale__card-img">
+                                    <img src="/client_styles/assets/img/logo_mgg.png" class="sale__voucher-logo">
+                                </div>
+                                <div class="sale__card-content">
+                                    <div class="card-container">
+                                        <h3 class="card-title khachhang" value="@item.Makm">Giảm @item.Phantram%</h3>
+                                        <p class="card-text sale__card-text">Nhập mã @item.Manhap</p>
+                                        <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
+                                    </div>
+                                    <div class="card-button">
+                                        @if (item.Sl > 0)
+                                        {
+                                            <a href="/luukhuyenmai?phantram=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-button">
-                                {{#ifCond this.sl '!=' 0}}
-                                {{!-- <a><button class="btn__save btn__save--primary">Lưu</button></a> --}}
-                                <a href="/luukhuyenmai?phantram={{this.phantram}}&manhap={{this.manhap}}&ngaykt={{this.ngaykt}}" class="btn__save btn__save--primary">Lưu</a>
-
-                                {{else}}
-                                <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
-                                {{/ifCond}}
-                            </div>
-                        </div>
-                    </div>
-                    {{/ifCond}}
-                    {{/each}}
+                        }
+                    }
                 </div>
             </div>
             <div class="sale__list-voucher" id="mienphivanchuyen">
@@ -130,161 +134,167 @@
                     <img src="/client_styles/assets/img/1.png" alt="">
                 </div>
                 <div class="list-card">
-                    {{#each khuyenmai}}
-                    {{#ifCond this.loai '==' 'Free Ship'}}
-                    <div class="sale__card">
-                        <div class="sale__card-img">
-                            <img src="/client_styles/assets/img/logo_mpvc.png" class="sale__voucher-logo">
-                        </div>
-                        <div class="sale__card-content">
-                            <div class="card-container">
-                                <h3 class="card-title khachhang" name="{{this.makm}}">Giảm {{this.phantram}}%</h3>
-                                <p class="card-text sale__card-text">Nhập mã {{this.manhap}}</p>
-                                <p class="card-text sale__card-text"><small class="text-muted">HSD: {{this.ngaykt}}</small></p>
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Loai == "Free Ship")
+                        {
+                            <div class="sale__card">
+                                <div class="sale__card-img">
+                                    <img src="/client_styles/assets/img/logo_mgg.png" class="sale__voucher-logo">
+                                </div>
+                                <div class="sale__card-content">
+                                    <div class="card-container">
+                                        <h3 class="card-title khachhang" value="@item.Makm">Giảm @item.Phantram%</h3>
+                                        <p class="card-text sale__card-text">Nhập mã @item.Manhap</p>
+                                        <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
+                                    </div>
+                                    <div class="card-button">
+                                        @if (item.Sl > 0)
+                                        {
+                                            <a href="/luukhuyenmai?phantram=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-button">
-                                {{#ifCond this.sl '!=' 0}}
-                                {{!-- <a><button class="btn__save btn__save--primary">Lưu</button></a> --}}
-                                <a href="/luukhuyenmai?phantram={{this.phantram}}&manhap={{this.manhap}}&ngaykt={{this.ngaykt}}" class="btn__save btn__save--primary">Lưu</a>
-
-                                {{else}}
-                                <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
-                                {{/ifCond}}
-                            </div>
-                        </div>
-                    </div>
-                    {{/ifCond}}
-                    {{/each}}
+                        }
+                    }
                 </div>
             </div>
             <div class="sale__list-voucher" id="uudaikhachhang">
                 <div class="sale__voucher-title">
                     <img src="/client_styles/assets/img/2.png" alt="">
                 </div>
-                {{!-- <div class="card-group sale__voucher-container"> --}}
+
                 <div class="list-card">
-                    {{#each khuyenmai}}
-                    {{#ifCond this.loai '==' 'ưu đãi khách hàng'}}
-                    <div class="sale__card">
-                        <div class="sale__card-img">
-                            <img src="/client_styles/assets/img/logo_khtt.png" class="sale__voucher-logo">
-                        </div>
-                        <div class="sale__card-content">
-                            <div class="card-container">
-                                <h3 class="card-title" name="phantram" value="{{this.phantram}}">Giảm {{this.phantram}}%</h3>
-                                <p class="card-text sale__card-text card-manhap" name="{{this.manhap}}" value="{{this.manhap}}">Nhập mã {{this.manhap}}</p>
-                                <p class="card-text sale__card-text card-ngakt"><small class="text-muted" name="ngaykt" value="{{this.ngaykt}}">HSD: {{this.ngaykt}}</small></p>
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Loai == "ưu đãi khách hàng")
+                        {
+                            <div class="sale__card">
+                                <div class="sale__card-img">
+                                    <img src="/client_styles/assets/img/logo_mgg.png" class="sale__voucher-logo">
+                                </div>
+                                <div class="sale__card-content">
+                                    <div class="card-container">
+                                        <h3 class="card-title khachhang" value="@item.Makm">Giảm @item.Phantram%</h3>
+                                        <p class="card-text sale__card-text">Nhập mã @item.Manhap</p>
+                                        <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
+                                    </div>
+                                    <div class="card-button">
+                                        @if (item.Sl > 0)
+                                        {
+                                            <a href="/luukhuyenmai?phantram=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                        }
+                                        else
+                                        {
+                                            <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
+                                        }
+                                    </div>
+                                </div>
                             </div>
-                            <div class="card-button">
-                                {{#ifCond this.sl '!=' 0}}
-                                {{!-- <a><button class="btn__save btn__save--primary">Lưu</button></a> --}}
-                                <a href="/luukhuyenmai?phantram={{this.phantram}}&manhap={{this.manhap}}&ngaykt={{this.ngaykt}}" class="btn__save btn__save--primary">Lưu</a>
-                                {{!-- <a><button class="btn__save btn__save--primary">Lưu</button></a> --}}
-                                {{else}}
-                                <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
-                                {{/ifCond}}
-                            </div>
-                        </div>
-                    </div>
-                    {{/ifCond}}
-                    {{/each}}
+                        }
+                    }
                 </div>
             </div>
         </div>
-
-        <footer class="footer">
-            <div class="container bottom_border">
-                <div class="row">
-                    <div class=" col-sm-4 col-md col-sm-4  col-12 col">
-                        <h5 class="headin5_amrc col_white_amrc pt2">CHĂM SÓC KHÁCH HÀNG</h5>
-                        <!--headin5_amrc-->
-                        <ul class="footer_ul_amrc">
-                            <li><a href="http://webenlance.com">Các câu hỏi thường gặp</a></li>
-                            <li><a href="http://webenlance.com">Gửi yêu cầu hỗ trợ</a></li>
-                            <li><a href="http://webenlance.com">Hướng dẫn đặt hàng</a></li>
-                            <li><a href="http://webenlance.com">Phương thức vận chuyển</a></li>
-                            <li><a href="http://webenlance.com">Chính sách đổi trả</a></li>
-                        </ul>
-                        <p><i class="fa fa-phone"></i> +1900 1529 </p>
-                        <p><i class="fa fa fa-envelope"></i> dabook@book.com </p>
-                    </div>
-
-
-                    <div class=" col-sm-4 col-md  col-6 col">
-                        <h5 class="headin5_amrc col_white_amrc pt2">GIỚI THIỆU</h5>
-                        <!--headin5_amrc-->
-                        <ul class="footer_ul_amrc">
-                            <li><a href="http://webenlance.com">Điều khoản sử dụng</a></li>
-                            <li><a href="http://webenlance.com">Chính sách bảo mật thanh toán</a></li>
-                            <li><a href="http://webenlance.com">Chính sách bảo mật thông tin</a></li>
-                            <li><a href="http://webenlance.com">Chính sách giải quyết khiếu nại</a></li>
-                            <li><a href="http://webenlance.com">Giới thiệu xu</a></li>
-                            <li><a href="http://webenlance.com">Chính sách bán hàng</a></li>
-                        </ul>
-                        <!--footer_ul_amrc ends here-->
-                    </div>
-
-
-                    <div class=" col-sm-4 col-md  col-6 col">
-                        <h5 class="headin5_amrc col_white_amrc pt2">TÀI KHOẢN CỦA TÔI</h5>
-                        <!--headin5_amrc-->
-                        <ul class="footer_ul_amrc">
-                            <li><a href="http://webenlance.com">Đăng nhập</a></li>
-                            <li><a href="http://webenlance.com">Đăng ký</a></li>
-                            <li><a href="http://webenlance.com">Thay đổi địa chỉ giao hàng</a></li>
-                            <li><a href="http://webenlance.com">Chi tiết tài khoản</a></li>
-                            <li><a href="http://webenlance.com">Lịch sử mua hàng</a></li>
-                            <li><a href="http://webenlance.com">Điểm tích lũy</a></li>
-                        </ul>
-                        <!--footer_ul_amrc ends here-->
-                    </div>
-
-
-                    <div class=" col-sm-4 col-md  col-12 col">
-                        <h5 class="headin5_amrc col_white_amrc pt2">THEO DÕI CHÚNG TÔI</h5>
-                        <!--headin5_amrc ends here-->
-
-                        <ul class="footer_ul2_amrc">
-                            <li>
-                                <a href="#"><i class="fab fa-facebook fleft padding-right"></i></a>
-                                <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.facebook.com/</a></p>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-linkedin fleft padding-right"></i></a>
-                                <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.linkedin.com/</a></p>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-twitter fleft padding-right"></i></a>
-                                <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.twitter.com/</a></p>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fab fa-instagram fleft padding-right"></i></a>
-                                <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.instagram.com/</a></p>
-                            </li>
-                        </ul>
-                        <!--footer_ul2_amrc ends here-->
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <!--foote_bottom_ul_amrc ends here-->
-                <p class="text-center">2021 | Bản quyền thuộc về công ty <a href="#">DaBook - DaBook.com</a></p>
-
-                <ul class="social_footer_ul">
-                    <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
-                    <li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
+</body>
+<footer class="footer">
+    <div class="container bottom_border">
+        <div class="row">
+            <div class=" col-sm-4 col-md col-sm-4  col-12 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">CHĂM SÓC KHÁCH HÀNG</h5>
+                <!--headin5_amrc-->
+                <ul class="footer_ul_amrc">
+                    <li><a href="http://webenlance.com">Các câu hỏi thường gặp</a></li>
+                    <li><a href="http://webenlance.com">Gửi yêu cầu hỗ trợ</a></li>
+                    <li><a href="http://webenlance.com">Hướng dẫn đặt hàng</a></li>
+                    <li><a href="http://webenlance.com">Phương thức vận chuyển</a></li>
+                    <li><a href="http://webenlance.com">Chính sách đổi trả</a></li>
                 </ul>
-                <!--social_footer_ul ends here-->
+                <p><i class="fa fa-phone"></i> +1900 1529 </p>
+                <p><i class="fa fa fa-envelope"></i> dabook@book.com </p>
             </div>
 
-        </footer>
+
+            <div class=" col-sm-4 col-md  col-6 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">GIỚI THIỆU</h5>
+                <!--headin5_amrc-->
+                <ul class="footer_ul_amrc">
+                    <li><a href="http://webenlance.com">Điều khoản sử dụng</a></li>
+                    <li><a href="http://webenlance.com">Chính sách bảo mật thanh toán</a></li>
+                    <li><a href="http://webenlance.com">Chính sách bảo mật thông tin</a></li>
+                    <li><a href="http://webenlance.com">Chính sách giải quyết khiếu nại</a></li>
+                    <li><a href="http://webenlance.com">Giới thiệu xu</a></li>
+                    <li><a href="http://webenlance.com">Chính sách bán hàng</a></li>
+                </ul>
+                <!--footer_ul_amrc ends here-->
+            </div>
+
+
+            <div class=" col-sm-4 col-md  col-6 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">TÀI KHOẢN CỦA TÔI</h5>
+                <!--headin5_amrc-->
+                <ul class="footer_ul_amrc">
+                    <li><a href="http://webenlance.com">Đăng nhập</a></li>
+                    <li><a href="http://webenlance.com">Đăng ký</a></li>
+                    <li><a href="http://webenlance.com">Thay đổi địa chỉ giao hàng</a></li>
+                    <li><a href="http://webenlance.com">Chi tiết tài khoản</a></li>
+                    <li><a href="http://webenlance.com">Lịch sử mua hàng</a></li>
+                    <li><a href="http://webenlance.com">Điểm tích lũy</a></li>
+                </ul>
+                <!--footer_ul_amrc ends here-->
+            </div>
+
+
+            <div class=" col-sm-4 col-md  col-12 col">
+                <h5 class="headin5_amrc col_white_amrc pt2">THEO DÕI CHÚNG TÔI</h5>
+                <!--headin5_amrc ends here-->
+
+                <ul class="footer_ul2_amrc">
+                    <li>
+                        <a href="#"><i class="fab fa-facebook fleft padding-right"></i></a>
+                        <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.facebook.com/</a></p>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-linkedin fleft padding-right"></i></a>
+                        <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.linkedin.com/</a></p>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-twitter fleft padding-right"></i></a>
+                        <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.twitter.com/</a></p>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fab fa-instagram fleft padding-right"></i></a>
+                        <p>Theo dõi chúng tôi tại địa chỉ: <a href="#">https://www.instagram.com/</a></p>
+                    </li>
+                </ul>
+                <!--footer_ul2_amrc ends here-->
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!--foote_bottom_ul_amrc ends here-->
+        <p class="text-center">2021 | Bản quyền thuộc về công ty <a href="#">DaBook - DaBook.com</a></p>
+
+        <ul class="social_footer_ul">
+            <li><a href="http://webenlance.com"><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href="http://webenlance.com"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="http://webenlance.com"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="http://webenlance.com"><i class="fab fa-instagram"></i></a></li>
+        </ul>
+        <!--social_footer_ul ends here-->
+    </div>
+
+</footer>
     </div>
 
 
-    <script>
+<script>
         $('.btn__save').on('click', function(){
             var $this = $(this);
             var phantram = $this.parent().parent().find('.card-title').val();
@@ -321,7 +331,6 @@
             //$('btn__save').addClass('btn__save--disable');
             $(this).replaceWith(`<a class="btn__save btn__save--disable" name="{{this.makm}}"><b>Đã lưu</b></a>`)
         })
-</body>
-
+        < /script >
 
 </html>

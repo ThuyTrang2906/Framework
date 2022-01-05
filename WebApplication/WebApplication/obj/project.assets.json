@@ -1411,25 +1411,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TanTh\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\USER\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Framework\\WebApplication\\WebApplication\\WebApplication.csproj",
+      "projectUniqueName": "C:\\Users\\USER\\Source\\Repos\\Framework\\WebApplication\\WebApplication\\WebApplication.csproj",
       "projectName": "WebApplication",
-      "projectPath": "D:\\Framework\\WebApplication\\WebApplication\\WebApplication.csproj",
-      "packagesPath": "C:\\Users\\TanTh\\.nuget\\packages\\",
-      "outputPath": "D:\\Framework\\WebApplication\\WebApplication\\obj\\",
+      "projectPath": "C:\\Users\\USER\\Source\\Repos\\Framework\\WebApplication\\WebApplication\\WebApplication.csproj",
+      "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\USER\\Source\\Repos\\Framework\\WebApplication\\WebApplication\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\TanTh\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
@@ -1481,7 +1476,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
       }
     }
   }

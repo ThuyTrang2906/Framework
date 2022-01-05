@@ -12,7 +12,9 @@ namespace WebApplication.Controllers
     {
         public IActionResult khuyenmai()
         {
-            return View();
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+             
+            return View(context.GetVoucher());
         }
 
         /*public IActionResult chitietsach()

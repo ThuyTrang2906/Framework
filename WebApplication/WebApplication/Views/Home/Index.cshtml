@@ -1,9 +1,12 @@
-﻿
-@model IEnumerable<WebApplication.Models.Book>
+﻿@*@model WebApplication.Models.Book;*@
 @{
     ViewData["Title"] = "Home Page";
 }
+@{
 
+    IEnumerable<Book> flashsale = ViewData["FlashSale"] as IEnumerable<Book>;
+    IEnumerable<Book> ListBook = ViewData["ListBook"] as IEnumerable<Book>;
+}
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -17,8 +20,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
-    <link rel="stylesheet" href="/client_styles/assets/css/base.css" />
+@*    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
+*@    <link rel="stylesheet" href="/client_styles/assets/css/base.css" />
     <link rel="stylesheet" href="/client_styles/assets/css/main.css" />
     <link rel="stylesheet"
           href="/client_styles/assets/fonts/themify-icons/themify-icons.css" />
@@ -47,8 +50,8 @@
                             <ul class="category-list">
                                 <li class="category-item category-item--active">
                                     <a href="" class="category-item__link">Giả tưởng</a>
-                                    {{!-- <a href="/theloai/vien-tuong" class="category-item__link">Viễn tưởng</a> --}}
-                                </li>
+@*                                    {{!-- <a href="/theloai/vien-tuong" class="category-item__link">Viễn tưởng</a> --}}
+*@                                </li>
                                 <li class="category-item">
                                     <a href="" class="category-item__link">Ngôn tình</a>
                                 </li>
@@ -335,7 +338,7 @@
                             </div>
                         </div>
 
-                        {{!-- featured section --}}
+                       @*Count Down*@
                         <div class="featured" id="featured">
 
                             <div class="swiper featured-slider">
@@ -343,7 +346,7 @@
                                     <div class="col-12 flash__sale">
                                         <h1 style="color: #333; background: #fff; ">
                                             <span> FLASH SALE</span>
-                                            <div class="timer ">
+                                            <div class="timer">
                                                 <div style="width: 33px; height: 33px">
                                                     <span class="days" id="day"></span>
                                                 </div>
@@ -364,32 +367,35 @@
                                         </h1>
                                     </div>
                                 </div>
-                                <div class="swiper-wrapper" style="height: auto; width: 100%">
-                                    {{#each flash_sales}}
-                                    <div class="swiper-slide box">
-                                        <div class="icons">
-                                            <a href="/chitietsach/{{this.tensach}}" class="fas fa-search"></a>
-                                            <a href="#" class="fas fa-heart"></a>
-                                            <a href="/chitietsach/{{this.tensach}}" class="fas fa-eye"></a>
-                                        </div>
-                                        <a class="image" href="/chitietsach/{{this.tensach}}">
-                                            <img src="{{this.hinhanh}}" alt="">
-                                        </a>
 
-                                        <div class="content">
-                                            <h3>{{this.tensach}}</h3>
-                                            <div class="price">{{format_price this.giaban}}<span>{{format_price this.giagoc}}</span></div>
-                                            <a href="/themgiohang?tensach={{this.tensach}}&giaban={{this.giaban}}&hinhanh={{this.hinhanh}}&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
+                                @*FLASHSALE*@
+                                <div class="swiper-wrapper" style="height: auto; width: 100%">
+                                    @foreach (Book item in flashsale)
+                                    {
+                                        <div class="swiper-slide box">
+                                            <div class="icons">
+                                                <a href="/chitietsach/@item.Tensach" class="fas fa-search"></a>
+                                                <a href="#" class="fas fa-heart"></a>
+                                                <a href="/chitietsach/@item.Tensach" class="fas fa-eye"></a>
+                                            </div>
+                                            <a class="image" href="/chitietsach/@item.Tensach">
+                                                <img src="@item.Hinhanh" alt="">
+                                            </a>
+
+                                            <div class="content">
+                                                <h3>@item.Tensach</h3>
+                                                <div class="price">@item.Giaban<span>@item.Giagoc</span></div>
+                                                <a href="/themgiohang?tensach=@item.Tensach&giaban=@item.Giaban&hinhanh=@item.Hinhanh&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    {{/each}}
+                                    }
                                 </div>
                                 <div class="swiper-button-next"></div>
                                 <div class="swiper-button-prev"></div>
                             </div>
                         </div>
 
-                        <!-- Home-filter -->
+                        @* Home-filter *@
                         <div class="home-filter">
 
                             <div class="home-filter__page">
@@ -466,50 +472,50 @@
                             <!-- Grid -> row -> column -->
                             <div class="grid__row">
                                 <!-- Product item -->
-                                {{#each books}}
-                                <div class="grid__column-2">
+                                @foreach (Book item in Model)
+                                {
+                                    <div class="grid__column-2-4">
 
-                                    <a class="home-product-item" href="/chitietsach/{{this.tensach}}">
-                                        <div class="home-product-item__img"
-                                             style="background-image: url({{this.hinhanh}});"></div>
-                                        <h4 class="home-product-item__name">
-                                            {{this.tensach}}
-                                        </h4>
-                                        <div class="home-product-item__price">
-                                            <span class="home-product-item__price-old">{{format_price this.giagoc}}</span>
-                                            <span class="home-product-item__price-current">{{format_price this.giaban}}</span>
-                                        </div>
-                                        <div class="home-product-item__action">
-                                            <span class="home-product-item__like home-product-item--liked">
-                                                <i class="home-product-item__like-icon-empty far fa-heart"></i>
-                                                <i class="home-product-item__like-icon-fill fas fa-heart"></i>
-                                            </span>
-                                            <div class="home-product-item__rating">
-                                                <i class="home-product-item__star--gold fas fa-star"></i>
-                                                <i class="home-product-item__star--gold fas fa-star"></i>
-                                                <i class="home-product-item__star--gold fas fa-star"></i>
-                                                <i class="home-product-item__star--gold fas fa-star"></i>
-                                                <i class="fas fa-star"></i>
+                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Tensach">
+                                            <div class="home-product-item__img"
+                                                 style="background-image: url(@item.Hinhanh);">
                                             </div>
-                                            <span class="home-product-item__sold">57 đã bán</span>
-                                        </div>
+                                            <h4 class="home-product-item__name">
+                                                @item.Tensach
+                                            </h4>
+                                            <div class="home-product-item__price">
+                                                <span class="home-product-item__price-old">@item.Giagoc</span>
+                                                <span class="home-product-item__price-current">@item.Giaban đ</span>
+                                            </div>
+                                            <div class="home-product-item__action">
+                                                <span class="home-product-item__like home-product-item--liked">
+                                                    <i class="home-product-item__like-icon-empty far fa-heart"></i>
+                                                    <i class="home-product-item__like-icon-fill fas fa-heart"></i>
+                                                </span>
+                                                <div class="home-product-item__rating">
+                                                    <i class="home-product-item__star--gold fas fa-star"></i>
+                                                    <i class="home-product-item__star--gold fas fa-star"></i>
+                                                    <i class="home-product-item__star--gold fas fa-star"></i>
+                                                    <i class="home-product-item__star--gold fas fa-star"></i>
+                                                    <i class="fas fa-star"></i>
+                                                </div>
+                                                <span class="home-product-item__sold">57 đã bán</span>
+                                                <div class="home-product-item__favourite">
+                                                    <i class="fas fa-check"></i>
+                                                    <span>Yêu thích</span>
+                                                </div>
+                                                <div class="home-product-item__sale-off">
+                                                    <span class="home-product-item__sale-off-percent">@item.Giamgia%</span>
+                                                    <span class="home-product-item__sale-off-label">GIẢM</span>
+                                                </div>
+                                            </div>
+                                        </a>
 
-                                        <div class="home-product-item__favourite">
-                                            <i class="fas fa-check"></i>
-                                            <span>Yêu thích</span>
-                                        </div>
-                                        <div class="home-product-item__sale-off">
-                                            <span class="home-product-item__sale-off-percent">{{this.giamgia}}%</span>
-                                            <span class="home-product-item__sale-off-label">GIẢM</span>
-                                        </div>
-                                    </a>
-
-                                </div>
-                                {{/each}}
+                                    </div>
+                                }
                             </div>
                         </div>
 
-                        {{!-- PHÂN TRANG --}}
 
                         <div class="content_detail__pagination cdp" actpage="1">
                             <a href="#!-1" class="cdp_i">prev</a>
