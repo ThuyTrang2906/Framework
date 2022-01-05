@@ -1,6 +1,5 @@
 ﻿
     <!DOCTYPE html>
-    @model IEnumerable<WebApplication.Models.Book>
 
      <html lang="en">
      <head>
@@ -201,7 +200,9 @@
                         </div>
 
                         <div class="header__cart">
-                            <i class="header__cart-icon ti-shopping-cart"></i>
+                            <a class="header__logo-link" asp-controller="Client" asp-action="cart">
+                                <i class="header__cart-icon ti-shopping-cart"></i>                              
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -211,8 +212,8 @@
 
     <!-- End header -->
                    
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="app__container">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
@@ -312,8 +313,6 @@
                     <script src="~/js/site.js" asp-append-version="true"></script>
                     @await RenderSectionAsync("Scripts", required: false)
                     <script src="~/js/signInSignUp.js"></script>
-
-
 
 
 

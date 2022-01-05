@@ -11,7 +11,7 @@ namespace WebApplication.Models
         private string hinhanh;
         private string theloai;
         private int giaban;
-        private string giagoc;
+        private int giagoc;
         private int giamgia;
         private string mota;
         private string tacgia;
@@ -24,7 +24,7 @@ namespace WebApplication.Models
         public string Hinhanh { get => hinhanh; set => hinhanh = value; }
         public string Theloai { get => theloai; set => theloai = value; }
         public int Giaban { get => giaban; set => giaban = value; }
-        public string Giagoc { get => giagoc; set => giagoc = value; }
+        public int Giagoc { get => giagoc; set => giagoc = value; }
         public int Giamgia { get => giamgia; set => giamgia = value; }
         public string Mota { get => mota; set => mota = value; }
         public string Tacgia { get => tacgia; set => tacgia = value; }
@@ -32,7 +32,7 @@ namespace WebApplication.Models
         public string Nxb { get => nxb; set => nxb = value; }
         public string Hinhthuc { get => hinhthuc; set => hinhthuc = value; }
 
-        public Book(string TENSACH, string HINHANH, string THELOAI, int GIABAN, string GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
+        public Book(string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
         {
             this.tensach = TENSACH;
             this.hinhanh = HINHANH;

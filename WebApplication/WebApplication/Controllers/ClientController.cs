@@ -12,7 +12,9 @@ namespace WebApplication.Controllers
     {
         public IActionResult khuyenmai()
         {
-            return View();
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+             
+            return View(context.GetVoucher());
         }
 
         /*public IActionResult chitietsach()
@@ -43,6 +45,13 @@ namespace WebApplication.Controllers
                 ViewData["thongbao"] = "Insert thành công";
             else
                 ViewData["thongbao"] = "Insert không thành công";
+            return View();
+        }
+
+        public IActionResult cart()
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+
             return View();
         }
     }

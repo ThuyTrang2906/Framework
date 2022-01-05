@@ -27,7 +27,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist";
+                string str = "select * from booklist limit 40";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -35,12 +35,43 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
-
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
-                            Giagoc = reader["giagoc"].ToString(),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+
+        public List<Book> FlashSales()
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where giamgia > 23";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
                             Giamgia = Convert.ToInt32(reader["giamgia"]),
                         });
                     }
@@ -69,7 +100,7 @@ namespace WebApplication.Models
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
                     bo.Theloai = reader["theloai"].ToString();
-                    bo.Giagoc  = reader["giagoc"].ToString();
+                    bo.Giagoc  = Convert.ToInt32(reader["giagoc"]);
                     bo.Giaban = Convert.ToInt32(reader["giaban"]);
                     bo.Nxb = reader["nxb"].ToString();
                     bo.Hinhthuc = reader["hinhthuc"].ToString();
@@ -100,8 +131,8 @@ namespace WebApplication.Models
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
-                            Giagoc = reader["giagoc"].ToString(),
-                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                        Giamgia = Convert.ToInt32(reader["giamgia"]),
                         });
                     }
                     reader.Close();
@@ -118,7 +149,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into client_accounts  values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, current_timestamp(), @sl_giohang, @sodt, @tinhtrang)";
+                var str = "insert into client_accounts values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, current_timestamp(), @sl_giohang, @sodt, @tinhtrang)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("danhsach_km", "0");
                 cmd.Parameters.AddWithValue("diachigh", "null");
@@ -139,6 +170,43 @@ namespace WebApplication.Models
                 return (cmd.ExecuteNonQuery());
 
             }
+        }
+
+        public List<vouchers> GetVoucher()
+        {
+            List<vouchers> list = new List<vouchers>();
+            using(MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from khuyenmais";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new vouchers()
+                        {
+                            Makm = reader["makm"].ToString(),
+                            Img = reader["img"].ToString(),
+                            Noidung = reader["noidung"].ToString(),
+                            Phantram = Convert.ToInt32(reader["phantram"]),
+                            Dieukien = Convert.ToInt32(reader["dieukien"]),
+                            Sl = Convert.ToInt32(reader["sl"]),
+                            Daluu = Convert.ToInt32(reader["daluu"]),
+                            Manhap = reader["manhap"].ToString(),
+                            Loai = reader["loai"].ToString(),
+                            Ngaybd = Convert.ToDateTime(reader["ngaybd"]),
+                            Ngaykt = Convert.ToDateTime(reader["ngaykt"]),
+
+
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+            }
+            return list;
         }
     }
 }
