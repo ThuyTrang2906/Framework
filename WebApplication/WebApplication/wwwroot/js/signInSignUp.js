@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-        const login = document.querySelector('.open-login')
+    const login = document.querySelector('.open-login')
     const sign_up = document.querySelector('.open-signup')
     const cart = document.querySelector('.header__cart-icon')
     const notify = document.querySelector('.open-login-noti')
@@ -30,4 +30,4 @@
         modals.classList.remove('open')
     }
     modalsClose.addEventListener('click', hideshows)
-         });
+ });
