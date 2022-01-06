@@ -26,6 +26,7 @@ namespace WebApplication
         {
             services.AddMvc();
             services.Add(new ServiceDescriptor(typeof(StoreContext), new StoreContext(Configuration.GetConnectionString("DefaultConnection"))));
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,6 +48,8 @@ namespace WebApplication
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

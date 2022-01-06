@@ -230,8 +230,8 @@ namespace WebApplication.Models
                     tk.Sodt = reader["sodt"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
-                    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);
-                    tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);
+                /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
+                    /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
                 }
             }
             return tk;
@@ -288,6 +288,45 @@ namespace WebApplication.Models
 
             }
             return list;
+        }
+
+        public client_accounts Login(string username, string password)
+        {
+            client_accounts client_Accounts = new client_accounts();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "select * from client_accounts where tentk=@username and matkhau=@password";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("password", password);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        client_Accounts.Danhsach_km = reader["danhsach_km"].ToString();
+                        client_Accounts.Diachi = reader["diachi"].ToString();
+                        client_Accounts.Diem = Convert.ToInt32(reader["diem"]);
+                        client_Accounts.Email = reader["email"].ToString();
+                        client_Accounts.Giohang = reader["giohang"].ToString();
+                        client_Accounts.Gioitinh = reader["gioitinh"].ToString();
+                        client_Accounts.Hoten = reader["hoten"].ToString();
+                        client_Accounts.Matk = reader["matk"].ToString();
+                        client_Accounts.Matkhau = reader["matkhau"].ToString();
+                        client_Accounts.Ngaysinh = DateTime.Parse(reader["ngaysinh"].ToString());
+                        client_Accounts.Ngaytao = DateTime.Parse(reader["ngaytao"].ToString());
+                        client_Accounts.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
+                        client_Accounts.Sodt = reader["sodt"].ToString();
+                        client_Accounts.Tinhtrang = reader["tinhtrang"].ToString();
+                        client_Accounts.Tentk = reader["tentk"].ToString();
+
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+
+            }
+            return client_Accounts;
         }
     }
 }
