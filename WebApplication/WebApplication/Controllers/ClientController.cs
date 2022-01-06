@@ -47,5 +47,20 @@ namespace WebApplication.Controllers
                 ViewData["thongbao"] = "Insert không thành công";
             return View();
         }
+
+        public IActionResult cart()
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+
+            return View();
+        }
+
+        public IActionResult taikhoan(string tentk)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            ViewBag.client_account = context.Client_Accounts(tentk);
+            ViewBag.danhsach_km = context.User_Voucher(tentk);
+            return View();
+        }
     }
 }

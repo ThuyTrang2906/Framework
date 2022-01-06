@@ -7,13 +7,12 @@ namespace WebApplication.Models
 {
     public class client_accounts
     {
-        private string danhsach_km, diachigh, diachigoc, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
+        private string tentk, danhsach_km, diachi, diachigoc, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
         private DateTime ngaysinh, ngaytao;
         private int diem, sl_giohang ;
 
         public string Danhsach_km { get => danhsach_km; set => danhsach_km = value; }
-        public string Diachigh { get => diachigh; set => diachigh = value; }
-        public string Diachigoc { get => diachigoc; set => diachigoc = value; }
+        public string Diachi { get => diachi; set => diachi = value; }
         public int Diem { get => diem; set => diem = value; }
         public string Email { get => email; set => email = value; }
         public string Giohang { get => giohang; set => giohang = value; }
@@ -26,20 +25,21 @@ namespace WebApplication.Models
         public int Sl_giohang { get => sl_giohang; set => sl_giohang = value; }
         public string Sodt { get => sodt; set => sodt = value; }
         public string Tinhtrang { get => tinhtrang; set => tinhtrang = value; }
+        public string Tentk { get => tentk; set => tentk = value; }
 
         public client_accounts() {  }
-        public client_accounts(string danhsach_km, string diachigh, string diachigoc, int diem, string email, string giohang, string gioitinh, string hoten, string matk, string matkhau, DateTime ngaysinh, DateTime ngaytao, int sl_giohang, string sodt, string tinhtrang)
+        public client_accounts(string danhsach_km, string tentk, string diachi, int diem, string email, string giohang, string gioitinh, string hoten, string matk, string matkhau, DateTime ngaysinh, DateTime ngaytao, int sl_giohang, string sodt, string tinhtrang)
         {
 
             this.danhsach_km = danhsach_km;
-            this.diachigh = diachigh;
-            this.diachigoc = diachigoc;
+            this.diachi = diachi;
             this.diem = diem;
             this.email = email;
             this.giohang = giohang;
             this.gioitinh = gioitinh;
             this.hoten = hoten;
             this.matk = matk;
+            this.tentk = tentk;
             this.matkhau = matkhau;
             this.ngaysinh = ngaysinh;
             this.ngaytao = ngaytao;

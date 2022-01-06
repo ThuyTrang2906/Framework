@@ -710,7 +710,7 @@ i.home-product-item__like-icon-fill {
 
 .future_sale-img {
     border-radius: 15px;
-    width: 350px;
+    width: 350px !important; 
     margin: 10px 5px;
 }
 
@@ -723,7 +723,7 @@ i.home-product-item__like-icon-fill {
     font-weight: 500;
     color: #1A94FF;
     font-style: italic;
-    margin-top: 10;
+    margin-top: 10px;
     margin-right: 0;
 }
 
