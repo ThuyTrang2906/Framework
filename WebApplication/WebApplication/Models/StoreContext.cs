@@ -208,5 +208,125 @@ namespace WebApplication.Models
             }
             return list;
         }
+
+        public client_accounts Client_Accounts(string tentk)
+        {
+            client_accounts tk = new client_accounts();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from client_accounts where tentk = @tentk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("tentk", tentk);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    tk.Matk = reader["matk"].ToString();
+                    tk.Tentk = reader["tentk"].ToString();
+                    tk.Diachi = reader["diachi"].ToString();
+                    tk.Tinhtrang = reader["tinhtrang"].ToString();
+                    tk.Email = reader["email"].ToString();
+                    tk.Matkhau = reader["matkhau"].ToString();
+                    tk.Sodt = reader["sodt"].ToString();
+                    tk.Diem = Convert.ToInt32(reader["diem"]);
+                    tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
+                /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
+                    /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
+                }
+            }
+            return tk;
+        }
+
+        public user_voucher User_Voucher(string tentk)
+        {
+            user_voucher uv = new user_voucher();
+            using(MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "Select * from khuyenmais where makm in (" +
+                    "select makm from user_voucher u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("tentk", tentk);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    uv.Matk = reader["matk"].ToString();
+                    uv.Makm = reader["makm"].ToString();
+
+                }
+            }
+            return uv;
+        }
+
+        public List<Book> Cart(string tentk)
+        {
+            List<Book> list = new List<Book>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where masach in " +
+                    "(select masach from cart u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+
+        public client_accounts Login(string username, string password)
+        {
+            client_accounts client_Accounts = new client_accounts();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "select * from client_accounts where tentk=@username and matkhau=@password";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("username", username);
+                cmd.Parameters.AddWithValue("password", password);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        client_Accounts.Danhsach_km = reader["danhsach_km"].ToString();
+                        client_Accounts.Diachi = reader["diachi"].ToString();
+                        client_Accounts.Diem = Convert.ToInt32(reader["diem"]);
+                        client_Accounts.Email = reader["email"].ToString();
+                        client_Accounts.Giohang = reader["giohang"].ToString();
+                        client_Accounts.Gioitinh = reader["gioitinh"].ToString();
+                        client_Accounts.Hoten = reader["hoten"].ToString();
+                        client_Accounts.Matk = reader["matk"].ToString();
+                        client_Accounts.Matkhau = reader["matkhau"].ToString();
+                        client_Accounts.Ngaysinh = DateTime.Parse(reader["ngaysinh"].ToString());
+                        client_Accounts.Ngaytao = DateTime.Parse(reader["ngaytao"].ToString());
+                        client_Accounts.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
+                        client_Accounts.Sodt = reader["sodt"].ToString();
+                        client_Accounts.Tinhtrang = reader["tinhtrang"].ToString();
+                        client_Accounts.Tentk = reader["tentk"].ToString();
+
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+
+            }
+            return client_Accounts;
+        }
     }
 }

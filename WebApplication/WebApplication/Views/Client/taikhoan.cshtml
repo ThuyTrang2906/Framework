@@ -200,10 +200,10 @@
                             <div class="account__address-form">
                                 <div class="account__address-heading">
                                     <h1 class="account__address-heading-title">Địa chỉ của tôi</h1>
-                                    {{!-- <button class="account-btn account-btn--primary" id="btn-new__address">
+                                   @* {{!-- <button class="account-btn account-btn--primary" id="btn-new__address">
                       <i class="fas fa-plus" style="margin-right: 3px;"></i>
                       Thêm địa chỉ mới
-                    </button> --}}
+                    </button> --}}*@
                                 </div>
                                 <form id="ds_diachi">
                                     <div class="account__address-info">
@@ -211,7 +211,7 @@
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Họ và tên</label>
                                                 <p class="account__content-address-text hoten">{{client_accounts.hoten}}</p>
-                                                {{!-- <p class="address-mode ">Địa chỉ mặc định</p>  --}}
+                                                @*{{!-- <p class="address-mode ">Địa chỉ mặc định</p>  --}}*@
                                             </div>
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Số điện thoại</label>
@@ -226,9 +226,9 @@
                                             <div class="account__btn-edit">
                                                 <a href="#edit__address" target="_self" style="text-decoration:none" class="btn_edit">Sửa</a>
                                             </div>
-                                            {{!-- <div class="account__btn-default account__btn-default--disable default">
+                                            @*{{!-- <div class="account__btn-default account__btn-default--disable default">
                           <span>Thiết lập mặc định</span>
-                        </div> --}}
+                        </div> --}}*@
                                         </div>
                                     </div>
                                     {{#if client_accounts.diachigh}}
@@ -437,15 +437,17 @@
                                 <form>
                                     <div class="tab-pane" id="all_voucher" role="tabpanel" aria-labelledby="all_voucher-tab">
                                         <div class="list-card">
-                                            {{#if client_accounts.danhsach_km}}
-                                            {{#each client_accounts.danhsach_km}}
+                                            @if (ViewBag.danhsach_km)
+                                            {
+                                            @foreach(user_voucher item in ViewBag.danhsach_km)
+                                                {
                                             <div class="account__card">
                                                 <div class="account__card-img">
                                                     <img src="/client_styles/assets/img/logo.png" class="account__voucher-logo">
                                                 </div>
                                                 <div class="account__card-content">
                                                     <div class="card-container">
-                                                        <h3 class="card-title khachhang" name="{{this.manhap}}">Giảm {{this.phantram}}%</h3>
+                                                        <h3 class="card-title khachhang" name="@item.Makm">Giảm {{this.phantram}}%</h3>
                                                         <p class="card-text account__card-text">Mã nhập {{this.manhap}}</p>
                                                         <p class="card-text account__card-text"><small class="text-muted">HSD: {{this.ngaykt}}</small></p>
                                                     </div>
@@ -457,8 +459,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{/each}}
-                                            {{else}}
+                                                }
+                                            }else { 
                                             <div class="account__btn-default account__btn-default--primary" id="btn_danhdau">
                                                 <span style="color: rgb(155, 155, 155);">Bạn chưa lưu voucher nào</span>
                                             </div>
@@ -466,7 +468,7 @@
                                                 <span>Đến trang khuyến mãi</span>
                                                 <i class="fas fa-chevron-right"></i>
                                             </a>
-                                            {{/if}}
+                                           }
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="expired_voucher" role="tabpanel" aria-labelledby="expired_voucher-tab">

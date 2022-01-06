@@ -1127,3 +1127,5 @@ D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\E
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DangKy.cshtml.g.cs
 C:\Users\USER\source\repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\thanhyou.cshtml.g.cs
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\thanhyou.cshtml.g.cs
+C:\Users\USER\source\repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Login.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Login.cshtml.g.cs
