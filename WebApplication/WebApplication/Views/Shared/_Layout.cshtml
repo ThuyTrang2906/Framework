@@ -110,7 +110,7 @@
                         </ul>
                     </nav>
                     <!-- header-with-search -->
-                    <form method="GET" action="/search">
+                    <div >
                         <div class="header-with-search">
                             <div class="header__logo">
                                 <a asp-controller="Home" asp-action="Index"class="header__logo-link">
@@ -120,17 +120,12 @@
                                 </a>
                             </div>
 
-                            <div class="header__search">
-                                <input name="name"
-                                       type="text"
-                                       class="header__search-input"
-                                       placeholder="Nhập sản phẩm muốn tìm kiếm" />
-
-                                <!-- Search button -->
-                                <button type="submit" class="header__search-btn">
+                            <form method="GET" action="/Client/Search_Book" class="header__search">
+                                <input type="text" name="ten_sach" class="header__search-input" placeholder="Nhập sản phẩm muốn tìm kiếm">
+                                <button type="submit" class="header__search-btn header__logo-link" >
                                     <i class="header__search-btn-icon fas fa-search"></i>
                                 </button>
-                            </div>
+                            </form>
 
                             <div class="header__cart">
                                 <div class="header__cart-wrap">
@@ -142,7 +137,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </header>
             </div>
@@ -362,12 +357,12 @@
                             </a>
                         </div>
 
-                        <div class="header__search">
-                            <input type="text" class="header__search-input" placeholder="Nhập sản phẩm muốn tìm kiếm">
-                            <button class="header__search-btn">
+                        <form method="GET" action="/Client/Search_Book" class="header__search">
+                            <input type="text" name="ten_sach" class="header__search-input" placeholder="Nhập sản phẩm muốn tìm kiếm">
+                            <button type="submit" class="header__search-btn header__logo-link">
                                 <i class="header__search-btn-icon fas fa-search"></i>
                             </button>
-                        </div>
+                        </form>
 
                         <div class="header__cart">
                             <a class="header__logo-link" asp-controller="Client" asp-action="cart">

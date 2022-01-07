@@ -343,5 +343,36 @@ namespace WebApplication.Models
             }
             return client_Accounts;
         }
+
+        public List<Book> Search_Book(string ten_sach)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where tensach like" + "'" + "%" + ten_sach + "%" + "'" + "limit 40"; 
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ten_sach", ten_sach);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
     }
 }

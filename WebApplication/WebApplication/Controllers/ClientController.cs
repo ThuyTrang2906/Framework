@@ -88,5 +88,16 @@ namespace WebApplication.Controllers
             ViewBag.khuyenmai = context.User_Voucher(tentk);
             return View();
         }
+
+        public ActionResult Search_Book(string ten_sach)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> books = new List<Book>();
+            books = context.Search_Book(ten_sach);
+            
+         
+
+            return View(books);
+        }
     }
 }
