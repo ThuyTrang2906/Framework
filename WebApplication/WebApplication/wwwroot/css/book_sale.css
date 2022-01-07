@@ -19,31 +19,31 @@
     background-color: var(--white-color);
 }
 
-    .myvoucher span {
-        font-size: 2rem;
-        font-weight: 500;
-        flex: 1;
-        text-align: left;
-    }
+.myvoucher span {
+    font-size: 2rem;
+    font-weight: 500;
+    flex: 1;
+    text-align: left;
+}
 
-    .myvoucher i {
-        float: right;
-        font-size: 2rem;
-    }
+.myvoucher i {
+    float: right;
+    font-size: 2rem;
+}
 
-    .myvoucher:hover {
-        border-color: #f60;
-        color: #f60;
-        cursor: pointer;
-        transform: translateY(-3px);
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    }
+.myvoucher:hover {
+    border-color: #f60;
+    color: #f60;
+    cursor: pointer;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-    .sale__list {
-        display: flex;
-        text-align: center;
-        padding: 0 100px;
-    }
+.sale__list {
+    display: flex;
+    text-align: center;
+    padding: 0 100px;
+}
 
 .sale__list-container {
     padding: 12px;
@@ -60,7 +60,7 @@
     background-color: var(--blue-color);
     justify-content: center;
     align-items: center;
-    transition: width 0.2s, height 0.2;
+    transition: width 0.2s, height 0.2s;
 }
 
 .item-img {
@@ -81,13 +81,13 @@
     background-color: #E72922;
 }
 
-    .sale__list-item:hover .item-img {
-        cursor: pointer;
-        width: 190px;
-        height: 190px;
-        border-color: #E72922;
-        background-color: #E72922;
-    }
+.sale__list-item:hover .item-img {
+    cursor: pointer;
+    width: 190px;
+    height: 190px;
+    border-color: #E72922;
+    background-color: #E72922;
+}
 
 .sale__list-container:hover {
     cursor: pointer;
@@ -133,8 +133,8 @@
     padding: 10px;
     border-right: 2px solid var(--blue-color);
     border-radius: 2px;
-    margin-top: -1;
-    margin-left: -1;
+    margin-top: -1px;
+    margin-left: -1px;
 }
 
 .sale__card-content {
@@ -189,10 +189,10 @@
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-    .btn__save--disable:hover {
-        text-decoration: none;
-        color: var(--black-color);
-    }
+.btn__save--disable:hover {
+    text-decoration: none;
+    color: var(--black-color);
+}
 
 .apply {
     display: block;
@@ -220,12 +220,12 @@
     vertical-align: middle;
 }
 
-    .apply__title-content-h1 h1 {
-        font-size: 5rem;
-        color: var(--blue-color);
-        text-align: center;
-        margin: 0 10px;
-    }
+.apply__title-content-h1 h1 {
+    font-size: 5rem;
+    color: var(--blue-color);
+    text-align: center;
+    margin: 0 10px;
+}
 
 .apply__title-content h6 {
     font-size: 3.5rem;
@@ -257,15 +257,15 @@
     transition: width 0.3s, height 0.3s;
 }
 
-    .apply__list-img:hover {
-        width: 50%;
-        height: 50%;
-        border: 1px solid var(--text-color);
-        position: absolute;
-        z-index: 1;
-        display: flex;
-        transform: translate(-30%);
-    }
+.apply__list-img:hover {
+    width: 50%;
+    height: 50%;
+    border: 1px solid var(--text-color);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    transform: translate(-30%);
+}
 
 .apply__list-text {
     font-size: 2rem;
