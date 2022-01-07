@@ -7,6 +7,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using System.Dynamic;
+using Microsoft.AspNetCore.Http;
+using System.Text.Json;
 
 /*using Microsoft.AspNetCore.Mvc;
 using System;
@@ -32,8 +34,16 @@ namespace WebApplication.Controllers
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             List<Book> flashsale = context.FlashSales();
-
             List<Book> listbook = context.GetBook();
+
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
+
             /*ViewData["FlashSale"] = context.FlashSales();
             ViewData["ListBook"] = context.GetBook();*/
             ViewBag.flashsale = context.FlashSales();

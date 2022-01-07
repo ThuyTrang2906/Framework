@@ -66,7 +66,7 @@ namespace WebApplication.Controllers
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             client_accounts res = context.Login(username, password);
-            if (res != null)
+            if (res!= null)
             {
                 ViewBag.status = "Success";
                 ViewBag.infor = res;
