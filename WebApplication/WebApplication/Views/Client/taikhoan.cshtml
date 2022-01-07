@@ -1,4 +1,4 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +16,8 @@
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
     <link rel="stylesheet" href="~/css/base.css" />
-    {{!-- <link rel="stylesheet" href="/client_styles/assets/css/account.css" /> --}}
-    <link rel="stylesheet" href="~/css/account.scss" />
+    @*{{!-- <link rel="stylesheet" href="/client_styles/assets/css/account.css" /> --}}*@
+    <link rel="stylesheet" href="~/css/account.css" />
     <link rel="stylesheet"
           href="~/assets/fonts/themify-icons/themify-icons.css" />
     <link rel="stylesheet"
@@ -36,7 +36,7 @@
                     <div class="nav flex-column account__nav">
                         <li class="account__nav-user">
                             <img class="account__nav-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
-                            <label class="account__nav-user-name">{{client_accounts.matk}}</label>
+                            <label class="account__nav-user-name">@ViewBag.taikhoan.Tentk</label>
                         </li>
                         <!--Navigation-->
                         <div class="account__nav-container">
@@ -121,17 +121,17 @@
                                     <form>
                                         <div class="account__content-profile-row">
                                             <label class="account__content-profile-label">Tên đăng nhập</label>
-                                            <p class="account__content-profile-text">{{client_accounts.matk}}</p>
+                                            <p class="account__content-profile-text">@ViewBag.taikhoan.Tentk</p>
                                         </div>
                                         <div class="account__content-profile-row">
                                             <label class="account__content-profile-label">Email</label>
-                                            <p class="account__content-profile-text" id="default_email">{{client_accounts.email}}</p>
+                                            <p class="account__content-profile-text" id="default_email">@ViewBag.taikhoan.Email</p>
                                             <input class="check-text hide-text" type="text" name="email" value="" id="new_email">
                                             <a class="account__content-profile-link" href="#" id="change_email">Thay đổi</a>
                                         </div>
                                         <div class="account__content-profile-row">
                                             <label class="account__content-profile-label">Số điện thoại</label>
-                                            <p class="account__content-profile-text" id="default_phone">{{client_accounts.sodt}}</p>
+                                            <p class="account__content-profile-text" id="default_phone">@ViewBag.taikhoan.Sodt</p>
                                             <input class="check-text hide-text" type="text" name="phone" value="" id="new_phone">
                                             <a class="account__content-profile-link" href="#" id="change_phone">Thay đổi</a>
                                         </div>
@@ -200,26 +200,26 @@
                             <div class="account__address-form">
                                 <div class="account__address-heading">
                                     <h1 class="account__address-heading-title">Địa chỉ của tôi</h1>
-                                   @* {{!-- <button class="account-btn account-btn--primary" id="btn-new__address">
-                      <i class="fas fa-plus" style="margin-right: 3px;"></i>
-                      Thêm địa chỉ mới
-                    </button> --}}*@
+                                    @* {{!-- <button class="account-btn account-btn--primary" id="btn-new__address">
+                                          <i class="fas fa-plus" style="margin-right: 3px;"></i>
+                                          Thêm địa chỉ mới
+                                        </button> --}}*@
                                 </div>
                                 <form id="ds_diachi">
                                     <div class="account__address-info">
                                         <div class="account__address-info-content">
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Họ và tên</label>
-                                                <p class="account__content-address-text hoten">{{client_accounts.hoten}}</p>
+                                                <p class="account__content-address-text hoten">@ViewBag.taikhoan.Hoten</p>
                                                 @*{{!-- <p class="address-mode ">Địa chỉ mặc định</p>  --}}*@
                                             </div>
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Số điện thoại</label>
-                                                <p class="account__content-address-text sdt">{{client_accounts.sodt}}</p>
+                                                <p class="account__content-address-text sdt">@ViewBag.taikhoan.Sodt</p>
                                             </div>
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Địa chỉ</label>
-                                                <p class="account__content-address-text diachi">{{client_accounts.diachigoc}}</p>
+                                                <p class="account__content-address-text diachi">@ViewBag.taikhoan.Diachi</p>
                                             </div>
                                         </div>
                                         <div class="account__address-info-btn">
@@ -227,26 +227,26 @@
                                                 <a href="#edit__address" target="_self" style="text-decoration:none" class="btn_edit">Sửa</a>
                                             </div>
                                             @*{{!-- <div class="account__btn-default account__btn-default--disable default">
-                          <span>Thiết lập mặc định</span>
-                        </div> --}}*@
+                                                  <span>Thiết lập mặc định</span>
+                                                </div> --}}*@
                                         </div>
                                     </div>
-                                    {{#if client_accounts.diachigh}}
-                                    {{#each client_accounts.diachigh}}
-                                    <div class="account__address-info">
+                                    @if(ViewBag.taikhoan.Diachi != null)
+                                        {
+                                        <div class="account__address-info">
                                         <div class="account__address-info-content">
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Họ và tên</label>
-                                                <p class="account__content-address-text hoten">{{this.hoten}}</p>
+                                                <p class="account__content-address-text hoten">@ViewBag.taikhoan.Hoten</p>
                                                 <p class="address-mode hide-message">Địa chỉ mặc định</p>
                                             </div>
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Số điện thoại</label>
-                                                <p class="account__content-address-text sdt">{{this.sdt}}</p>
+                                                <p class="account__content-address-text sdt">@ViewBag.taikhoan.Sodt</p>
                                             </div>
                                             <div class="account__content-address-row">
                                                 <label class="account__content-address-label">Địa chỉ</label>
-                                                <p class="account__content-address-text diachi">{{this.diachi}}</p>
+                                                <p class="account__content-address-text diachi">@ViewBag.taikhoan.Diachi</p>
                                             </div>
                                         </div>
                                         <div class="account__address-info-btn">
@@ -258,8 +258,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{/each}}
-                                    {{/if}}
+                                  }
                                 </form>
                             </div>
                         </div>
@@ -333,7 +332,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{#each donhang}}
+                                                @*{{#each donhang}}
                                                 {{#ifCond this.tinhtrangdonhang '==' 'đã giao hàng'}}
                                                 <tr>
                                                     <td class="plus">{{this.madh}}</td>
@@ -351,7 +350,7 @@
                                                     <td>{{format_price this.tongtien}}</td>
                                                     <td>Giao hàng thành công</td>
                                                     {{/ifCond}}
-                                                    {{/each}}
+                                                    {{/each}}*@
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -371,41 +370,42 @@
                                     </div>
                                 </div>
                                 <ul class="account__notify-list">
-                                    {{#each donhang}}
-                                    {{#ifCond this.tinhtrangdonhang '==' 'chờ xác nhận'}}
-                                    {{#each this.ds_sach}}
-                                    <li class="account__notify-item account__notify-item--view">
-                                        <a href="" class="account__notify-link">
-                                            <img src="{{this.hinhanh}}" alt="" class="account__notify-img">
-                                            <div class="account__notify-info">
-                                                <span class="account__notify-name">Đơn hàng của bạn đang chờ xác nhận</span>
-                                                <span class="account__notify-description">{{this.tensach}}</span>
-                                                <span class="account__notify-time">Ngày đặt {{this.ngaylap}}</span>
-                                            </div>
-                                        </a>
-                                        <div class="account__btn-default account__btn-default--primary">
-                                            <span>Xem chi tiết</span>
-                                        </div>
-                                    </li>
-                                    {{/each}}
-                                    {{else}}
-                                    {{#each this.ds_sach}}
-                                    <li class="account__notify-item account__notify-item--view">
-                                        <a href="" class="account__notify-link">
-                                            <img src="{{this.hinhanh}}" alt="" class="account__notify-img">
-                                            <div class="account__notify-info">
-                                                <span class="account__notify-name">Đơn hàng của bạn đang được lấy</span>
-                                                <span class="account__notify-description">{{this.tensach}}</span>
-                                                <span class="account__notify-time">Ngày đặt {{this.ngaylap}}</span>
-                                            </div>
-                                        </a>
-                                        <div class="account__btn-default account__btn-default--primary">
-                                            <span>Xem chi tiết</span>
-                                        </div>
-                                    </li>
-                                    {{/each}}
-                                    {{/ifCond}}
-                                    {{/each}}
+                                    @*{{#each donhang}}
+        {{#ifCond this.tinhtrangdonhang '==' 'chờ xác nhận'}}
+        {{#each this.ds_sach}}
+        <li class="account__notify-item account__notify-item--view">
+            <a href="" class="account__notify-link">
+                <img src="{{this.hinhanh}}" alt="" class="account__notify-img">
+                <div class="account__notify-info">
+                    <span class="account__notify-name">Đơn hàng của bạn đang chờ xác nhận</span>
+                    <span class="account__notify-description">{{this.tensach}}</span>
+                    <span class="account__notify-time">Ngày đặt {{this.ngaylap}}</span>
+                </div>
+            </a>
+            <div class="account__btn-default account__btn-default--primary">
+                <span>Xem chi tiết</span>
+            </div>
+        </li>
+        {{/each}}
+        {{else}}
+        {{#each this.ds_sach}}
+        <li class="account__notify-item account__notify-item--view">
+            <a href="" class="account__notify-link">
+                <img src="{{this.hinhanh}}" alt="" class="account__notify-img">
+                <div class="account__notify-info">
+                    <span class="account__notify-name">Đơn hàng của bạn đang được lấy</span>
+                    <span class="account__notify-description">{{this.tensach}}</span>
+                    <span class="account__notify-time">Ngày đặt {{this.ngaylap}}</span>
+                </div>
+            </a>
+            <div class="account__btn-default account__btn-default--primary">
+                <span>Xem chi tiết</span>
+            </div>
+        </li>
+        {{/each}}
+        {{/ifCond}}
+        {{/each}}
+                                    *@
                                 </ul>
                             </div>
                         </div>
@@ -437,42 +437,44 @@
                                 <form>
                                     <div class="tab-pane" id="all_voucher" role="tabpanel" aria-labelledby="all_voucher-tab">
                                         <div class="list-card">
-                                            @if (ViewBag.danhsach_km)
+                                            @if (ViewBag.khuyenmai != null)
                                             {
-                                            @foreach(user_voucher item in ViewBag.danhsach_km)
+                                                @foreach (vouchers item in ViewBag.khuyenmai)
                                                 {
-                                            <div class="account__card">
-                                                <div class="account__card-img">
-                                                    <img src="/client_styles/assets/img/logo.png" class="account__voucher-logo">
-                                                </div>
-                                                <div class="account__card-content">
-                                                    <div class="card-container">
-                                                        <h3 class="card-title khachhang" name="@item.Makm">Giảm {{this.phantram}}%</h3>
-                                                        <p class="card-text account__card-text">Mã nhập {{this.manhap}}</p>
-                                                        <p class="card-text account__card-text"><small class="text-muted">HSD: {{this.ngaykt}}</small></p>
+                                                    <div class="account__card">
+                                                        <div class="account__card-img">
+                                                            <img src="~/assets/img/logo.png" class="account__voucher-logo">
+                                                        </div>
+                                                        <div class="account__card-content">
+                                                            <div class="card-container">
+                                                                <h3 class="card-title khachhang" name="@item.Makm">Giảm @item.Phantram%</h3>
+                                                                <p class="card-text account__card-text">Mã nhập @item.Manhap</p>
+                                                                <p class="card-text account__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
+                                                            </div>
+                                                            <div>
+                                                                <a href="/Home/Index" class="card-link" name="">
+                                                                    <span>Dùng ngay</span>
+                                                                    <i class="fas fa-chevron-right"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <a href="/" class="card-link" name="{{this.manhap}}">
-                                                            <span>Dùng ngay</span>
-                                                            <i class="fas fa-chevron-right"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
                                                 }
-                                            }else { 
-                                            <div class="account__btn-default account__btn-default--primary" id="btn_danhdau">
-                                                <span style="color: rgb(155, 155, 155);">Bạn chưa lưu voucher nào</span>
-                                            </div>
-                                            <a href="/khuyenmai" class="card-link">
-                                                <span>Đến trang khuyến mãi</span>
-                                                <i class="fas fa-chevron-right"></i>
-                                            </a>
-                                           }
+                                            }
+                                            else
+                                            {
+                                                <div class="account__btn-default account__btn-default--primary" id="btn_danhdau">
+                                                    <span style="color: rgb(155, 155, 155);">Bạn chưa lưu voucher nào</span>
+                                                </div>
+                                                <a href="/khuyenmai" class="card-link">
+                                                    <span>Đến trang khuyến mãi</span>
+                                                    <i class="fas fa-chevron-right"></i>
+                                                </a>
+                                            }
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="expired_voucher" role="tabpanel" aria-labelledby="expired_voucher-tab">
-                                        {{#if donhang.makm}}
+                                        @*{{#if donhang.makm}}
                                         {{#each donhang.makm}}
                                         <div class="list-card">
                                             <div class="account__card account__card--expired">
@@ -503,7 +505,7 @@
                                     <div class="account__btn-default account__btn-default--primary" id="btn_danhdau">
                                         <span style="color: rgb(155, 155, 155);">Bạn chưa sử dụng voucher nào</span>
                                     </div>
-                                    {{/if}}
+                                    {{/if}}*@
                             </div>
                             </form>
                         </div>
@@ -898,29 +900,29 @@
             let b = $('#sdtmoi').val();
             let c = $('#diachimoi').val();
             var add_address = `<div class="account__address-info">
-                          <div class="account__address-info-content">
-                            <div class="account__content-address-row">
-                              <label class="account__content-address-label">Họ và tên</label>
-                              <p class="account__content-address-text">${a}</p>
-                            </div>
-                            <div class="account__content-address-row">
-                              <label class="account__content-address-label">Số điện thoại</label>
-                              <p class="account__content-address-text">${b}</p>
-                            </div>
-                            <div class="account__content-address-row">
-                              <label class="account__content-address-label">Địa chỉ</label>
-                              <p class="account__content-address-text">${c}</p>
-                            </div>
-                          </div>
-                          <div class="account__address-info-btn">
-                            <div class="account__btn-edit">
-                              <a href="" style="text-decoration:none">Sửa</a>
-                            </div>
-                            <div class="account__btn-default account__btn-default--primary">
-                              <span>Thiết lập mặc định</span>
-                            </div>
-                          </div>
-                        </div> `;
+                              <div class="account__address-info-content">
+                                <div class="account__content-address-row">
+                                  <label class="account__content-address-label">Họ và tên</label>
+                                  <p class="account__content-address-text">${a}</p>
+                                </div>
+                                <div class="account__content-address-row">
+                                  <label class="account__content-address-label">Số điện thoại</label>
+                                  <p class="account__content-address-text">${b}</p>
+                                </div>
+                                <div class="account__content-address-row">
+                                  <label class="account__content-address-label">Địa chỉ</label>
+                                  <p class="account__content-address-text">${c}</p>
+                                </div>
+                              </div>
+                              <div class="account__address-info-btn">
+                                <div class="account__btn-edit">
+                                  <a href="" style="text-decoration:none">Sửa</a>
+                                </div>
+                                <div class="account__btn-default account__btn-default--primary">
+                                  <span>Thiết lập mặc định</span>
+                                </div>
+                              </div>
+                            </div> `;
             console.log(a, b, c)
             $.ajax({
 

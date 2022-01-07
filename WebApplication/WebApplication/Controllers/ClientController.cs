@@ -71,12 +71,12 @@ namespace WebApplication.Controllers
                 ViewBag.status = "Success";
                 ViewBag.infor = res;
                 HttpContext.Session.SetString("UserSession", JsonSerializer.Serialize(res));
-            }
+            } 
             else
             {
                 ViewBag.status = "Fail";
             }
-            return View();
+            return Redirect("/Home/Index");
         }
 
 
@@ -84,8 +84,8 @@ namespace WebApplication.Controllers
         public IActionResult taikhoan(string tentk)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            ViewBag.client_account = context.Client_Accounts(tentk);
-            ViewBag.danhsach_km = context.User_Voucher(tentk);
+            ViewBag.taikhoan = context.Client_Accounts(tentk);
+            ViewBag.khuyenmai = context.User_Voucher(tentk);
             return View();
         }
     }

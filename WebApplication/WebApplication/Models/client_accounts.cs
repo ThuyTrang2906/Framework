@@ -7,7 +7,7 @@ namespace WebApplication.Models
 {
     public class client_accounts
     {
-        private string tentk, diachi, diachigoc, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
+        private string tentk, diachi, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
         private DateTime ngaysinh, ngaytao;
         private int diem, sl_giohang ;
 
