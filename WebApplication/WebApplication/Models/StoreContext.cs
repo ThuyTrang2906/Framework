@@ -96,6 +96,7 @@ namespace WebApplication.Models
                 using (var reader = cmd.ExecuteReader())
                 {
                     reader.Read();
+                    bo.Masach = Convert.ToInt32(reader["masach"]);
                     bo.Tensach = reader["tensach"].ToString();
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
@@ -228,6 +229,7 @@ namespace WebApplication.Models
                     tk.Email = reader["email"].ToString();
                     tk.Matkhau = reader["matkhau"].ToString();
                     tk.Sodt = reader["sodt"].ToString();
+                    tk.Hoten = reader["hoten"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
                 /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
@@ -342,6 +344,56 @@ namespace WebApplication.Models
 
             }
             return client_Accounts;
+        }
+
+        public int capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set email = @email, sodt = @sodt, ngaysinh = @ngaysinh, gioitinh = @gioitinh where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("sodt", Sodt);
+                cmd.Parameters.AddWithValue("gioitinh", Gioitinh);
+                cmd.Parameters.AddWithValue("ngaysinh", Ngaysinh);
+                cmd.Parameters.AddWithValue("email", Email);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
+        }
+
+        public int capnhatdiachi(string Matk, string Sodt, string Diachi, string Hoten)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set hoten = @hoten, sodt = @sodt, diachi = @diachi where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("sodt", Sodt);
+                cmd.Parameters.AddWithValue("diachi", Diachi);
+                cmd.Parameters.AddWithValue("hoten", Hoten);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
+        }
+
+        public int capnhatmatkhau(string Matk, string Matkhau)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set matkhau = @matkhau where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("matkhau", Matkhau);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
         }
     }
 }

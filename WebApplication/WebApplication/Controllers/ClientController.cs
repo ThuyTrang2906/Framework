@@ -86,7 +86,62 @@ namespace WebApplication.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
             return View();
+        }
+
+        public IActionResult capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhattaikhoan(Matk, Email, Sodt, Gioitinh, Ngaysinh);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
+        }
+
+        public IActionResult capnhatdiachi(string Matk, string Sodt, string Diachi, string Hoten)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhatdiachi(Matk, Sodt, Diachi, Hoten);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
+        }
+
+        public IActionResult capnhatmatkhau(string Matk, string Matkhau)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhatmatkhau(Matk, Matkhau);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
         }
     }
 }

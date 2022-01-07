@@ -8,6 +8,7 @@ namespace WebApplication.Models
     public class Book
     {
         private string tensach;
+        private int masach;
         private string hinhanh;
         private string theloai;
         private int giaban;
@@ -31,9 +32,11 @@ namespace WebApplication.Models
         public DateTime Namxb { get => namxb; set => namxb = value; }
         public string Nxb { get => nxb; set => nxb = value; }
         public string Hinhthuc { get => hinhthuc; set => hinhthuc = value; }
+        public int Masach { get => masach; set => masach = value; }
 
-        public Book(string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
+        public Book(int MASACH, string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
         {
+            this.masach = MASACH;
             this.tensach = TENSACH;
             this.hinhanh = HINHANH;
             this.theloai = THELOAI;
