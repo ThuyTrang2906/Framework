@@ -522,6 +522,141 @@
         </div>
     </div>
 
+    <style>
+        .featured-slider {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .swiper-slide {
+            width: 230px !important;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            height: 24px !important;
+            width: 20px !important;
+            background-size: 20px 24px;
+            color: transparent;
+            padding: 0 20px;
+        }
+
+        .featured .featured-slider .box {
+            width: 20rem;
+            position: relative;
+            overflow: hidden;
+            border: var(--border);
+            text-align: center;
+            margin: 10px 5px;
+            border-radius: 3px;
+        }
+
+            .featured .featured-slider .box:hover {
+                border: var(--border-hover);
+            }
+
+            .featured .featured-slider .box .image {
+                padding: 10px;
+                background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
+            }
+
+            .featured .featured-slider .box:hover .image {
+                transform: translateY(45px);
+            }
+
+            .featured .featured-slider .box .image img {
+                height: 21rem;
+            }
+
+            .featured .featured-slider .box .icons {
+                border-bottom: var(--border-hover);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+                z-index: 1;
+                transform: translateY(-105%);
+            }
+
+            .featured .featured-slider .box:hover .icons {
+                transform: translateY(0%);
+            }
+
+            .featured .featured-slider .box .icons a {
+                color: var(--text-color);
+                font-size: 1.6rem;
+                padding: 13px 15px;
+            }
+
+                .featured .featured-slider .box .icons a:hover {
+                    background: var(--blue-color);
+                    color: #fff;
+                    text-decoration: none;
+                }
+
+            .featured .featured-slider .box .content {
+                background: #eee;
+                padding: 4px 15px 10px 15px;
+            }
+
+            .featured .featured-slider .box .content h3 {
+                font-size: 1.8rem;
+                color: var(--black-color);
+                overflow: hidden;
+                height: 4.4rem;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+            }
+
+            .featured .featured-slider .box .content .price {
+                font-size: 1.8rem;
+                color: var(--text-color);
+                padding-bottom: 5px;
+                display: flex;
+                justify-content: space-between;
+            }
+
+                    .featured .featured-slider .box .content .price span {
+                        font-size: 1.8rem;
+                        color: var(--light-color);
+                        padding-bottom: 0.5rem;
+                        text-decoration: line-through;
+                    }
+
+        .btn {
+            min-width: 180px;
+            max-width: 230px;
+            height: 40px;
+            text-decoration: none;
+            border: none;
+            border-radius: 3px;
+            font-size: 1.5rem;
+            padding: 0 8px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn:hover {
+                background-color: rgba(0,0,0,0.2);
+            }
+
+        .btn--primary {
+            color: var(--white-color);
+            background-color: var(--blue-color);
+            cursor: pointer;
+        }
+
+        .btn .btn--disable {
+            cursor: default;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+    </style>
+
 
     <!-- Js tm kiếm  theo -->
     <script>
@@ -677,8 +812,8 @@
 
 
     <!-- Bootstrap js -->
-    {{!-- <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script> --}}
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/js/swiper.min.js"></script> --}}
+    <!-- <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/js/swiper.min.js"></script> -->
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

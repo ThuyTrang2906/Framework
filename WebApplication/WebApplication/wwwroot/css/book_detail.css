@@ -200,8 +200,8 @@ html {
 .item img {
     display: block;
     object-fit: contain;
-    max-height: 420px !important;
-    max-width: 500px;
+    max-height: 480px !important;
+    max-width: 540px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: top center;
@@ -258,67 +258,67 @@ html {
     padding: 0 10px 0 0;
 }
 
-    .rate:not(:checked) > input {
-        position: absolute;
-        top: -9999px;
-    }
+.rate:not(:checked) > input {
+    position: absolute;
+    top: -9999px;
+}
 
-    .rate:not(:checked) > label {
-        float: right;
-        width: 15px;
-        overflow: hidden;
-        white-space: nowrap;
-        cursor: pointer;
-        font-size: 2.1rem;
-        color: #ccc;
-        margin-bottom: 0;
-        line-height: 21px;
-    }
+.rate:not(:checked) > label {
+    float: right;
+    width: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 2.1rem;
+    color: #ccc;
+    margin-bottom: 0;
+    line-height: 21px;
+}
 
-        .rate:not(:checked) > label:before {
-            content: '\2605';
-        }
+.rate:not(:checked) > label:before {
+    content: '\2605';
+}
 
-    .rate > input:checked ~ label {
-        color: #ffc700;
-    }
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
 
-    .rate:not(:checked) > label:hover,
-    .rate:not(:checked) > label:hover ~ label {
-        color: #deb217;
-    }
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
 
-    .rate > input:checked + label:hover,
-    .rate > input:checked + label:hover ~ label,
-    .rate > input:checked ~ label:hover,
-    .rate > input:checked ~ label:hover ~ label,
-    .rate > label:hover ~ input:checked ~ label {
-        color: #c59b08;
-    }
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
 
 .product-dtl {
     position: relative;
 }
 
-    .product-dtl p {
-        font-size: 1.4rem;
-        line-height: 24px;
-        font-weight: 500;
-        color: var(--text-color);
-        width: 250px;
-    }
+.product-dtl p {
+    font-size: 1.4rem;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--text-color);
+    width: 250px;
+}
 
-    .product-dtl .form-control {
-        font-size: 15px;
-    }
+.product-dtl .form-control {
+    font-size: 15px;
+}
 
-    .product-dtl label {
-        line-height: 16px;
-        font-size: 1.6rem;
-        font-weight: 500;
-        color: rgb(148, 147, 147);
-        padding-bottom: 8px;
-    }
+.product-dtl label {
+    line-height: 16px;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: rgb(148, 147, 147);
+    padding-bottom: 8px;
+}
 
 .form-control:focus {
     outline: none;
@@ -329,34 +329,34 @@ html {
     margin-top: 15px;
 }
 
-    .product-count .qtyminus,
-    .product-count .qtyplus {
-        width: 34px;
-        height: 34px;
-        background: #f75409;
-        text-align: center;
-        font-size: 2.0rem;
-        line-height: 33px;
-        color: #fff;
-        cursor: pointer;
-    }
+.product-count .qtyminus,
+.product-count .qtyplus {
+    width: 34px;
+    height: 34px;
+    background: #f75409;
+    text-align: center;
+    font-size: 2.0rem;
+    line-height: 33px;
+    color: #fff;
+    cursor: pointer;
+}
 
-    .product-count .qtyminus {
-        border-radius: 3px 0 0 3px;
-    }
+.product-count .qtyminus {
+    border-radius: 3px 0 0 3px;
+}
 
-    .product-count .qtyplus {
-        border-radius: 0 3px 3px 0;
-    }
+.product-count .qtyplus {
+    border-radius: 0 3px 3px 0;
+}
 
-    .product-count .qty {
-        width: 50px;
-        text-align: center;
-        font-size: 1.5rem;
-        font-weight: 500;
-        border-radius: 0px;
-        border: solid 1px #f5864f;
-    }
+.product-count .qty {
+    width: 50px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border-radius: 0px;
+    border: solid 1px #f5864f;
+}
 
 .round-black-btn {
     border-radius: 4px;
@@ -371,50 +371,50 @@ html {
     transition: all 0.5s ease-in-out 0s;
 }
 
-    .round-black-btn:hover,
-    .round-black-btn:focus {
-        background: transparent;
-        color: #212529;
-        text-decoration: none;
-    }
+.round-black-btn:hover,
+.round-black-btn:focus {
+    background: transparent;
+    color: #212529;
+    text-decoration: none;
+}
 
 .product-info-tabs {
     margin-top: 25px;
 }
 
-    .product-info-tabs .nav-tabs {
-        border-bottom: 2px solid #d8d8d8;
-    }
+.product-info-tabs .nav-tabs {
+    border-bottom: 2px solid #d8d8d8;
+}
 
-        .product-info-tabs .nav-tabs .nav-item {
-            margin-bottom: 0;
-        }
+.product-info-tabs .nav-tabs .nav-item {
+    margin-bottom: 0;
+}
 
-        .product-info-tabs .nav-tabs .nav-link {
-            border: none;
-            border-bottom: 2px solid transparent;
-            color: #323232;
-            font-size: 1.6rem;
-        }
+.product-info-tabs .nav-tabs .nav-link {
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #323232;
+    font-size: 1.6rem;
+}
 
-        .product-info-tabs .nav-tabs .nav-item .nav-link:hover {
-            border: none;
-        }
+.product-info-tabs .nav-tabs .nav-item .nav-link:hover {
+    border: none;
+}
 
-        .product-info-tabs .nav-tabs .nav-item.show .nav-link,
-        .product-info-tabs .nav-tabs .nav-link.active,
-        .product-info-tabs .nav-tabs .nav-link.active:hover {
-            border: none;
-            border-bottom: 2px solid #f75409;
-            font-weight: bold;
-        }
+.product-info-tabs .nav-tabs .nav-item.show .nav-link,
+.product-info-tabs .nav-tabs .nav-link.active,
+.product-info-tabs .nav-tabs .nav-link.active:hover {
+    border: none;
+    border-bottom: 2px solid #f75409;
+    font-weight: bold;
+}
 
-    .product-info-tabs .tab-content .tab-pane {
-        padding: 30px 20px;
-        font-size: 15px;
-        line-height: 24px;
-        color: #7a7a7a;
-    }
+.product-info-tabs .tab-content .tab-pane {
+    padding: 30px 20px;
+    font-size: 15px;
+    line-height: 24px;
+    color: #7a7a7a;
+}
 
 .review-form .form-group {
     clear: both;
@@ -596,25 +596,25 @@ i.home-product-item__like-icon-fill {
     border-bottom-right-radius: 3px;
 }
 
-    .home-product-item__favourite::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -3px;
-        border-top: 4px solid currentColor;
-        border-left: 4px solid transparent;
-        filter: brightness(60%);
-    }
+.home-product-item__favourite::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    border-top: 4px solid currentColor;
+    border-left: 4px solid transparent;
+    filter: brightness(60%);
+}
 
-    .home-product-item__favourite span {
-        color: var(--white-color);
-    }
+.home-product-item__favourite span {
+    color: var(--white-color);
+}
 
-    .home-product-item__favourite i {
-        color: var(--white-color);
-        font-size: 0.9rem;
-        margin-left: 0 2px 0 5px;
-    }
+.home-product-item__favourite i {
+    color: var(--white-color);
+    font-size: 0.9rem;
+    margin-left: 0 2px 0 5px;
+}
 
 .home-product-item__sale-off {
     position: absolute;
@@ -627,15 +627,15 @@ i.home-product-item__like-icon-fill {
     border-top-right-radius: 2px;
 }
 
-    .home-product-item__sale-off::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: -4px;
-        border-width: 0 20px 4.5px;
-        border-style: solid;
-        border-color: transparent rgba(255, 216, 64, 0.95) transparent rgba(255, 216, 64, 0.95);
-    }
+.home-product-item__sale-off::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    border-width: 0 20px 4.5px;
+    border-style: solid;
+    border-color: transparent rgba(255, 216, 64, 0.95) transparent rgba(255, 216, 64, 0.95);
+}
 
 .home-product-item__sale-off-percent {
     color: #EE4D2D;
@@ -755,17 +755,17 @@ body {
     border-top-right-radius: 4px;
 }
 
-    .info-store::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 74px;
-        transform: translateY(-50%);
-        width: 100%;
-        height: 1px;
-        background: var(--white-color);
-        z-index: 1;
-    }
+.info-store::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 74px;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 1px;
+    background: var(--white-color);
+    z-index: 1;
+}
 
 .info-label {
     padding-left: 6px;
@@ -785,10 +785,10 @@ body {
     font-weight: 500;
 }
 
-    .info-delivery i {
-        margin-right: 8px;
-        color: rgb(255, 57, 69);
-    }
+.info-delivery i {
+    margin-right: 8px;
+    color: rgb(255, 57, 69);
+}
 
 .list-info {
     list-style: none;
@@ -802,10 +802,10 @@ body {
     border-top: 1px solid #43c3c7;
 }
 
-    .list-info-item i {
-        margin-right: 8px;
-        color: #1A94FF;
-    }
+.list-info-item i {
+    margin-right: 8px;
+    color: #1A94FF;
+}
 
 .info-price {
     font-size: 1.6rem;
@@ -860,22 +860,22 @@ body {
     box-shadow: 0px 0px 1px #343a40;
 }
 
-    .review-item .review-date {
-        color: #cecece;
-    }
+.review-item .review-date {
+    color: #cecece;
+}
 
-    .review-item .review-text {
-        font-size: 16px;
-        font-weight: normal;
-        margin-top: 5px;
-        color: #343a40;
-    }
+.review-item .review-text {
+    font-size: 16px;
+    font-weight: normal;
+    margin-top: 5px;
+    color: #343a40;
+}
 
-    .review-item .reviewer {
-        width: 100px;
-        height: 100px;
-        border: 1px solid #cecece;
-    }
+.review-item .reviewer {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #cecece;
+}
 
 /****Rating Stars***/
 .raterater-bg-layer {
@@ -886,9 +886,9 @@ body {
     color: rgba( 255, 255, 0, 0.75 );
 }
 
-    .raterater-hover-layer.rated { /* after the user selects a rating */
-        color: rgba( 255, 255, 0, 1 );
-    }
+.raterater-hover-layer.rated { /* after the user selects a rating */
+    color: rgba( 255, 255, 0, 1 );
+}
 
 .raterater-rating-layer {
     color: rgba( 255, 155, 0, 0.75 );
@@ -920,8 +920,8 @@ body {
     display: none;
 }
 
-    .raterater-hover-layer i,
-    .raterater-rating-layer i {
-        width: 0px;
-        overflow: hidden;
-    }
+.raterater-hover-layer i,
+.raterater-rating-layer i {
+    width: 0px;
+    overflow: hidden;
+}

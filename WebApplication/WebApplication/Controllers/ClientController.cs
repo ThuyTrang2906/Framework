@@ -15,7 +15,7 @@ namespace WebApplication.Controllers
         public IActionResult khuyenmai()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-             
+
             return View(context.GetVoucher());
         }
 
@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
         }
 
 
-       
+
         public IActionResult Login()
         {
             string username = HttpContext.Request.Form["username"];
@@ -66,12 +66,12 @@ namespace WebApplication.Controllers
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             client_accounts res = context.Login(username, password);
-            if (res!= null)
+            if (res != null)
             {
                 ViewBag.status = "Success";
                 ViewBag.infor = res;
                 HttpContext.Session.SetString("UserSession", JsonSerializer.Serialize(res));
-            } 
+            }
             else
             {
                 ViewBag.status = "Fail";
@@ -141,7 +141,15 @@ namespace WebApplication.Controllers
             {
                 return Redirect("/Home/Index");
             }
+        }
 
+        public ActionResult Search_Book(string ten_sach)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> books = new List<Book>();
+            books = context.Search_Book(ten_sach);
+            return View(books);
         }
     }
+   
 }

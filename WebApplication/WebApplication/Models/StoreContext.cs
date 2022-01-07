@@ -101,7 +101,7 @@ namespace WebApplication.Models
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
                     bo.Theloai = reader["theloai"].ToString();
-                    bo.Giagoc  = Convert.ToInt32(reader["giagoc"]);
+                    bo.Giagoc = Convert.ToInt32(reader["giagoc"]);
                     bo.Giaban = Convert.ToInt32(reader["giaban"]);
                     bo.Nxb = reader["nxb"].ToString();
                     bo.Hinhthuc = reader["hinhthuc"].ToString();
@@ -133,7 +133,7 @@ namespace WebApplication.Models
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
                             Giagoc = Convert.ToInt32(reader["giagoc"]),
-                        Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
                         });
                     }
                     reader.Close();
@@ -164,7 +164,7 @@ namespace WebApplication.Models
                 cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
                 cmd.Parameters.AddWithValue("ngaysinh", "null");
                 cmd.Parameters.AddWithValue("ngaytao", "current_timestamp()");
-                cmd.Parameters.AddWithValue("sl_giohang",0);
+                cmd.Parameters.AddWithValue("sl_giohang", 0);
                 cmd.Parameters.AddWithValue("sodt", "null");
                 cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
 
@@ -176,7 +176,7 @@ namespace WebApplication.Models
         public List<vouchers> GetVoucher()
         {
             List<vouchers> list = new List<vouchers>();
-            using(MySqlConnection conn = GetConnection())
+            using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 string str = "select * from khuyenmais";
@@ -232,7 +232,7 @@ namespace WebApplication.Models
                     tk.Hoten = reader["hoten"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
-                /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
+                    /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
                     /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
                 }
             }
@@ -241,8 +241,8 @@ namespace WebApplication.Models
 
         public List<vouchers> User_Voucher(string tentk)
         {
-            
-             List<vouchers> list = new List<vouchers>();
+
+            List<vouchers> list = new List<vouchers>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -394,6 +394,36 @@ namespace WebApplication.Models
                 return (cmd.ExecuteNonQuery());
             }
 
+        }
+        public List<Book> Search_Book(string ten_sach)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where tensach like" + "'" + "%" + ten_sach + "%" + "'" + "limit 40";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ten_sach", ten_sach);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
         }
     }
 }
