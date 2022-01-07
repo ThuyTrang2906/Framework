@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -25,11 +26,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
     <!--
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" />
     -->
 </head>
 <body>
+
+   @* @Context.Session.GetString("UserSession");*@
 
     <!-- Header -->
     @if (@ViewBag.status == "Success")
@@ -97,7 +100,7 @@
                             </li>
                             <li class="header__navbar-item header__navbar-user">
                                 <img class="header__navbar-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
-                                <a href="/chitiettk"><p class="header__navbar-user-name header__navbar-item--link">@ViewBag.infor.Tentk</p><a>
+                                <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk"><p class="header__navbar-user-name header__navbar-item--link">@ViewBag.infor.Tentk</p><a>
                             </li>
                             <li class="header__navbar-item">
                                 <a href="/logout" class="header__navbar-item--link">

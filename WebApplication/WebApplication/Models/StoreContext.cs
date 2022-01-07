@@ -237,25 +237,42 @@ namespace WebApplication.Models
             return tk;
         }
 
-        public user_voucher User_Voucher(string tentk)
+        public List<vouchers> User_Voucher(string tentk)
         {
-            user_voucher uv = new user_voucher();
-            using(MySqlConnection conn = GetConnection())
+            
+             List<vouchers> list = new List<vouchers>();
+            using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "Select * from khuyenmais where makm in (" +
-                    "select makm from user_voucher u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                string str = "Select vc.makm, loai, img, noidung, phantram, dieukien, sl, daluu, manhap,ngaybd, ngaykt" +
+                    " from khuyenmais k, user_voucher vc, client_accounts c where k.makm = vc.makm and vc.matk = c.matk and c.tentk = @tentk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("tentk", tentk);
                 using (var reader = cmd.ExecuteReader())
                 {
-                    reader.Read();
-                    uv.Matk = reader["matk"].ToString();
-                    uv.Makm = reader["makm"].ToString();
-
+                    while (reader.Read())
+                    {
+                        list.Add(new vouchers()
+                        {
+                            Makm = reader["makm"].ToString(),
+                            Img = reader["img"].ToString(),
+                            Noidung = reader["noidung"].ToString(),
+                            Phantram = Convert.ToInt32(reader["phantram"]),
+                            Dieukien = Convert.ToInt32(reader["dieukien"]),
+                            Sl = Convert.ToInt32(reader["sl"]),
+                            Daluu = Convert.ToInt32(reader["daluu"]),
+                            Manhap = reader["manhap"].ToString(),
+                            Loai = reader["loai"].ToString(),
+                            Ngaybd = Convert.ToDateTime(reader["ngaybd"]),
+                            Ngaykt = Convert.ToDateTime(reader["ngaykt"]),
+                        });
+                    }
+                    reader.Close();
                 }
+
+                conn.Close();
             }
-            return uv;
+            return list;
         }
 
         public List<Book> Cart(string tentk)
@@ -307,7 +324,6 @@ namespace WebApplication.Models
                         client_Accounts.Diachi = reader["diachi"].ToString();
                         client_Accounts.Diem = Convert.ToInt32(reader["diem"]);
                         client_Accounts.Email = reader["email"].ToString();
-                        client_Accounts.Giohang = reader["giohang"].ToString();
                         client_Accounts.Gioitinh = reader["gioitinh"].ToString();
                         client_Accounts.Hoten = reader["hoten"].ToString();
                         client_Accounts.Matk = reader["matk"].ToString();
