@@ -33,16 +33,17 @@
 
     .myvoucher:hover {
         border-color: #f60;
+        color: #f60;
         cursor: pointer;
         transform: translateY(-3px);
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
 
-.sale__list {
-    display: flex;
-    text-align: center;
-    padding: 0 100px;
-}
+    .sale__list {
+        display: flex;
+        text-align: center;
+        padding: 0 100px;
+    }
 
 .sale__list-container {
     padding: 12px;
