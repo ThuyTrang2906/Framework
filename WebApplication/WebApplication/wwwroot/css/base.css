@@ -156,9 +156,9 @@ html {
     justify-content: center;
 }
 
-    .btn:hover {
-        background-color: rgba(0,0,0,0.2);
-    }
+.btn:hover {
+    background-color: rgba(0,0,0,0.2);
+}
 
 .btn--primary {
     color: var(--white-color);

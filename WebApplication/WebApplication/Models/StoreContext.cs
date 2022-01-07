@@ -304,7 +304,6 @@ namespace WebApplication.Models
                 {
                     while (reader.Read())
                     {
-                        client_Accounts.Danhsach_km = reader["danhsach_km"].ToString();
                         client_Accounts.Diachi = reader["diachi"].ToString();
                         client_Accounts.Diem = Convert.ToInt32(reader["diem"]);
                         client_Accounts.Email = reader["email"].ToString();

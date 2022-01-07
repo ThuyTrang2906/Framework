@@ -1129,3 +1129,6 @@ C:\Users\USER\source\repos\Framework\WebApplication\WebApplication\obj\Debug\net
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\thanhyou.cshtml.g.cs
 C:\Users\USER\source\repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Login.cshtml.g.cs
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Login.cshtml.g.cs
+C:\Users\vdq1511\Downloads\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.dll
+C:\Users\vdq1511\Downloads\Framework\WebApplication\WebApplication\obj\Debug\net5.0\ref\WebApplication.dll
+C:\Users\vdq1511\Downloads\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.pdb
