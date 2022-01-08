@@ -138,7 +138,37 @@
                                         <div class="account__content-profile-row">
                                             <label class="account__content-profile-label">Giới tính</label>
                                             <p class="account__content-profile-text">
-                                                <input class="check-input" type="radio" name="gioitinh" value="Nam" id="Nam">
+                                                @if (ViewBag.taikhoan.Gioitinh == "Nữ")
+                                                {
+
+
+                                                    <input class="check-input" type="radio" name="gioitinh" value="Nam" id="Nam"><label for="Nam">
+                                                        Nam &nbsp;&nbsp;&nbsp;
+                                                    </label><input class="check-input" type="radio" name="gioitinh" value="Nữ" id="Nu" checked><label for="Nu">
+                                                        Nữ &nbsp;&nbsp;&nbsp;
+                                                    </label><input class="check-input" type="radio" name="gioitinh" value="Khác" id="Khac"><label for="Khac">
+                                                        Khác
+                                                    </label>
+                                                }
+                                                else if (ViewBag.taikhoan.Gioitinh == "Nam")
+                                                {
+
+                                                    <input class="check-input" type="radio" name="gioitinh" value="Nam" id="Nam" checked>
+                                                    <label for="Nam">
+                                                        Nam &nbsp;&nbsp;&nbsp;
+                                                    </label>
+                                                    <input class="check-input" type="radio" name="gioitinh" value="Nữ" id="Nu">
+                                                    <label for="Nu">
+                                                        Nữ &nbsp;&nbsp;&nbsp;
+                                                    </label>
+                                                    <input class="check-input" type="radio" name="gioitinh" value="Khác" id="Khac">
+                                                    <label for="Khac">
+                                                        Khác
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    <input class="check-input" type="radio" name="gioitinh" value="Nam" id="Nam">
                                                 <label for="Nam">
                                                     Nam &nbsp;&nbsp;&nbsp;
                                                 </label>
@@ -146,17 +176,18 @@
                                                 <label for="Nu">
                                                     Nữ &nbsp;&nbsp;&nbsp;
                                                 </label>
-                                                <input class="check-input" type="radio" name="gioitinh" value="Khác" id="Khac">
+                                                <input class="check-input" type="radio" name="gioitinh" value="Khác" id="Khac" checked>
                                                 <label for="Khac">
                                                     Khác
                                                 </label>
+                                                }
                                             </p>
                                         </div>
                                         <div class="account__content-profile-row">
                                             <label class="account__content-profile-label">Ngày sinh</label>
                                             <div class="account__content-profile-text">
                                                 <div class="account__content-profile-dropdown" id="input_day">
-                                                    <label id="default_day">1</label>
+                                                    <label id="default_day">@ViewBag.taikhoan.Ngaysinh.Day</label>
                                                     <i class="account__content-profile-dropdown-icon fas fa-chevron-down"></i>
                                                 </div>
                                                 <div class="vertical-menu" id="list_day">
@@ -164,7 +195,7 @@
                                             </div>
                                             <div class="account__content-profile-text" id="month">
                                                 <div class="account__content-profile-dropdown" id="input_month">
-                                                    <label id="default_month">1</label>
+                                                    <label id="default_month">@ViewBag.taikhoan.Ngaysinh.Month</label>
                                                     <i class="account__content-profile-dropdown-icon fas fa-chevron-down"></i>
                                                 </div>
                                                 <div class="vertical-menu" id="list_month">
@@ -172,7 +203,7 @@
                                             </div>
                                             <div class="account__content-profile-text" id="year">
                                                 <div class="account__content-profile-dropdown" id="input_year">
-                                                    <label id="default_year">2000</label>
+                                                    <label id="default_year">@ViewBag.taikhoan.Ngaysinh.Year</label>
                                                     <i class="account__content-profile-dropdown-icon fas fa-chevron-down"></i>
                                                 </div>
                                                 <div class="vertical-menu" id="list_year">
@@ -790,8 +821,9 @@
                 var month = $('#default_month').text();
                 var year = $('#default_year').text();
                 var username = $('#username').text();
-                var Ngaysinh = day + "/" + month + "/" + year;
-                console.log(username,a, b, c, day, month, year)
+
+                var Ngaysinh = year + "-" + month + "-" + day;
+                console.log(username,a, b, c,Ngaysinh)
 
 @*               this.href = '/Client/capnhattaikhoan?Matk=' + username + '&Email=' + b + '&Sodt=' + a + '&Gioitinh=' + c + '&Ngaysinh=' + Ngaysinh;
 *@
@@ -805,10 +837,12 @@
                         Email: b,
                         Sodt: a,
                         Gioitinh: c,
-                        Ngaysinh: day + "/" + month + "/" + year,
+                        Ngaysinh: Ngaysinh,
                     },
 
                 })
+
+                alert('Data updated successfully');
 
                 $('#new_phone').hide();
                 $('#new_email').hide();
@@ -820,12 +854,13 @@
 
     <!-- JS scroll ngày tháng năm  -->
     <script>
-        $('#input_day').click(function () {
+        
+            $('#input_day').click(function () {
             $('#list_day').show();
         })
 
         for (var i = 1; i < 32; i++) {
-            $('#list_day').append(`<label id="${i}" onclick="newday(id)">${i}</label>`);
+            $('#list_day').append(`<label value="22" id="${i}" onclick="newday(id)">${i}</label>`);
         }
 
         function newday(id) {
@@ -838,8 +873,10 @@
             $('#list_month').show();
         })
 
+        var m = 4;
         for (var j = 1; j < 13; j++) {
-            $('#list_month').append(`<label id="${j}" onclick="newmonth(id)">${j}</label>`);
+            
+            $('#list_month').append(`<label value="4" id="${j}" onclick="newmonth(id)">${j}</label>`);
         }
 
         function newmonth(id) {
@@ -853,7 +890,7 @@
         })
 
         for (var k = 1950; k < 2022; k++) {
-            $('#list_year').append(`<label id="${k}" onclick="newyear(id)">${k}</label>`);
+            $('#list_year').append(`<label value="2012" id="${k}" onclick="newyear(id)">${k}</label>`);
         }
 
         function newyear(id) {
@@ -953,6 +990,7 @@
                         Hoten: a,
                     },
                 })
+                alert('Data updated successfully');
                 $('#edit__address').addClass('hide-message')
             })
         })
@@ -977,6 +1015,7 @@
                        Matkhau: password1,
                    },
                })
+               alert('Data updated successfully');
             }
           if((password.length > 0)&&(password1.length > 0)&&(password2.length > 0))
           {
@@ -1025,6 +1064,8 @@
                        Matkhau: password1,
                    },
                })
+               alert('Data updated successfully');
+
             }
           if((password.length > 0)&&(password1.length > 0)&&(password2.length > 0))
           {

@@ -228,14 +228,16 @@ namespace WebApplication.Models
                     tk.Tinhtrang = reader["tinhtrang"].ToString();
                     tk.Email = reader["email"].ToString();
                     tk.Matkhau = reader["matkhau"].ToString();
+                    tk.Gioitinh = reader["gioitinh"].ToString();
                     tk.Sodt = reader["sodt"].ToString();
                     tk.Hoten = reader["hoten"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
                     /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
-                    /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
+                    tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);
                 }
             }
+            
             return tk;
         }
 
@@ -346,7 +348,7 @@ namespace WebApplication.Models
             return client_Accounts;
         }
 
-        public int capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        public int capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, DateTime Ngaysinh)
         {
             using (MySqlConnection conn = GetConnection())
             {

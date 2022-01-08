@@ -96,7 +96,7 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public IActionResult capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        public IActionResult capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, DateTime Ngaysinh)
         {
             int count;
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
