@@ -103,7 +103,7 @@ namespace WebApplication.Models
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
                     bo.Theloai = reader["theloai"].ToString();
-                    bo.Giagoc  = Convert.ToInt32(reader["giagoc"]);
+                    bo.Giagoc = Convert.ToInt32(reader["giagoc"]);
                     bo.Giaban = Convert.ToInt32(reader["giaban"]);
                     bo.Nxb = reader["nxb"].ToString();
                     bo.Hinhthuc = reader["hinhthuc"].ToString();
@@ -135,7 +135,7 @@ namespace WebApplication.Models
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
                             Giagoc = Convert.ToInt32(reader["giagoc"]),
-                        Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
                         });
                     }
                     reader.Close();
@@ -166,7 +166,7 @@ namespace WebApplication.Models
                 cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
                 cmd.Parameters.AddWithValue("ngaysinh", "null");
                 cmd.Parameters.AddWithValue("ngaytao", "current_timestamp()");
-                cmd.Parameters.AddWithValue("sl_giohang",0);
+                cmd.Parameters.AddWithValue("sl_giohang", 0);
                 cmd.Parameters.AddWithValue("sodt", "null");
                 cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
 
@@ -178,7 +178,7 @@ namespace WebApplication.Models
         public List<vouchers> GetVoucher()
         {
             List<vouchers> list = new List<vouchers>();
-            using(MySqlConnection conn = GetConnection())
+            using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 string str = "select * from khuyenmais";
@@ -230,20 +230,23 @@ namespace WebApplication.Models
                     tk.Tinhtrang = reader["tinhtrang"].ToString();
                     tk.Email = reader["email"].ToString();
                     tk.Matkhau = reader["matkhau"].ToString();
+                    tk.Gioitinh = reader["gioitinh"].ToString();
                     tk.Sodt = reader["sodt"].ToString();
+                    tk.Hoten = reader["hoten"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
-                /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
-                    /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
+                    /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
+                    tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);
                 }
             }
+            
             return tk;
         }
 
         public List<vouchers> User_Voucher(string tentk)
         {
-            
-             List<vouchers> list = new List<vouchers>();
+
+            List<vouchers> list = new List<vouchers>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -347,25 +350,6 @@ namespace WebApplication.Models
 
             }
             return client_Accounts;
-        }
-
-        public void themvaogiohang(string matk, string masach, string soluong)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                var str = "insert into cart values(@matk,@masach,@soluong)";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("matk", matk);
-                cmd.Parameters.AddWithValue("masach", masach);
-                cmd.Parameters.AddWithValue("soluong", soluong);
-                cmd.ExecuteNonQuery();
-                str = "update client_accounts set sl_giohang=sl_giohang+1 where matk=@matk";
-                MySqlCommand cmd2 = new MySqlCommand(str, conn);
-                cmd2.Parameters.AddWithValue("matk", matk);
-                cmd2.ExecuteNonQuery();
-                conn.Close();
-            }
         }
     }
 }

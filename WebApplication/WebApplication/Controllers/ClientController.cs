@@ -15,7 +15,7 @@ namespace WebApplication.Controllers
         public IActionResult khuyenmai()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-             
+
             return View(context.GetVoucher());
         }
 
@@ -84,7 +84,7 @@ namespace WebApplication.Controllers
         }
 
 
-       
+
         public IActionResult Login()
         {
             string username = HttpContext.Request.Form["username"];
@@ -92,12 +92,12 @@ namespace WebApplication.Controllers
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             client_accounts res = context.Login(username, password);
-            if (res!= null)
+            if (res != null)
             {
                 ViewBag.status = "Success";
                 ViewBag.infor = res;
                 HttpContext.Session.SetString("UserSession", JsonSerializer.Serialize(res));
-            } 
+            }
             else
             {
                 ViewBag.status = "Fail";
@@ -119,23 +119,7 @@ namespace WebApplication.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
-            return View(); 
+            return View();
         }
-
-
-        public IActionResult themgiohang(string matk, string masach, string soluong)
-        {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            context.themvaogiohang(matk, masach, soluong);
-            return Redirect("/Home/Index");
-        }
-
-        public IActionResult updategiohang(string matk, string masach,string soluong)
-        {
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            return Redirect("/Home/cart");
-        }
-
-
     }
 }
