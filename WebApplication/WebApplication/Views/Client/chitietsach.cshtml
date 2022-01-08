@@ -370,7 +370,7 @@
 			{
 		$('.review-btn').on("click", function(){
 		 	var now = $('#review-text').val();
-			this.href = "/binhluan?review="+ now + "&tensach={{books.tensach}}";
+			this.href = "/Client/binhluan?noidung="+ now + "&tensach=@ViewBag.book.Tensach";
 	  	   })
 			 @* var star = 0;
 		var list = document.querySelectorAll('#star_review');
