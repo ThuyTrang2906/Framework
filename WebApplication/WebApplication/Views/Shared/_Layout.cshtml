@@ -100,10 +100,11 @@
                             </li>
                             <li class="header__navbar-item header__navbar-user">
                                 <img class="header__navbar-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
-                                <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk"><p class="header__navbar-user-name header__navbar-item--link">@ViewBag.infor.Tentk</p><a>
+                                <input class="ma-tai-khoan" value=@ViewBag.infor.Matk hidden/>
+                                <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk"><p class="header__navbar-user-name header__navbar-item--link ten-dang-nhap">@ViewBag.infor.Tentk</p><a>
                             </li>
                             <li class="header__navbar-item">
-                                <a href="/logout" class="header__navbar-item--link">
+                                <a asp-controller="Client" asp-action="Logout" class="header__navbar-item--link">
                                     Đăng xuất
                                 </a>
                             </li>
@@ -129,9 +130,9 @@
 
                             <div class="header__cart">
                                 <div class="header__cart-wrap">
-                                    <a href="/chitietgiohang" style="text-decoration: none;">
+                                    <a asp-controller="Client" asp-action="cart" style="text-decoration: none;">
                                         <i class="header__cart-icon ti-shopping-cart">
-                                            <span class="header__cart-notice">@ViewBag.infor.Sl_giohang</span>
+                                            <span class="header__cart-notice sl_giohang">@ViewBag.infor.Sl_giohang</span>
                                         </i>
                                     </a>
                                 </div>

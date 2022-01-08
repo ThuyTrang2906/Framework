@@ -40,6 +40,7 @@ namespace WebApplication.Controllers
             if (res != null)
             {
                 client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
             }

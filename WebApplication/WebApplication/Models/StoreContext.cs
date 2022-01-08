@@ -27,7 +27,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist limit 40";
+                string str = "select * from booklist limit 42";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -35,6 +35,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -67,6 +68,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -84,13 +86,13 @@ namespace WebApplication.Models
             return list;
         }
 
-        public Book ViewBook(string name)
+        public Book ViewBook(int name)
         {
             Book bo = new Book();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "select * from booklist where tensach=@tensach";
+                var str = "select * from booklist where masach=@tensach";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("tensach", name);
                 using (var reader = cmd.ExecuteReader())
@@ -112,14 +114,14 @@ namespace WebApplication.Models
             return (bo);
         }
 
-        public List<Book> DsLienQuan(string name)
+        public List<Book> DsLienQuan(int name)
         {
             List<Book> list = new List<Book>();
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where theloai in (select theloai from booklist where tensach = @tensach)";
+                string str = "select * from booklist where theloai in (select theloai from booklist where masach = @tensach)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("tensach", name);
                 using (var reader = cmd.ExecuteReader())
@@ -279,27 +281,29 @@ namespace WebApplication.Models
             return list;
         }
 
-        public List<Book> Cart(string tentk)
+        public List<object> Cart(string matk)
         {
-            List<Book> list = new List<Book>();
+            List<object> list = new List<object>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where masach in " +
-                    "(select masach from cart u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                string str = "select booklist.masach as masach, tensach, hinhanh, giaban, cart.soluong as soluong, theloai " +
+                    "from booklist,cart,client_accounts WHERE booklist.masach=cart.masach and client_accounts.matk=cart.matk and client_accounts.matk=@matk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new Book()
+                        list.Add(new
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
-                            Giagoc = Convert.ToInt32(reader["giagoc"]),
-                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Soluong = Convert.ToInt32(reader["soluong"]),
+                            Thanhtien = Convert.ToInt32(reader["giaban"])* Convert.ToInt32(reader["soluong"]),
                         });
                     }
                     reader.Close();
@@ -348,55 +352,6 @@ namespace WebApplication.Models
             return client_Accounts;
         }
 
-        public int capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, DateTime Ngaysinh)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                string str = "update client_accounts set email = @email, sodt = @sodt, ngaysinh = @ngaysinh, gioitinh = @gioitinh where tentk = @matk";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("matk", Matk);
-                cmd.Parameters.AddWithValue("sodt", Sodt);
-                cmd.Parameters.AddWithValue("gioitinh", Gioitinh);
-                cmd.Parameters.AddWithValue("ngaysinh", Ngaysinh);
-                cmd.Parameters.AddWithValue("email", Email);
-
-                return (cmd.ExecuteNonQuery());
-            }
-
-        }
-
-        public int capnhatdiachi(string Matk, string Sodt, string Diachi, string Hoten)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                string str = "update client_accounts set hoten = @hoten, sodt = @sodt, diachi = @diachi where tentk = @matk";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("matk", Matk);
-                cmd.Parameters.AddWithValue("sodt", Sodt);
-                cmd.Parameters.AddWithValue("diachi", Diachi);
-                cmd.Parameters.AddWithValue("hoten", Hoten);
-
-                return (cmd.ExecuteNonQuery());
-            }
-
-        }
-
-        public int capnhatmatkhau(string Matk, string Matkhau)
-        {
-            using (MySqlConnection conn = GetConnection())
-            {
-                conn.Open();
-                string str = "update client_accounts set matkhau = @matkhau where tentk = @matk";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("matk", Matk);
-                cmd.Parameters.AddWithValue("matkhau", Matkhau);
-
-                return (cmd.ExecuteNonQuery());
-            }
-
-        }
         public List<Book> Search_Book(string ten_sach)
         {
             List<Book> list = new List<Book>();
@@ -404,7 +359,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where tensach like" + "'" + "%" + ten_sach + "%" + "'" + "limit 40";
+                string str = "select * from booklist where tensach like" + "'" + "%" + ten_sach + "%" + "'" + " or tacgia like" + "'" + "%" + ten_sach + "%" + "'" + "limit 40"; 
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("ten_sach", ten_sach);
                 using (var reader = cmd.ExecuteReader())
@@ -426,6 +381,84 @@ namespace WebApplication.Models
                 conn.Close();
             }
             return list;
+        }
+
+        public List<Book> Search_Category(string cate)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where theloai like" + "'" + "%" + cate + "%" + "'" + "limit 40";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("ten_sach", cate);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<comment> binhluan(int masach)
+        {
+            List<comment> list = new List<comment>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from user_cmt cmt, client_accounts c where cmt.matk = c.matk and masach = @tensach";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("tensach", masach);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new comment()
+                        {
+                            Matk = reader["tentk"].ToString(),
+                            Masach = reader["masach"].ToString(),
+                            Binhluan = reader["binhluan"].ToString(),
+                            Ngaybl = Convert.ToDateTime(reader["ngaybl"]),
+                            Sosao = Convert.ToInt32(reader["sosao"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close(); 
+            }
+            return list;
+        }
+
+        public int thembinhluan(comment c)
+        {
+            DateTime Ngaybl = DateTime.Now;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "insert into user_cmt (`matk`, `masach`,`binhluan`, `ngaybl`, `sosao`) values" +
+                    "(@matk, @masach, @binhluan, @ngaybl, @sosao);";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("masach", c.Masach);
+                cmd.Parameters.AddWithValue("matk", c.Matk);
+                cmd.Parameters.AddWithValue("binhluan", c.Binhluan);
+                cmd.Parameters.AddWithValue("ngaybl", Ngaybl);
+                cmd.Parameters.AddWithValue("sosao", c.Sosao);
+                return cmd.ExecuteNonQuery();
+            }
         }
     }
 }

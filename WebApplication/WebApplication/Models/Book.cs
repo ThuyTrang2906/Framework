@@ -7,8 +7,8 @@ namespace WebApplication.Models
 {
     public class Book
     {
-        private string tensach;
         private int masach;
+        private string tensach;
         private string hinhanh;
         private string theloai;
         private int giaban;
@@ -20,7 +20,7 @@ namespace WebApplication.Models
         private string nxb;
         private string hinhthuc;
 
-
+        public int Masach { get => masach; set => masach = value; }
         public string Tensach { get => tensach; set => tensach = value; }
         public string Hinhanh { get => hinhanh; set => hinhanh = value; }
         public string Theloai { get => theloai; set => theloai = value; }
@@ -32,7 +32,6 @@ namespace WebApplication.Models
         public DateTime Namxb { get => namxb; set => namxb = value; }
         public string Nxb { get => nxb; set => nxb = value; }
         public string Hinhthuc { get => hinhthuc; set => hinhthuc = value; }
-        public int Masach { get => masach; set => masach = value; }
 
         public Book(int MASACH, string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
         {
