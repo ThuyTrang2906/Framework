@@ -1146,3 +1146,4 @@ D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Newtonsoft.Json.dll
 D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
 D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Book.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Category.cshtml.g.cs

@@ -96,6 +96,14 @@ namespace WebApplication.Controllers
             books = context.Search_Book(ten_sach);
             
          
+            return View(books);
+        }
+
+        public ActionResult Search_Category(string cate)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> books = new List<Book>();
+            books = context.Search_Category(cate);
 
             return View(books);
         }
