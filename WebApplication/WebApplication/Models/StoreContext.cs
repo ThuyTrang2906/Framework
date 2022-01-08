@@ -35,6 +35,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -67,6 +68,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -96,6 +98,7 @@ namespace WebApplication.Models
                 using (var reader = cmd.ExecuteReader())
                 {
                     reader.Read();
+                    bo.Masach = Convert.ToInt32(reader["masach"]);
                     bo.Tensach = reader["tensach"].ToString();
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
@@ -275,27 +278,29 @@ namespace WebApplication.Models
             return list;
         }
 
-        public List<Book> Cart(string tentk)
+        public List<object> Cart(string matk)
         {
-            List<Book> list = new List<Book>();
+            List<object> list = new List<object>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where masach in " +
-                    "(select masach from cart u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                string str = "select booklist.masach as masach, tensach, hinhanh, giaban, cart.soluong as soluong, theloai " +
+                    "from booklist,cart,client_accounts WHERE booklist.masach=cart.masach and client_accounts.matk=cart.matk and client_accounts.matk=@matk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new Book()
+                        list.Add(new
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
-                            Giagoc = Convert.ToInt32(reader["giagoc"]),
-                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Soluong = Convert.ToInt32(reader["soluong"]),
+                            Thanhtien = Convert.ToInt32(reader["giaban"])* Convert.ToInt32(reader["soluong"]),
                         });
                     }
                     reader.Close();
@@ -342,6 +347,25 @@ namespace WebApplication.Models
 
             }
             return client_Accounts;
+        }
+
+        public void themvaogiohang(string matk, string masach, string soluong)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "insert into cart values(@matk,@masach,@soluong)";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
+                cmd.Parameters.AddWithValue("masach", masach);
+                cmd.Parameters.AddWithValue("soluong", soluong);
+                cmd.ExecuteNonQuery();
+                str = "update client_accounts set sl_giohang=sl_giohang+1 where matk=@matk";
+                MySqlCommand cmd2 = new MySqlCommand(str, conn);
+                cmd2.Parameters.AddWithValue("matk", matk);
+                cmd2.ExecuteNonQuery();
+                conn.Close();
+            }
         }
     }
 }

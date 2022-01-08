@@ -27,6 +27,19 @@ namespace WebApplication.Controllers
         public IActionResult chitietsach(String name)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> flashsale = context.FlashSales();
+            List<Book> listbook = context.GetBook();
+
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
+
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             Book book = context.ViewBook(name);
             List<Book> booklist = context.DsLienQuan(name);
             ViewBag.book = book;
@@ -53,6 +66,19 @@ namespace WebApplication.Controllers
         public IActionResult cart()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                List<object> list=context.Cart(usersession.Matk);
+                ViewBag.ListCart = list;
+                ViewBag.Hoten = usersession.Hoten;
+                ViewBag.Diachi = usersession.Diachi;
+                ViewBag.Sodt = usersession.Sodt;
+            }
 
             return View();
         }
@@ -79,6 +105,13 @@ namespace WebApplication.Controllers
             return Redirect("/Home/Index");
         }
 
+        public IActionResult Logout()
+        {
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            HttpContext.Session.Remove("UserSession");
+            return Redirect("/Home/Index");
+        }
+
 
 
         public IActionResult taikhoan(string tentk)
@@ -86,7 +119,23 @@ namespace WebApplication.Controllers
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
-            return View();
+            return View(); 
         }
+
+
+        public IActionResult themgiohang(string matk, string masach, string soluong)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            context.themvaogiohang(matk, masach, soluong);
+            return Redirect("/Home/Index");
+        }
+
+        public IActionResult updategiohang(string matk, string masach,string soluong)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            return Redirect("/Home/cart");
+        }
+
+
     }
 }

@@ -58,6 +58,7 @@
                 <div class="product-dtl">
                     <div class="product-info">
                         <div class="product-name" name="tensach">
+                            <p class="ma-sach" hidden>@ViewBag.book.Masach</p>
                             <h1><b class="tensach">@ViewBag.book.Tensach</b></h1>
                         </div>
 
@@ -74,7 +75,7 @@
                             <input type="text" name="soluong" value="1" class="soluong qty">
                             <div class="qtyplus">+</div>
                         </form>
-                        <a href="" class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
+                        <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
                     </div>
 
                 </div>
@@ -473,8 +474,7 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-		    var slider = $("#slider");
+		  @*  var slider = $("#slider");
 		    var thumb = $("#thumb");
 		    var slidesPerPage = 4; // globaly define number of elements per page
 		    var syncedSecondary = true;
@@ -537,7 +537,7 @@
 		        var number = $(this).index();
 		        slider.data('owl.carousel').to(number, 300, true);
 		    });
-
+*@
 
             $(".qtyminus").on("click",function(){
                 var now = $(".qty").val();
@@ -554,46 +554,38 @@
                 }
             });
 
+        console.log($('.ma-tai-khoan').val())
+        console.log($('.ma-sach').text())
+        console.log($('.tensach').text())
+
 			// Thêm giỏ hàng
 			$('.add-to-cart').on("click", function()
-			{
-				event.preventDefault()
+            {
+                console.log("Hello")
+				//event.preventDefault()
 				var now = $(".qty").val();
 				//this.href = "/themgiohang?tensach={{books.tensach}}&giaban={{books.giaban}}&hinhanh={{books.hinhanh}}&soluong=" + now;
 				var tensach = $('.tensach').text()
 				var hinhanh = $('.hinhanh').attr('src')
 				var giaban = parseInt($('.giaban').text())*1000
 				var soluong = parseInt($('.soluong').val())
-				var matk=$('.ten-dang-nhap').text()
-				var theloai = $('.theloai').text()
+				var matk=$('.ten-dang-nhap').text() 
+                var theloai = $('.theloai').text()
+                var masach = $('.ma-sach').text()
+                var matk = $('.ma-tai-khoan').val()
 				//console.log(theloai)
-				//console.log(matk)
-				$.ajax({
-					url: '/themgiohang',
-					method: 'POST',
-					data: JSON.stringify({
-						matk: matk,
-						tensach: tensach,
-						giaban: giaban,
-						hinhanh: hinhanh,
-						soluong: soluong,
-						theloai: theloai,
-					}),
-					contentType: 'application/json',
-					success: function(msg)
-					{
-						if(msg==="Add")
-						{
-							var sl_giohang=$('.so-luong-gio-hang').text()
-							sl_giohang=(parseInt(sl_giohang)+1).toString()
-							$('.so-luong-gio-hang').text(sl_giohang)
-						}
-					}
-				})
+                //console.log(matk)
+                console.log(masach)
+                $.get('/Client/themgiohang?matk=' + matk + '&masach=' + masach + '&soluong=' + soluong.toString())
+                    .done(function (res)
+                    {
+                        var sl = $('.sl_giohang').text()
+                        sl = (parseInt(sl) + 1).toString();
+                        $('.sl_giohang').text(sl);
+                    })
 			})
 
 			// Submit review
-		});
     </script>
 
     <style>
