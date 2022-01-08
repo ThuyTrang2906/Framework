@@ -15,7 +15,7 @@ namespace WebApplication.Controllers
         public IActionResult khuyenmai()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-             
+
             return View(context.GetVoucher());
         }
 
@@ -27,6 +27,19 @@ namespace WebApplication.Controllers
         public IActionResult chitietsach(String name)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> flashsale = context.FlashSales();
+            List<Book> listbook = context.GetBook();
+
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
+
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             Book book = context.ViewBook(name);
             List<Book> booklist = context.DsLienQuan(name);
             ViewBag.book = book;
@@ -53,12 +66,25 @@ namespace WebApplication.Controllers
         public IActionResult cart()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                List<object> list=context.Cart(usersession.Matk);
+                ViewBag.ListCart = list;
+                ViewBag.Hoten = usersession.Hoten;
+                ViewBag.Diachi = usersession.Diachi;
+                ViewBag.Sodt = usersession.Sodt;
+            }
 
             return View();
         }
 
 
-       
+
         public IActionResult Login()
         {
             string username = HttpContext.Request.Form["username"];
@@ -66,16 +92,23 @@ namespace WebApplication.Controllers
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             client_accounts res = context.Login(username, password);
-            if (res!= null)
+            if (res != null)
             {
                 ViewBag.status = "Success";
                 ViewBag.infor = res;
                 HttpContext.Session.SetString("UserSession", JsonSerializer.Serialize(res));
-            } 
+            }
             else
             {
                 ViewBag.status = "Fail";
             }
+            return Redirect("/Home/Index");
+        }
+
+        public IActionResult Logout()
+        {
+            //StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            HttpContext.Session.Remove("UserSession");
             return Redirect("/Home/Index");
         }
 

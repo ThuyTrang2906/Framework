@@ -35,6 +35,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -67,6 +68,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
@@ -96,11 +98,12 @@ namespace WebApplication.Models
                 using (var reader = cmd.ExecuteReader())
                 {
                     reader.Read();
+                    bo.Masach = Convert.ToInt32(reader["masach"]);
                     bo.Tensach = reader["tensach"].ToString();
                     bo.Tacgia = reader["tacgia"].ToString();
                     bo.Hinhanh = reader["hinhanh"].ToString();
                     bo.Theloai = reader["theloai"].ToString();
-                    bo.Giagoc  = Convert.ToInt32(reader["giagoc"]);
+                    bo.Giagoc = Convert.ToInt32(reader["giagoc"]);
                     bo.Giaban = Convert.ToInt32(reader["giaban"]);
                     bo.Nxb = reader["nxb"].ToString();
                     bo.Hinhthuc = reader["hinhthuc"].ToString();
@@ -132,7 +135,7 @@ namespace WebApplication.Models
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
                             Giagoc = Convert.ToInt32(reader["giagoc"]),
-                        Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
                         });
                     }
                     reader.Close();
@@ -163,7 +166,7 @@ namespace WebApplication.Models
                 cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
                 cmd.Parameters.AddWithValue("ngaysinh", "null");
                 cmd.Parameters.AddWithValue("ngaytao", "current_timestamp()");
-                cmd.Parameters.AddWithValue("sl_giohang",0);
+                cmd.Parameters.AddWithValue("sl_giohang", 0);
                 cmd.Parameters.AddWithValue("sodt", "null");
                 cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
 
@@ -175,7 +178,7 @@ namespace WebApplication.Models
         public List<vouchers> GetVoucher()
         {
             List<vouchers> list = new List<vouchers>();
-            using(MySqlConnection conn = GetConnection())
+            using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 string str = "select * from khuyenmais";
@@ -227,20 +230,23 @@ namespace WebApplication.Models
                     tk.Tinhtrang = reader["tinhtrang"].ToString();
                     tk.Email = reader["email"].ToString();
                     tk.Matkhau = reader["matkhau"].ToString();
+                    tk.Gioitinh = reader["gioitinh"].ToString();
                     tk.Sodt = reader["sodt"].ToString();
+                    tk.Hoten = reader["hoten"].ToString();
                     tk.Diem = Convert.ToInt32(reader["diem"]);
                     tk.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
-                /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
-                    /*tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);*/
+                    /*    tk.Ngaytao = Convert.ToDateTime(reader["ngaytao"]);*/
+                    tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);
                 }
             }
+            
             return tk;
         }
 
         public List<vouchers> User_Voucher(string tentk)
         {
-            
-             List<vouchers> list = new List<vouchers>();
+
+            List<vouchers> list = new List<vouchers>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -275,27 +281,29 @@ namespace WebApplication.Models
             return list;
         }
 
-        public List<Book> Cart(string tentk)
+        public List<object> Cart(string matk)
         {
-            List<Book> list = new List<Book>();
+            List<object> list = new List<object>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where masach in " +
-                    "(select masach from cart u, client_accounts c where u.matk = c.matk and c.tentk=@tentk)";
+                string str = "select booklist.masach as masach, tensach, hinhanh, giaban, cart.soluong as soluong, theloai " +
+                    "from booklist,cart,client_accounts WHERE booklist.masach=cart.masach and client_accounts.matk=cart.matk and client_accounts.matk=@matk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        list.Add(new Book()
+                        list.Add(new
                         {
+                            Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
-                            Giagoc = Convert.ToInt32(reader["giagoc"]),
-                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Soluong = Convert.ToInt32(reader["soluong"]),
+                            Thanhtien = Convert.ToInt32(reader["giaban"])* Convert.ToInt32(reader["soluong"]),
                         });
                     }
                     reader.Close();
