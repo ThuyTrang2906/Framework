@@ -1555,3 +1555,7 @@ C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debu
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Book_Filter.cshtml.g.cs
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Filter.cshtml.g.cs
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietdonhang.cshtml.g.cs
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Category.cshtml.g.cs
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
+>>>>>>> bfbcc184555b443060aa8d6928b2534dd5dcc013
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
