@@ -460,5 +460,109 @@ namespace WebApplication.Models
                 return cmd.ExecuteNonQuery();
             }
         }
+
+        public List<orders> DonHang(string matk)
+        {
+            List<orders> list = new List<orders>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from orders where matk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
+                
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new orders()
+                        {
+
+                            Madh = Convert.ToInt32(reader["madh"]),
+                            Matk = Convert.ToInt32(reader["matk"]),
+                            Makm = Convert.ToInt32(reader["makm"]),
+
+                            Tienship = Convert.ToInt32(reader["tienship"]),
+                            Phanhoi = reader["phanhoi"].ToString(),
+                            Tinhtrangdonhang = reader["tinhtrangdonhang"].ToString(),
+                            Tinhtrangthanhtoan = reader["tinhtrangthanhtoan"].ToString(),
+                            Tongtien = Convert.ToInt32(reader["tongtien"]),
+                            Hinhthucthanhtoan = reader["hinhthucthanhtoan"].ToString(),
+
+                            Ngaycapnhat = Convert.ToDateTime(reader["ngaycapnhat"]),
+                            Ngaylap = Convert.ToDateTime(reader["ngaylap"]),
+
+
+                        });
+                    }
+                    reader.Close();
+                }
+
+                conn.Close();
+
+            }
+            return list;
+        }
+
+
+        public List<detail_orders> Detail_Orders(string madh)
+        {
+            List<detail_orders> list = new List<detail_orders>();
+            using(MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from detail_order where matk = @madh";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("madh", madh);
+                using(var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new detail_orders()
+                        {
+                            Madh = Convert.ToInt32(reader["madh"]),
+                            Masach = Convert.ToInt32(reader["masach"]),
+                            Soluong = Convert.ToInt32(reader["soluong"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+        public List<Book> BookOfOrder(string matk)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select b.masach, b.hinhanh, theloai, giaban, giagoc,giamgia, d.soluong, d.madh, b.tensach from booklist b, detail_order d, orders o where b.masach = d.masach and o.madh = d.madh and o.matk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Masach = Convert.ToInt32(reader["madh"]),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                            Soluong = Convert.ToInt32(reader["soluong"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
     }
 }

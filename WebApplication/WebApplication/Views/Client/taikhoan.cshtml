@@ -336,27 +336,35 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @*{{#each donhang}}
-                                                    {{#ifCond this.tinhtrangdonhang '==' 'đã giao hàng'}}
-                                                    <tr>
-                                                        <td class="plus">{{this.madh}}</td>
-                                                        <td>{{this.ngaylap}}</td>
-                                                        {{#each this.ds_sach}}
-                                                        <td>{{this.tensach}}</td>
-                                                        {{#if this.makm}}
-                                                        {{#each this.makm}}
-                                                        <td>{{this.manhap}}</td>
-                                                        {{/each}}
-                                                        {{else}}
-                                                        <td>Không có</td>
-                                                        {{/if}}
-                                                        {{/each}}
-                                                        <td>{{format_price this.tongtien}}</td>
-                                                        <td>Giao hàng thành công</td>
-                                                        {{/ifCond}}
-                                                        {{/each}}*@
-                                                </tr>
-                                            </tbody>
+                                                @foreach (var item in ViewBag.orders)
+                                                {
+                                                <tr>
+                                                    <td class="plus">@item.Madh</td>
+                                                    <td>@item.Ngaylap.Day/@item.Ngaylap.Month/@item.Ngaylap.Year</td>
+
+                                                    <td>
+                                                        @foreach (Book item2 in ViewBag.books)
+                                                        {
+                                                            if (@item.Madh == @item2.Masach)
+                                                            {
+                                                                <img src="@item2.Hinhanh" alt="" class="account__notify-img">
+                                                                <br /> <p>@item2.Tensach</p>
+                                                            }
+                                                        }
+                                                        <a href="/Client/DetailOrder"><b>Xem chi tiết</b></a>
+                                                    </td>
+                                                        @if (item.Makm > 1)
+                                                        {
+
+                                                          <td>@item.Makm</td>
+                                                        }else{
+                                                    <td>Không có</td>
+                                                    }
+                                                    <td>@item.Tongtien</td>
+                                                    <td>@item.Tinhtrangdonhang</td>
+                                                 </tr>
+                                                }
+                                             </tbody>
                                         </table>
                                     </div>
                                 </div>

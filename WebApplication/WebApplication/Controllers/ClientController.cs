@@ -117,27 +117,51 @@ namespace WebApplication.Controllers
         public IActionResult taikhoan(string tentk)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
+            string matk = ViewBag.taikhoan.Matk;
+            ViewBag.orders = context.DonHang(matk);
+            ViewBag.books = context.BookOfOrder(matk);
             return View();
         }
 
         public ActionResult Search_Book(string ten_sach)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
             List<Book> books = new List<Book>();
             books = context.Search_Book(ten_sach);
-            
-         
             return View(books);
         }
 
         public ActionResult Search_Category(string cate)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+            }
             List<Book> books = new List<Book>();
             books = context.Search_Category(cate);
-
             return View(books);
         }
 
@@ -151,6 +175,10 @@ namespace WebApplication.Controllers
             return Redirect("/Home/Index");
         }
 
+        public ActionResult DetailOrder()
+        {
+            return View();
+        }
 
     }
 }
