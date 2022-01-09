@@ -339,7 +339,10 @@
                                                 @foreach (var item in ViewBag.orders)
                                                 {
                                                 <tr>
-                                                    <td class="plus">@item.Madh</td>
+                                                    <td class="plus col-auto" >
+                                                        <p>@item.Madh</p>
+                                                       <a href="/Client/chitietdonhang?madh=@item.Madh"><b>Xem chi tiết</b></a>
+                                                    </td>
                                                     <td>@item.Ngaylap.Day/@item.Ngaylap.Month/@item.Ngaylap.Year</td>
 
                                                     <td>
@@ -351,7 +354,7 @@
                                                                 <br /> <p>@item2.Tensach</p>
                                                             }
                                                         }
-                                                        <a href="/Client/DetailOrder"><b>Xem chi tiết</b></a>
+                                                       
                                                     </td>
                                                         @if (item.Makm > 1)
                                                         {
