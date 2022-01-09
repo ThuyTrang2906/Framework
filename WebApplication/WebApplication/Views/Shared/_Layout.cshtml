@@ -100,7 +100,7 @@
                             </li>
                             <li class="header__navbar-item header__navbar-user">
                                 <img class="header__navbar-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
-                                <input class="ma-tai-khoan" value=@ViewBag.infor.Matk hidden/>
+                                <input class="ma-tai-khoan" value="@ViewBag.infor.Matk" type="hidden"/>
                                 <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk"><p class="header__navbar-user-name header__navbar-item--link ten-dang-nhap">@ViewBag.infor.Tentk</p><a>
                             </li>
                             <li class="header__navbar-item">
@@ -262,7 +262,7 @@
                     </div>
 
                     <!-- Sign up -->
-                    <form method="POST" action="/signup" onsubmit="return check_signup()">
+                    <form method="POST" action="/Client/DangKy" onsubmit="return check_signup()">
                         <div class="modal modal-logup">
                             <div class="modal__overlay"></div>
 
@@ -280,7 +280,7 @@
                                             <div class="auth-form__group">
                                                 <label class="auth-form__label">Tên tài khoản</label>
                                                 <input id="input_tentk"
-                                                       name="matk"
+                                                       name="Tentk"
                                                        type="text"
                                                        class="auth-form__input"
                                                        placeholder="Nhập tên tài khoản" />
@@ -288,7 +288,7 @@
                                             </div>
                                             <div class="auth-form__group">
                                                 <label class="auth-form__label">Số điện thoại</label>
-                                                <input name="email"
+                                                <input name="Sodt"
                                                        type="text"
                                                        class="auth-form__input"
                                                        placeholder="Số điện thoại"
@@ -301,7 +301,7 @@
                                             <div class="auth-form__group">
                                                 <label class="auth-form__label">Mật khẩu</label>
                                                 <input id="input_nmatkhau"
-                                                       name="matkhau"
+                                                       name="Matkhau"
                                                        type="password"
                                                        class="auth-form__input"
                                                        placeholder="Nhập mật khẩu" />
@@ -323,7 +323,7 @@
                                         <div class="auth-form__controls">
                                             <button class="btn btn--primary btn__signin" id="dangky" type="submit" onsubmit="return check_signup()">Đăng ký</button>
                                         </div>
-                                        data-toggle='modal'  data-target="#message"
+                                        @*data-toggle='modal'  data-target="#message"*@
                                         <div class="auth-form__socials">
                                             <a href=""
                                                class="auth-form__socials--fb btn btn--with-icon">

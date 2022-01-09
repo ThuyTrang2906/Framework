@@ -149,27 +149,29 @@ namespace WebApplication.Models
 
         public int DangKy(client_accounts kh)
         {
+            DateTime ngaytao = DateTime.Now;
+            string value = "chưa có";
+            string tinhtrang = "đang sử dụng";
+            int sl = 0;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                var str = "insert into client_accounts values(@danhsach_km, @diachigh, @diachigoc, @diem, @email, @giohang, @gioitinh, @hoten, @matk, @matkhau, @ngaysinh, current_timestamp(), @sl_giohang, @sodt, @tinhtrang)";
+                string str = "insert into client_accounts (`diachi`, `diem`, `email`, `gioitinh`, `hoten`, `tentk`, `matkhau`, `ngaysinh`, `ngaytao`, `sl_giohang`, `sodt`,`tinhtrang` " +
+                    ") values(@diachi, @diem, @email, @gioitinh, @hoten, @tentk, @matkhau, @ngaysinh, @ngaytao, @sl_giohang, @sodt, @tinhtrang)";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("danhsach_km", "0");
-                cmd.Parameters.AddWithValue("diachigh", "null");
-                cmd.Parameters.AddWithValue("diachigoc", "null");
-                cmd.Parameters.AddWithValue("diem", 0);
-                cmd.Parameters.AddWithValue("email", kh.Email);
-                cmd.Parameters.AddWithValue("giohang", "null");
-                cmd.Parameters.AddWithValue("gioitinh", "null");
-                cmd.Parameters.AddWithValue("hoten", "null");
-                cmd.Parameters.AddWithValue("matk", kh.Matk);
+                cmd.Parameters.AddWithValue("diachi", value);
+                cmd.Parameters.AddWithValue("email", value);
+                cmd.Parameters.AddWithValue("diem", sl);
+                cmd.Parameters.AddWithValue("sodt", kh.Sodt);
+                cmd.Parameters.AddWithValue("giohang", value);
+                cmd.Parameters.AddWithValue("gioitinh", value);
+                cmd.Parameters.AddWithValue("hoten", value);
+                cmd.Parameters.AddWithValue("tentk", kh.Tentk);
                 cmd.Parameters.AddWithValue("matkhau", kh.Matkhau);
-                cmd.Parameters.AddWithValue("ngaysinh", "null");
-                cmd.Parameters.AddWithValue("ngaytao", "current_timestamp()");
-                cmd.Parameters.AddWithValue("sl_giohang", 0);
-                cmd.Parameters.AddWithValue("sodt", "null");
-                cmd.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
-
+                cmd.Parameters.AddWithValue("ngaysinh", value);
+                cmd.Parameters.AddWithValue("ngaytao", ngaytao);
+                cmd.Parameters.AddWithValue("sl_giohang", sl);
+                cmd.Parameters.AddWithValue("tinhtrang", tinhtrang);
                 return (cmd.ExecuteNonQuery());
 
             }
@@ -512,7 +514,7 @@ namespace WebApplication.Models
             using(MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from detail_order where matk = @madh";
+                string str = "select * from detail_order where madh = @madh";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("madh", madh);
                 using(var reader = cmd.ExecuteReader())
@@ -539,7 +541,8 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select b.masach, b.hinhanh, theloai, giaban, giagoc,giamgia, d.soluong, d.madh, b.tensach from booklist b, detail_order d, orders o where b.masach = d.masach and o.madh = d.madh and o.matk = @matk";
+                string str = "select b.masach, b.hinhanh, theloai, giaban, giagoc,giamgia, d.soluong, d.madh, b.tensach from booklist b," +
+                    " detail_order d, orders o where b.masach = d.masach and o.madh = d.madh and o.matk = @matk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("matk", matk);
                 using (var reader = cmd.ExecuteReader())
@@ -562,6 +565,56 @@ namespace WebApplication.Models
                 conn.Close();
             }
             return list;
+        }
+
+        public int capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set email = @email, sodt = @sodt, ngaysinh = @ngaysinh, gioitinh = @gioitinh where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("sodt", Sodt);
+                cmd.Parameters.AddWithValue("gioitinh", Gioitinh);
+                cmd.Parameters.AddWithValue("ngaysinh", Ngaysinh);
+                cmd.Parameters.AddWithValue("email", Email);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
+        }
+
+        public int capnhatdiachi(string Matk, string Sodt, string Diachi, string Hoten)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set hoten = @hoten, sodt = @sodt, diachi = @diachi where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("sodt", Sodt);
+                cmd.Parameters.AddWithValue("diachi", Diachi);
+                cmd.Parameters.AddWithValue("hoten", Hoten);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
+        }
+
+        public int capnhatmatkhau(string Matk, string Matkhau)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update client_accounts set matkhau = @matkhau where tentk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", Matk);
+                cmd.Parameters.AddWithValue("matkhau", Matkhau);
+
+                return (cmd.ExecuteNonQuery());
+            }
+
         }
 
     }

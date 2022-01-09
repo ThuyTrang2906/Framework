@@ -55,12 +55,18 @@ namespace WebApplication.Controllers
 
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             count = context.DangKy(kh);
-
-            if (count > 0)
-                ViewData["thongbao"] = "Insert thành công";
+            client_accounts res = context.Login(kh.Tentk, kh.Matkhau);
+            if (res != null)
+            {
+                ViewBag.status = "Success";
+                ViewBag.infor = res;
+                HttpContext.Session.SetString("UserSession", JsonSerializer.Serialize(res));
+            }
             else
-                ViewData["thongbao"] = "Insert không thành công";
-            return View();
+            {
+                ViewBag.status = "Fail";
+            }
+            return Redirect("/Home/Index");
         }
 
         public IActionResult cart()
@@ -133,6 +139,53 @@ namespace WebApplication.Controllers
             return View();
         }
 
+        public IActionResult capnhattaikhoan(string Matk, string Email, string Sodt, string Gioitinh, string Ngaysinh)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhattaikhoan(Matk, Email, Sodt, Gioitinh, Ngaysinh);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
+        }
+
+        public IActionResult capnhatdiachi(string Matk, string Sodt, string Diachi, string Hoten)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhatdiachi(Matk, Sodt, Diachi, Hoten);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
+        }
+
+        public IActionResult capnhatmatkhau(string Matk, string Matkhau)
+        {
+            int count;
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            count = context.capnhatmatkhau(Matk, Matkhau);
+            if (count > 0)
+            {
+                return Redirect("/Client/taikhoan?tentk=" + Matk);
+            }
+            else
+            {
+                return Redirect("/Home/Index");
+            }
+
+        }
         public ActionResult Search_Book(string ten_sach)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
