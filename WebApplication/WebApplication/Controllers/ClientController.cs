@@ -140,5 +140,14 @@ namespace WebApplication.Controllers
 
             return View(books);
         }
+
+        public ActionResult Search_Filter(string ngonngu, string nxb)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> books = new List<Book>();
+            books = context.Search_Filter(ngonngu, nxb);
+
+            return View(books);
+        }
     }
 }

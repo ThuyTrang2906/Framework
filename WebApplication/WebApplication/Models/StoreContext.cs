@@ -27,7 +27,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist limit 40";
+                string str = "select * from booklist limit 60";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -392,7 +392,7 @@ namespace WebApplication.Models
                 conn.Open();
                 string str = "select * from booklist where theloai like" + "'" + "%" + cate + "%" + "'" + "limit 40";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("ten_sach", cate);
+                cmd.Parameters.AddWithValue("cate", cate);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -413,5 +413,39 @@ namespace WebApplication.Models
             }
             return list;
         }
+
+        public List<Book> Search_Filter( string ngonngu, string nxb)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where ngonngu in (@ngonngu) intersect (select * from booklist where nxb in (@nxb)) limit 40";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+               /* cmd.Parameters.AddWithValue("price", price);*/
+                cmd.Parameters.AddWithValue("ngonngu", ngonngu);
+                cmd.Parameters.AddWithValue("nxb", nxb);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
     }
 }
