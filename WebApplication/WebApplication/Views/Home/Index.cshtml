@@ -96,7 +96,7 @@
                             </ul>
                         </nav>
 
-                        <form name="boloc-form" method="GET" action="/boloc">
+                        <form name="boloc-form" method="GET" action="/Client/Search_Filter">
                             <div class="card" style="margin-top: -2px ;">
                                 <article class="card-group-item">
                                     <header class="card-header">
@@ -154,8 +154,6 @@
                                                     Trên 200.000
                                                 </span>
                                             </label>
-                                            <!-- form-check.// -->
-
 
                                         </div>
                                         <!-- card-body.// -->
@@ -188,17 +186,6 @@
                                                     Tiếng Việt
                                                 </span>
                                             </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Khác" />
-                                                <span class="form-check-label">
-                                                    Khác
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
                                         </div>
                                         <!-- card-body.// -->
                                     </div>
@@ -511,10 +498,11 @@
                             </div>
                         </div>
 
+                     
 
-                        <div class="content_detail__pagination cdp" actpage="1">
+                        @*<div class="content_detail__pagination cdp" actpage="1">
                             <a href="#!-1" class="cdp_i">prev</a>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             </div>
@@ -550,79 +538,79 @@
             border-radius: 3px;
         }
 
-            .featured .featured-slider .box:hover {
-                border: var(--border-hover);
-            }
+        .featured .featured-slider .box:hover {
+            border: var(--border-hover);
+        }
 
-            .featured .featured-slider .box .image {
-                padding: 10px;
-                background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
-            }
+        .featured .featured-slider .box .image {
+            padding: 10px;
+            background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
+        }
 
-            .featured .featured-slider .box:hover .image {
-                transform: translateY(45px);
-            }
+        .featured .featured-slider .box:hover .image {
+            transform: translateY(45px);
+        }
 
-            .featured .featured-slider .box .image img {
-                height: 21rem;
-            }
+        .featured .featured-slider .box .image img {
+            height: 21rem;
+        }
 
-            .featured .featured-slider .box .icons {
-                border-bottom: var(--border-hover);
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: #fff;
-                z-index: 1;
-                transform: translateY(-105%);
-            }
+        .featured .featured-slider .box .icons {
+            border-bottom: var(--border-hover);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            z-index: 1;
+            transform: translateY(-105%);
+        }
 
-            .featured .featured-slider .box:hover .icons {
-                transform: translateY(0%);
-            }
+        .featured .featured-slider .box:hover .icons {
+            transform: translateY(0%);
+        }
 
-            .featured .featured-slider .box .icons a {
-                color: var(--text-color);
-                font-size: 1.6rem;
-                padding: 13px 15px;
-            }
+        .featured .featured-slider .box .icons a {
+            color: var(--text-color);
+            font-size: 1.6rem;
+            padding: 13px 15px;
+        }
 
-                .featured .featured-slider .box .icons a:hover {
-                    background: var(--blue-color);
-                    color: #fff;
-                    text-decoration: none;
-                }
+        .featured .featured-slider .box .icons a:hover {
+            background: var(--blue-color);
+            color: #fff;
+            text-decoration: none;
+        }
 
-            .featured .featured-slider .box .content {
-                background: #eee;
-                padding: 4px 15px 10px 15px;
-            }
+        .featured .featured-slider .box .content {
+            background: #eee;
+            padding: 4px 15px 10px 15px;
+        }
 
-            .featured .featured-slider .box .content h3 {
-                font-size: 1.8rem;
-                color: var(--black-color);
-                overflow: hidden;
-                height: 4.4rem;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-            }
+        .featured .featured-slider .box .content h3 {
+            font-size: 1.8rem;
+            color: var(--black-color);
+            overflow: hidden;
+            height: 4.4rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
 
-            .featured .featured-slider .box .content .price {
-                font-size: 1.8rem;
-                color: var(--text-color);
-                padding-bottom: 5px;
-                display: flex;
-                justify-content: space-between;
-            }
+        .featured .featured-slider .box .content .price {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
 
-                    .featured .featured-slider .box .content .price span {
-                        font-size: 1.8rem;
-                        color: var(--light-color);
-                        padding-bottom: 0.5rem;
-                        text-decoration: line-through;
-                    }
+        .featured .featured-slider .box .content .price span {
+            font-size: 1.8rem;
+            color: var(--light-color);
+            padding-bottom: 0.5rem;
+            text-decoration: line-through;
+        }
 
         .btn {
             min-width: 180px;

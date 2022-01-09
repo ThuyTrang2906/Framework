@@ -27,7 +27,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist limit 42";
+                string str = "select * from booklist limit 60";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -394,7 +394,40 @@ namespace WebApplication.Models
                 conn.Open();
                 string str = "select * from booklist where theloai like" + "'" + "%" + cate + "%" + "'" + "limit 40";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
-                cmd.Parameters.AddWithValue("ten_sach", cate);
+                cmd.Parameters.AddWithValue("cate", cate);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Theloai = reader["theloai"].ToString(),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giagoc = Convert.ToInt32(reader["giagoc"]),
+                            Giamgia = Convert.ToInt32(reader["giamgia"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<Book> Search_Filter( string ngonngu, string nxb)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from booklist where ngonngu in (@ngonngu) intersect (select * from booklist where nxb in (@nxb)) limit 40";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+               /* cmd.Parameters.AddWithValue("price", price);*/
+                cmd.Parameters.AddWithValue("ngonngu", ngonngu);
+                cmd.Parameters.AddWithValue("nxb", nxb);
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -463,7 +496,7 @@ namespace WebApplication.Models
             }
         }
 
-        public List<orders> DonHang(string matk)
+        public List<orders> DonHang(int matk)
         {
             List<orders> list = new List<orders>();
 
@@ -484,18 +517,14 @@ namespace WebApplication.Models
                             Madh = Convert.ToInt32(reader["madh"]),
                             Matk = Convert.ToInt32(reader["matk"]),
                             Makm = Convert.ToInt32(reader["makm"]),
-
                             Tienship = Convert.ToInt32(reader["tienship"]),
                             Phanhoi = reader["phanhoi"].ToString(),
                             Tinhtrangdonhang = reader["tinhtrangdonhang"].ToString(),
                             Tinhtrangthanhtoan = reader["tinhtrangthanhtoan"].ToString(),
                             Tongtien = Convert.ToInt32(reader["tongtien"]),
                             Hinhthucthanhtoan = reader["hinhthucthanhtoan"].ToString(),
-
                             Ngaycapnhat = Convert.ToDateTime(reader["ngaycapnhat"]),
                             Ngaylap = Convert.ToDateTime(reader["ngaylap"]),
-
-
                         });
                     }
                     reader.Close();
@@ -507,34 +536,72 @@ namespace WebApplication.Models
             return list;
         }
 
-
-        public List<detail_orders> Detail_Orders(string madh)
+        public orders ViewDonHang(int matk)
         {
-            List<detail_orders> list = new List<detail_orders>();
+            orders o = new orders();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select * from orders where matk = @matk";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    o.Madh = Convert.ToInt32(reader["madh"]);
+                    o.Matk = Convert.ToInt32(reader["matk"]);
+                    o.Makm = Convert.ToInt32(reader["makm"]);
+                    o.Tienship = Convert.ToInt32(reader["tienship"]);
+                    o.Phanhoi = reader["phanhoi"].ToString();
+                    o.Tinhtrangdonhang = reader["tinhtrangdonhang"].ToString();
+                    o.Tinhtrangthanhtoan = reader["tinhtrangthanhtoan"].ToString();
+                    o.Tongtien = Convert.ToInt32(reader["tongtien"]);
+                    o.Hinhthucthanhtoan = reader["hinhthucthanhtoan"].ToString();
+                    o.Ngaycapnhat = Convert.ToDateTime(reader["ngaycapnhat"]);
+                    o.Ngaylap = Convert.ToDateTime(reader["ngaylap"]);
+                }
+            }
+            return o;
+        }
+
+
+        public int SoluongMua(int madh)
+        {
+            int soluong;
             using(MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from detail_order where madh = @madh";
+                string str = "select sum(soluong) as soluong from detail_order where madh = @madh group by madh";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("madh", madh);
                 using(var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        list.Add(new detail_orders()
-                        {
-                            Madh = Convert.ToInt32(reader["madh"]),
-                            Masach = Convert.ToInt32(reader["masach"]),
-                            Soluong = Convert.ToInt32(reader["soluong"]),
-                        });
-                    }
-                    reader.Close();
+                    reader.Read();
+                    soluong = Convert.ToInt32(reader["soluong"]);
                 }
-                conn.Close();
             }
-            return list;
+            return soluong;
         }
-        public List<Book> BookOfOrder(string matk)
+        public int Tamtinh(int madh)
+        {
+            int tamtinh;
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select sum(giaban * d.soluong) as tamtinh from booklist b," +
+                    " detail_order d where b.masach = d.masach and d.madh = @madh group by d.madh";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("madh", madh);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    tamtinh = Convert.ToInt32(reader["tamtinh"]);
+                }
+            }
+            return tamtinh;
+        }
+        public List<Book> BookOfOrder(int matk)
         {
             List<Book> list = new List<Book>();
 
@@ -551,6 +618,7 @@ namespace WebApplication.Models
                     {
                         list.Add(new Book()
                         {
+
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),
                             Masach = Convert.ToInt32(reader["madh"]),
@@ -558,6 +626,39 @@ namespace WebApplication.Models
                             Giagoc = Convert.ToInt32(reader["giagoc"]),
                             Giamgia = Convert.ToInt32(reader["giamgia"]),
                             Soluong = Convert.ToInt32(reader["soluong"]),
+                        });
+                    }
+                    reader.Close();
+                }
+                conn.Close();
+            }
+            return list;
+        }
+
+        public List<Book> chitietdh(int madh)
+        {
+            List<Book> list = new List<Book>();
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select b.masach, b.hinhanh, theloai, giaban, giagoc,giamgia, d.soluong, d.madh, b.tensach from booklist b," +
+                    " detail_order d, orders o where b.masach = d.masach and o.madh = d.madh and d.madh = @madh";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("madh", madh);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Book()
+                        {
+
+                            Tensach = reader["tensach"].ToString(),
+                            Hinhanh = reader["hinhanh"].ToString(),
+                            Masach = Convert.ToInt32(reader["masach"]),
+                            Giaban = Convert.ToInt32(reader["giaban"]),
+                            Giamgia = Convert.ToInt32(reader["giaban"]) * Convert.ToInt32(reader["soluong"]), //thanh tien nha
+                            Soluong = Convert.ToInt32(reader["soluong"]), // so luong mua
                         });
                     }
                     reader.Close();
@@ -616,6 +717,7 @@ namespace WebApplication.Models
             }
 
         }
+
 
     }
 }

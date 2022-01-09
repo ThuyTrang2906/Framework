@@ -1552,5 +1552,12 @@ C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net
 >>>>>>> 7f2385a375a851e360e993619ef44f82a05d2279
 C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Book.cshtml.g.cs
 >>>>>>> f8af560120e91eeabbf8c8c34553a3ef90e19c65
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Book_Filter.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Filter.cshtml.g.cs
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietdonhang.cshtml.g.cs
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Category.cshtml.g.cs
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
+>>>>>>> bfbcc184555b443060aa8d6928b2534dd5dcc013
+D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietdonhang.cshtml.g.cs
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Filter.cshtml.g.cs

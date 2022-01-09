@@ -133,7 +133,7 @@ namespace WebApplication.Controllers
             }
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
-            string matk = ViewBag.taikhoan.Matk;
+            int matk = Convert.ToInt32(ViewBag.taikhoan.Matk);
             ViewBag.orders = context.DonHang(matk);
             ViewBag.books = context.BookOfOrder(matk);
             return View();
@@ -218,6 +218,16 @@ namespace WebApplication.Controllers
             return View(books);
         }
 
+
+        public ActionResult Search_Filter(string ngonngu, string nxb)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            List<Book> books = new List<Book>();
+            books = context.Search_Filter(ngonngu, nxb);
+
+            return View(books);
+        }
+
         public ActionResult thembinhluan(comment c)
         {
             int count;
@@ -228,8 +238,25 @@ namespace WebApplication.Controllers
             return Redirect("/Home/Index");
         }
 
-        public ActionResult DetailOrder()
+        public ActionResult chitietdonhang(int madh)
         {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                ViewBag.chitietdh = context.chitietdh(madh);
+                int Matk = Convert.ToInt32(usersession.Matk);
+                ViewBag.tamtinh = context.Tamtinh(madh);
+                ViewBag.orders = context.ViewDonHang(Matk);
+                ViewBag.slmua = context.SoluongMua(madh);
+                int giamgia = ViewBag.tamtinh + ViewBag.orders.Tienship - ViewBag.orders.Tongtien;
+                ViewBag.giamgia = giamgia;
+
+            }
             return View();
         }
 
