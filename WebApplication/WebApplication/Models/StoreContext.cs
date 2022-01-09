@@ -416,18 +416,81 @@ namespace WebApplication.Models
             return list;
         }
 
-        public List<Book> Search_Filter( string ngonngu, string nxb)
+        public List<Book> Search_Filter(string giaban, string ngonngu, string nhaxuatban)
         {
             List<Book> list = new List<Book>();
+            string str = "select * from booklist where ";
+            string str2 = "select * from booklist where ";
+            string str3 = "";
+
+            Boolean flag1 = false;
+            Boolean flag2 = false;
+
+            if (Convert.ToInt32(giaban) == 50000)
+            {
+                str3 = "select * from booklist where giaban < 50000";
+            }else if (Convert.ToInt32(giaban) == 100000)
+            {
+                str3 = "select * from booklist where giaban between 50000 and 100000";
+            }else if (Convert.ToInt32(giaban) == 150000)
+            {
+                str3 = "select * from booklist where giaban between 100000 and 150000";
+            }else if (Convert.ToInt32(giaban) == 200000)
+            {
+                str3 = "select * from booklist where giaban between 150000 and 200000";
+            }else if (Convert.ToInt32(giaban) == 200001)
+            {
+                str3 = "select * from booklist where giaban > 200000";
+            }
+
+            if (ngonngu != null)
+            {
+                string[] list_ngonngu = ngonngu.Split("$$");
+                for (int i = 0; i < list_ngonngu.Length; i++)
+                {
+                    if (flag1 == false)
+                    {
+                        flag1 = true;
+                        str += "ngonngu like " + "'%" + list_ngonngu[i] + "%'";
+                    }
+                    else
+                    {
+                        str += "or ngonngu like " + "'%" + list_ngonngu[i] + "%'";
+                    }
+                }
+            }
+            else{
+                str += "ngonngu like " + "'%" + "" + "%'" ;
+            }
+
+            if (nhaxuatban != null)
+            {
+                string[] list_nxb = nhaxuatban.Split("$$");
+
+                for (int i = 0; i < list_nxb.Length; i++)
+                {
+                    if (flag2 == false)
+                    {
+                        flag2 = true;
+                        str2 += "nxb like " + "'%" + list_nxb[i] + "%'";
+                    }
+                    else
+                    {
+                        str2 += "or nxb like " + "'%" + list_nxb[i] + "%'";
+                    }
+                }
+            }
+            else
+            {
+                str2 += "nxb like " + "'%" + "" + "%'";
+            }
+
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where ngonngu in (@ngonngu) intersect (select * from booklist where nxb in (@nxb)) limit 40";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-               /* cmd.Parameters.AddWithValue("price", price);*/
-                cmd.Parameters.AddWithValue("ngonngu", ngonngu);
-                cmd.Parameters.AddWithValue("nxb", nxb);
+                string str_com =str3 + " intersect " + "(" + str + " intersect " + "(" + str2 + ")" + ")";
+                MySqlCommand cmd = new MySqlCommand(str_com, conn); 
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())

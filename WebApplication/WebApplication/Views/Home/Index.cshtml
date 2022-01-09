@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-@*    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
-*@    <link rel="stylesheet" href="~/assets/css/base.css" />
+    @*    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
+    *@
+    <link rel="stylesheet" href="~/assets/css/base.css" />
     <link rel="stylesheet" href="~/assets/css/main.css" />
     <link rel="stylesheet"
           href="~/assets/fonts/themify-icons/themify-icons.css" />
@@ -32,6 +33,7 @@
     <link rel="stylesheet" href="./Dangky.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
 
 </head>
@@ -48,207 +50,207 @@
 
                             <ul class="category-list">
                                 <li class="category-item category-item--active">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link">Giả tưởng</a>
+                                    <a href="" class="category-item__link">Giả tưởng</a>
+                                    @*
+                                    *@
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Ngôn tình">Ngôn tình</a>
+                                    <a href="" class="category-item__link">Ngôn tình</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Huyền bí">Huyền bí</a>
+                                    <a href="" class="category-item__link">Huyền bí</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Kinh dị">Kinh dị</a>
+                                    <a href="" class="category-item__link">Kinh dị</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Tâm linh">Tâm linh</a>
+                                    <a href="" class="category-item__link">Tâm linh</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Khoa học viễn tưởng">Khoa học viễn tưởng</a>
+                                    <a href="" class="category-item__link">Khoa học viễn tưởng</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Du ký">Du ký</a>
+                                    <a href="" class="category-item__link">Du ký</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Tuổi teen">Tuổi teen</a>
+                                    <a href="" class="category-item__link">Tuổi teen</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Thơ ca, ca dao">Thơ ca, ca dao</a>
+                                    <a href="" class="category-item__link">Nghệ thuật</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Phát triển bản thân">Phát triển bản thân</a>
+                                    <a href="" class="category-item__link">Phát triển bản thân</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Động lực">Động lực</a>
+                                    <a href="" class="category-item__link">Động lực</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Tác phẩm kinh điển">Tác phẩm kinh điển</a>
+                                    <a href="" class="category-item__link">Lịch sử</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Du lịch">Du lịch</a>
+                                    <a href="" class="category-item__link">Du lịch</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Hài hước">Hài hước</a>
+                                    <a href="" class="category-item__link">Hài hước</a>
                                 </li>
                                 <li class="category-item">
-                                    <a href="/Client/Search_Category" type="submit" class="category-item__link" value="Sách thiếu nhi">Sách thiếu nhi</a>
+                                    <a href="" class="category-item__link">Sách thiếu nhi</a>
                                 </li>
 
                             </ul>
                         </nav>
 
-                        <form name="boloc-form" method="GET" action="/Client/Search_Filter">
-                            <div class="card" style="margin-top: -2px ;">
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Giá </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                        <div class="card" style="margin-top: -2px ;">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Giá </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="50000" />
-                                                <span class="form-check-label">
-                                                    Dưới 50.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="100000" />
-                                                <span class="form-check-label">
-                                                    50.000 - 100.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="150000" />
-                                                <span class="form-check-label">
-                                                    100.000 - 150.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="200000" />
-                                                <span class="form-check-label">
-                                                    150.000 - 200.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="200001" />
-                                                <span class="form-check-label">
-                                                    Trên 200.000
-                                                </span>
-                                            </label>
+                                        <label class="form-check giaban_ft">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="50000" />
+                                            <span class="form-check-label">
+                                                Dưới 50.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="100000" />
+                                            <span class="form-check-label">
+                                                50.000 - 100.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="150000" />
+                                            <span class="form-check-label">
+                                                100.000 - 150.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200000" />
+                                            <span class="form-check-label">
+                                                150.000 - 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200001" />
+                                            <span class="form-check-label">
+                                                Trên 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
 
-                                        </div>
-                                        <!-- card-body.// -->
+
                                     </div>
-                                </article>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
 
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Ngôn ngữ sách </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Ngôn ngữ sách </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Tiếng Anh" />
-                                                <span class="form-check-label">
-                                                    Tiếng Anh
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Tiếng Việt" />
-                                                <span class="form-check-label">
-                                                    Tiếng Việt
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <!-- card-body.// -->
+                                        <label class="form-check ngonngu">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="Tiếng Anh" />
+                                            <span class="form-check-label">
+                                                Tiếng Anh
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check ngonngu">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="Tiếng Việt" />
+                                            <span class="form-check-label">
+                                                Tiếng Việt
+                                            </span>
+                                        </label>
+
                                     </div>
-                                </article>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
 
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Nhà xuất bản </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Nhà xuất bản </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Trẻ" />
-                                                <span class="form-check-label">
-                                                    NXB Trẻ
-                                                </span>
-                                            </label>
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Kim Đồng" />
-                                                <span class="form-check-label">
-                                                    NXB Kim Đồng
-                                                </span>
-                                            </label>
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Giáo dục" />
-                                                <span class="form-check-label">
-                                                    NXB Giáo dục
-                                                </span>
-                                            </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Trẻ" />
+                                            <span class="form-check-label">
+                                                NXB Trẻ
+                                            </span>
+                                        </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Kim Đồng" />
+                                            <span class="form-check-label">
+                                                NXB Kim Đồng
+                                            </span>
+                                        </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Giáo dục" />
+                                            <span class="form-check-label">
+                                                NXB Giáo dục
+                                            </span>
+                                        </label>
 
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Văn Học" />
-                                                <span class="form-check-label">
-                                                    NXB Văn Học
-                                                </span>
-                                            </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Văn Học" />
+                                            <span class="form-check-label">
+                                                NXB Văn Học
+                                            </span>
+                                        </label>
 
-                                        </div>
                                     </div>
-                                </article>
+                                </div>
+                            </article>
 
-                            </div>
-                            <!-- card.// -->
+                        </div>
+
+                        <a class="timkiem_z" style="text-decoration:none">
                             <button id="btn-timkiem-boloc"
-                                    type="submit"
+                                    @* type="submit"*@
                                     class="btn btn-primary"
                                     style="width: 188px; margin-top: 4px; padding: -4px 0px">
                                 Tìm kiếm
                             </button>
-                        </form>
+                        </a>
+
                     </div>
 
                     <div class="grid__column-10">
@@ -320,7 +322,7 @@
                             </div>
                         </div>
 
-                       @*Count Down*@
+                        @*Count Down*@
                         <div class="featured" id="featured">
 
                             <div class="swiper featured-slider">
@@ -356,7 +358,7 @@
                                     {
                                         <div class="swiper-slide box">
                                             <div class="icons">
-                                                <a href="/chitietsach/@item.Masach" class="fas fa-search"></a>
+                                                <a href="/chitietsach/@item.Tensach" class="fas fa-search"></a>
                                                 <a href="#" class="fas fa-heart"></a>
                                                 <a href="/chitietsach/@item.Tensach" class="fas fa-eye"></a>
                                             </div>
@@ -401,7 +403,7 @@
                                     <p for="" class="page-control__name">Sách sắp xuất bản</p>
                                 </div>
                                 <div class="home-filter__page-control">
-                                    <a href="/Client/khuyenmai">
+                                    <a href="/khuyenmai">
                                         <img src="~/assets/img/magg.png" alt="" class="page-control-img" />
                                     </a>
                                     <p for="" class="page-control__name">Mã giảm giá</p>
@@ -413,7 +415,7 @@
                                     <p for="" class="page-control__name">Xu hướng</p>
                                 </div>
                                 <div class="home-filter__page-control">
-                                    <a href="/Client/khuyenmai">
+                                    <a href="/khuyenmai">
                                         <img src="~/assets/img/miễn_phí_vận_chuyển.png" alt="" class="page-control-img" />
                                     </a>
                                     <p for="" class="page-control__name">Mã freeship</p>
@@ -430,21 +432,21 @@
                                 <img src="~/assets/img/dammouoc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/dungcuidau.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/dungcuidau.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/noluc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/noluc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                         </div>
                         <div class="row align-items-start future_sale">
                             <div class="col-sm">
-                                <img src="~/assets/img/buongtay.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/buongtay.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/diudang.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/diudang.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/tq.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/tq.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                         </div>
                     </div>
@@ -458,7 +460,7 @@
                                 {
                                     <div class="grid__column-2">
 
-                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Masach">
+                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Tensach">
                                             <div class="home-product-item__img"
                                                  style="background-image: url(@item.Hinhanh);">
                                             </div>
@@ -498,11 +500,10 @@
                             </div>
                         </div>
 
-                     
 
-                        @*<div class="content_detail__pagination cdp" actpage="1">
+                        <div class="content_detail__pagination cdp" actpage="1">
                             <a href="#!-1" class="cdp_i">prev</a>
-                        </div>*@
+                        </div>
                     </div>
                 </div>
             </div>
@@ -538,79 +539,79 @@
             border-radius: 3px;
         }
 
-        .featured .featured-slider .box:hover {
-            border: var(--border-hover);
-        }
+            .featured .featured-slider .box:hover {
+                border: var(--border-hover);
+            }
 
-        .featured .featured-slider .box .image {
-            padding: 10px;
-            background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
-        }
+            .featured .featured-slider .box .image {
+                padding: 10px;
+                background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
+            }
 
-        .featured .featured-slider .box:hover .image {
-            transform: translateY(45px);
-        }
+            .featured .featured-slider .box:hover .image {
+                transform: translateY(45px);
+            }
 
-        .featured .featured-slider .box .image img {
-            height: 21rem;
-        }
+            .featured .featured-slider .box .image img {
+                height: 21rem;
+            }
 
-        .featured .featured-slider .box .icons {
-            border-bottom: var(--border-hover);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #fff;
-            z-index: 1;
-            transform: translateY(-105%);
-        }
+            .featured .featured-slider .box .icons {
+                border-bottom: var(--border-hover);
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff;
+                z-index: 1;
+                transform: translateY(-105%);
+            }
 
-        .featured .featured-slider .box:hover .icons {
-            transform: translateY(0%);
-        }
+            .featured .featured-slider .box:hover .icons {
+                transform: translateY(0%);
+            }
 
-        .featured .featured-slider .box .icons a {
-            color: var(--text-color);
-            font-size: 1.6rem;
-            padding: 13px 15px;
-        }
+            .featured .featured-slider .box .icons a {
+                color: var(--text-color);
+                font-size: 1.6rem;
+                padding: 13px 15px;
+            }
 
-        .featured .featured-slider .box .icons a:hover {
-            background: var(--blue-color);
-            color: #fff;
-            text-decoration: none;
-        }
+                .featured .featured-slider .box .icons a:hover {
+                    background: var(--blue-color);
+                    color: #fff;
+                    text-decoration: none;
+                }
 
-        .featured .featured-slider .box .content {
-            background: #eee;
-            padding: 4px 15px 10px 15px;
-        }
+            .featured .featured-slider .box .content {
+                background: #eee;
+                padding: 4px 15px 10px 15px;
+            }
 
-        .featured .featured-slider .box .content h3 {
-            font-size: 1.8rem;
-            color: var(--black-color);
-            overflow: hidden;
-            height: 4.4rem;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-        }
+                .featured .featured-slider .box .content h3 {
+                    font-size: 1.8rem;
+                    color: var(--black-color);
+                    overflow: hidden;
+                    height: 4.4rem;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
 
-        .featured .featured-slider .box .content .price {
-            font-size: 1.8rem;
-            color: var(--text-color);
-            padding-bottom: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
+                .featured .featured-slider .box .content .price {
+                    font-size: 1.8rem;
+                    color: var(--text-color);
+                    padding-bottom: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                }
 
-        .featured .featured-slider .box .content .price span {
-            font-size: 1.8rem;
-            color: var(--light-color);
-            padding-bottom: 0.5rem;
-            text-decoration: line-through;
-        }
+                    .featured .featured-slider .box .content .price span {
+                        font-size: 1.8rem;
+                        color: var(--light-color);
+                        padding-bottom: 0.5rem;
+                        text-decoration: line-through;
+                    }
 
         .btn {
             min-width: 180px;
@@ -641,9 +642,60 @@
             cursor: default;
             background-color: rgba(0,0,0,0.2);
         }
-
     </style>
 
+    <script>
+        $(document).ready(function () {
+            console.log('Hello')
+            var giaban_send = '';
+            var ngonngu_send = '';
+            var nxb_send = '';
+
+            var giaban = $('.giaban_ft')
+            var ngonngu = $('.ngonngu');
+            var nhaxuatban = $('.nhaxuatban');
+
+            console.log(giaban)
+            console.log(ngonngu)
+            console.log(nhaxuatban)
+
+            $('.timkiem_z').on('click', function () {
+                console.log("Hello")
+
+                giaban.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                            giaban_send = $(this).find('.form-check-input').val()
+                    }
+                })
+
+                ngonngu.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (ngonngu_send === '') {
+                            ngonngu_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                nhaxuatban.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (nxb_send === '') {
+                            nxb_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                $('.timkiem_z').attr("href", '/Client/Search_Filter?giaban=' + giaban_send +'&ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
+
+            })
+        })
+
+    </script>
 
     <!-- Js tm kiếm  theo -->
     <script>
@@ -667,7 +719,7 @@
     </script>
 
     <script>
-      window.onload = function()
+     @* window.onload = function()
       {
         //--------------------------------------------------
         var count=0
@@ -719,7 +771,7 @@
           //console.log(typeof params.get('page'))
           $('.cdp').attr('actpage', params.get('page'));
         });
-      };
+      };*@
     </script>
 
     <script>
@@ -767,7 +819,7 @@
         var list = document.querySelectorAll('.category-item__link');
         Array.prototype.forEach.call(list, function (element, index) {
             var value = element.innerHTML;
-            element.href = "/Client/Search_Category?cate=" + value;
+            element.href = "/theloai/" + value;
         });
     </script>
 
