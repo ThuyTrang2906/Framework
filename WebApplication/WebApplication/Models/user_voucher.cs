@@ -7,13 +7,13 @@ namespace WebApplication.Models
 {
     public class user_voucher
     {
-        private string matk, makm;
+        private int matk, makm;
 
-        public string Matk { get => matk; set => matk = value; }
-        public string Makm { get => makm; set => makm = value; }
+        public int Matk { get => matk; set => matk = value; }
+        public int Makm { get => makm; set => makm = value; }
 
         public user_voucher() { }
-        public user_voucher(string matk, string makm)
+        public user_voucher(int matk, int makm)
         {
             this.makm = makm;
             this.matk = matk;

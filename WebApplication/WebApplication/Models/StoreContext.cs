@@ -718,6 +718,64 @@ namespace WebApplication.Models
 
         }
 
+        public int Save_voucher(int matk, int makm)
+        {
+            int count = Update_khuyenmai(makm);
+            if(count > 0)
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    string str = "insert into user_voucher values (@matk, @makm)";
+                            MySqlCommand cmd = new MySqlCommand(str, conn);
+                    cmd.Parameters.AddWithValue("matk", matk);
+                    cmd.Parameters.AddWithValue("makm", makm);
+                    return (cmd.ExecuteNonQuery());
+                }
+            }
+            else { return 0; }
+        }
 
+        public int Update_khuyenmai(int makm)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update khuyenmais set sl = sl-1 where makm = @makm";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("makm", makm);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+        public int User_Vouchers(int matk)
+        {         
+            List<object> list = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select matk from user_voucher";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new 
+                        {
+                            Matk = Convert.ToInt32(reader["matk"])
+
+                        }) ; 
+                    }             
+                }
+            }
+            int count = 0;
+            for (int item = 1; item < list.Count; item++ )
+            {
+                if(list[item].Equals(matk))
+                {
+                    count = count+1;
+                }    
+            }    
+            return count;
+        }
     }
 }

@@ -15,8 +15,24 @@ namespace WebApplication.Controllers
         public IActionResult khuyenmai()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-
-            return View(context.GetVoucher());
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                string tentk = ViewBag.infor.Tentk;
+                ViewBag.ds_voucher = context.User_Voucher(tentk);
+                int Matk = Convert.ToInt32(usersession.Matk);
+                ViewBag.sl = context.User_Vouchers(Matk);
+            }
+            else
+            {
+                ViewBag.Status = "Failed";
+            }
+            ViewBag.khuyenmai = context.GetVoucher();
+            return View();
         }
 
         /*public IActionResult chitietsach()
@@ -259,6 +275,24 @@ namespace WebApplication.Controllers
             }
             return View();
         }
+        public IActionResult Luukhuyenmai( int Makm)
+        {
+            int count;
+
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                int Matk = Convert.ToInt32(usersession.Matk);
+                count = context.Save_voucher( Matk, Makm);
+            }
+            return Redirect("/Client/khuyenmai");
+        }
+
 
     }
 }
