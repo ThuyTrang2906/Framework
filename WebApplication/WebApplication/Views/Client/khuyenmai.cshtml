@@ -139,28 +139,36 @@
                                         <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
                                     </div>
                                     <div class="card-button">
-                                        @if (ViewBag.Status == "Success" && ViewBag.sl > 0 ) //Kiểm tra đã đăng nhập chưa
+                                        @if (ViewBag.Status == "Success" && ViewBag.soluong > 0) //Kiểm tra đã đăng nhập chưa
                                         {
+                                            var count = 0;
                                             @foreach (var item1 in ViewBag.ds_voucher)
                                             {
                                                 @if (item.Makm == item1.Makm)  // kiểm tra voucher đã lưu chưa
-                                                {
+                                                    {
+                                                     count = 0;
                                                     <button class="btn__save btn__save--disable"><b>Đã lưu</b></button> //Lưu rồi
-                                                }
+
+                                                    break;
+                                                    }
                                                 else //Chưa lưu
                                                 {
-                                                    @if (item.Sl > 0)
-                                                    {
-                                                        <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                                    count = count + 1;
+                                                }
+                                            }
+                                            @if (count > 0)
+                                            {
+                                                @if (item.Sl > 0)
+                                                   {
+                                                     <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
                                                     }
-                                                    else
+                                                 else
                                                     {
                                                         <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
                                                     }
-                                                }
                                             }
 
-                                         }
+                                        }
                                         else
                                         {
                                             @if (item.Sl > 0)
@@ -179,7 +187,7 @@
                     }
                 </div>
             </div>
-            @*<div class="sale__list-voucher" id="mienphivanchuyen">
+            <div class="sale__list-voucher" id="mienphivanchuyen">
                 <div class="sale__voucher-title">
                     <img src="~/assets/img/1.png" alt="">
                 </div>
@@ -199,19 +207,35 @@
                                         <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
                                     </div>
                                     <div class="card-button">
-                                        @if (ViewBag.Status == "Success")
+                                        @if (ViewBag.Status == "Success" && ViewBag.soluong > 0) //Kiểm tra đã đăng nhập chưa
                                         {
+                                            var count = 0;
                                             @foreach (var item1 in ViewBag.ds_voucher)
                                             {
-                                                @if (item.Makm == item1.Makm)
+                                                @if (item.Makm == item1.Makm)  // kiểm tra voucher đã lưu chưa
                                                 {
-                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button>
+                                                    count = 0;
+                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button>//Lưu rồi
+
+                                                    break;
+                                                }
+                                                else //Chưa lưu
+                                                {
+                                                    count = count + 1;
+                                                }
+                                            }
+                                            @if (count > 0)
+                                            {
+                                                @if (item.Sl > 0)
+                                                {
+                                                    <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
                                                 }
                                                 else
                                                 {
                                                     <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
                                                 }
                                             }
+
                                         }
                                         else
                                         {
@@ -252,24 +276,32 @@
                                         <p class="card-text sale__card-text"><small class="text-muted">HSD: @item.Ngaykt</small></p>
                                     </div>
                                     <div class="card-button">
-                                        @if (ViewBag.Status == "Success")
+                                        @if (ViewBag.Status == "Success" && ViewBag.soluong > 0) //Kiểm tra đã đăng nhập chưa
                                         {
+                                            var count = 0;
                                             @foreach (var item1 in ViewBag.ds_voucher)
                                             {
-                                                @if (item.Makm == item1.Makm)
+                                                @if (item.Makm == item1.Makm)  // kiểm tra voucher đã lưu chưa
                                                 {
-                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button>
+                                                    count = 0;
+                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button>//Lưu rồi
+
+                                                    break;
+                                                }
+                                                else //Chưa lưu
+                                                {
+                                                    count = count + 1;
+                                                }
+                                            }
+                                            @if (count > 0)
+                                            {
+                                                @if (item.Sl > 0)
+                                                {
+                                                    <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
                                                 }
                                                 else
                                                 {
-                                                    @if (item.Sl > 0)
-                                                    {
-                                                        <a href="/Client/Luukhuyenmai?Makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
-                                                    }
-                                                    else
-                                                    {
-                                                        <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
-                                                    }
+                                                    <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
                                                 }
                                             }
                                         }
@@ -290,7 +322,7 @@
                         }
                     }
                 </div>
-            </div>*@
+            </div>
         </div>
     </div>
 

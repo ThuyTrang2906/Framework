@@ -26,7 +26,9 @@ namespace WebApplication.Controllers
                 string tentk = ViewBag.infor.Tentk;
                 ViewBag.ds_voucher = context.User_Voucher(tentk);
                 int Matk = Convert.ToInt32(usersession.Matk);
-                ViewBag.sl = context.User_Vouchers(Matk);
+                int sl = 0;
+                sl = context.User_Vouchers(Matk);
+                ViewBag.soluong = sl;
             }
             else
             {
@@ -384,6 +386,28 @@ namespace WebApplication.Controllers
                 context.deletevoucher(usersession.Matk,data);
             }
             return View();
+        }
+
+        public IActionResult xoagiohang(string masach)
+        {
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                context.xoagiohang(usersession.Matk, masach);
+            }
+            return View();
+        }
+
+        public IActionResult themgiohang(string matk, string masach, string soluong)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            context.themvaogiohang(matk, masach, soluong);
+            return Redirect("/Home/Index");
         }
     }
 }

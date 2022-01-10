@@ -258,6 +258,16 @@
 
        });
 
+        $('.delete').on('click', function ()
+        {
+            var $this = $(this).parent().parent()
+            $this.hide()
+
+            $.get("/Client/xoagiohang?masach=" + $this.find('.ma-sach').text())
+
+
+        })
+
        $('a.qty-plus').on('click', function(e) {
            e.preventDefault();
            var $this = $(this);
