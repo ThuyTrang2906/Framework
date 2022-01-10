@@ -1561,3 +1561,7 @@ C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net
 D:\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietdonhang.cshtml.g.cs
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Filter.cshtml.g.cs
+C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\chitietdonhang.cshtml.g.cs
+C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\DetailOrder.cshtml.g.cs
+C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Category.cshtml.g.cs
+C:\Users\dinhq\OneDrive\Desktop\Framework\WebApplication\WebApplication\obj\Debug\net5.0\Razor\Views\Client\Search_Filter.cshtml.g.cs

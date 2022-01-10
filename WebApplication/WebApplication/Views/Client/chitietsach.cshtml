@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Book Detail Page";
+    string change(int number)
+    {
+        string a = String.Format("{0:#,##0.##}", number);
+        return a;
+    }
 }
 <html lang="en">
 <head>
@@ -62,7 +67,7 @@
                             <h1><b class="tensach">@ViewBag.book.Tensach</b></h1>
                         </div>
 
-                        <div class="product-price-discount"><span class="giaban" name="giaban">@ViewBag.book.Giaban</span><span class="line-through">@ViewBag.book.Giagoc</span></div>
+                        <div class="product-price-discount"><span class="giaban" name="giaban">@change(@ViewBag.book.Giaban) đ</span><span class="line-through">@change(@ViewBag.book.Giagoc) đ</span></div>
                     </div>
                     <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
                     <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
@@ -136,8 +141,8 @@
                                 </div>
                                 <h4 class="home-product-item__name d-inline-block" style="display:-webkit-box">@item.Tensach</h4>
                                 <div class="home-product-item__price">
-                                    <span class="home-product-item__price-old">@item.Giagoc</span>
-                                    <span class="home-product-item__price-current">@item.Giaban</span>
+                                    <span class="home-product-item__price-old">@change(@item.Giagoc) đ</span>
+                                    <span class="home-product-item__price-current">@change(@item.Giaban) đ</span>
                                 </div>
                                 <div class="home-product-item__action">
                                     <span class="home-product-item__like home-product-item--liked">

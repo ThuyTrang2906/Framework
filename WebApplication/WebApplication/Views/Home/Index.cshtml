@@ -1,11 +1,16 @@
 ﻿@*@model WebApplication.Models.Book;*@
 @{
     ViewData["Title"] = "Home Page";
+    string change(int number)
+    {
+        string a = String.Format("{0:#,##0.##}", number);
+        return a;
+    }
 }
 @{
     IEnumerable<Book> flashsale = ViewData["FlashSale"] as IEnumerable<Book>;
-    IEnumerable<Book> ListBook = ViewData["ListBook"] as IEnumerable<Book>;
-}
+        IEnumerable<Book> ListBook = ViewData["ListBook"] as IEnumerable<Book>;
+    }
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -362,7 +367,7 @@
 
                                             <div class="content">
                                                 <h3>@item.Tensach</h3>
-                                                <div class="price">@item.Giaban<span>@item.Giagoc</span></div>
+                                                <div class="price">@change(@item.Giaban) đ<span>@change(@item.Giagoc) đ</span></div>
                                                 <a href="/Client/themgiohang?tensach=@item.Tensach&giaban=@item.Giaban&hinhanh=@item.Hinhanh&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
                                             </div>
                                         </div>
@@ -462,8 +467,8 @@
                                                 @item.Tensach
                                             </h4>
                                             <div class="home-product-item__price">
-                                                <span class="home-product-item__price-old">@item.Giagoc</span>
-                                                <span class="home-product-item__price-current">@item.Giaban đ</span>
+                                                <span class="home-product-item__price-old">@change(@item.Giagoc) đ</span>
+                                                <span class="home-product-item__price-current">@change(@item.Giaban) đ</span>
                                             </div>
                                             <div class="home-product-item__action">
                                                 <span class="home-product-item__like home-product-item--liked">
@@ -533,79 +538,79 @@
             border-radius: 3px;
         }
 
-            .featured .featured-slider .box:hover {
-                border: var(--border-hover);
-            }
+        .featured .featured-slider .box:hover {
+            border: var(--border-hover);
+        }
 
-            .featured .featured-slider .box .image {
-                padding: 10px;
-                background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
-            }
+        .featured .featured-slider .box .image {
+            padding: 10px;
+            background: linear-gradient(15deg, #eee 40%, #fff 30.1%);
+        }
 
-            .featured .featured-slider .box:hover .image {
-                transform: translateY(45px);
-            }
+        .featured .featured-slider .box:hover .image {
+            transform: translateY(45px);
+        }
 
-            .featured .featured-slider .box .image img {
-                height: 21rem;
-            }
+        .featured .featured-slider .box .image img {
+            height: 21rem;
+        }
 
-            .featured .featured-slider .box .icons {
-                border-bottom: var(--border-hover);
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                background: #fff;
-                z-index: 1;
-                transform: translateY(-105%);
-            }
+        .featured .featured-slider .box .icons {
+            border-bottom: var(--border-hover);
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            z-index: 1;
+            transform: translateY(-105%);
+        }
 
-            .featured .featured-slider .box:hover .icons {
-                transform: translateY(0%);
-            }
+        .featured .featured-slider .box:hover .icons {
+            transform: translateY(0%);
+        }
 
-            .featured .featured-slider .box .icons a {
-                color: var(--text-color);
-                font-size: 1.6rem;
-                padding: 13px 15px;
-            }
+        .featured .featured-slider .box .icons a {
+            color: var(--text-color);
+            font-size: 1.6rem;
+            padding: 13px 15px;
+        }
 
-                .featured .featured-slider .box .icons a:hover {
-                    background: var(--blue-color);
-                    color: #fff;
-                    text-decoration: none;
-                }
+        .featured .featured-slider .box .icons a:hover {
+            background: var(--blue-color);
+            color: #fff;
+            text-decoration: none;
+        }
 
-            .featured .featured-slider .box .content {
-                background: #eee;
-                padding: 4px 15px 10px 15px;
-            }
+        .featured .featured-slider .box .content {
+            background: #eee;
+            padding: 4px 15px 10px 15px;
+        }
 
-                .featured .featured-slider .box .content h3 {
-                    font-size: 1.8rem;
-                    color: var(--black-color);
-                    overflow: hidden;
-                    height: 4.4rem;
-                    display: -webkit-box;
-                    -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 2;
-                }
+        .featured .featured-slider .box .content h3 {
+            font-size: 1.8rem;
+            color: var(--black-color);
+            overflow: hidden;
+            height: 4.4rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
 
-                .featured .featured-slider .box .content .price {
-                    font-size: 1.8rem;
-                    color: var(--text-color);
-                    padding-bottom: 5px;
-                    display: flex;
-                    justify-content: space-between;
-                }
+        .featured .featured-slider .box .content .price {
+            font-size: 1.8rem;
+            color: var(--text-color);
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
 
-                    .featured .featured-slider .box .content .price span {
-                        font-size: 1.8rem;
-                        color: var(--light-color);
-                        padding-bottom: 0.5rem;
-                        text-decoration: line-through;
-                    }
+        .featured .featured-slider .box .content .price span {
+            font-size: 1.8rem;
+            color: var(--light-color);
+            padding-bottom: 0.5rem;
+            text-decoration: line-through;
+        }
 
         .btn {
             min-width: 180px;
@@ -622,9 +627,9 @@
             justify-content: center;
         }
 
-            .btn:hover {
-                background-color: rgba(0,0,0,0.2);
-            }
+        .btn:hover {
+            background-color: rgba(0,0,0,0.2);
+        }
 
         .btn--primary {
             color: var(--white-color);
@@ -641,7 +646,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 5px 22px 3px;
+            padding: 5px 22px;
             border-radius: 2px;
             background-color: #B0E2FF;
         }
@@ -669,7 +674,7 @@
         }
 
         .page-control-img {
-            margin: 8px 41px;
+            margin: 12px 38px;
             width: 80px;
             height: 80px;
         }
@@ -678,7 +683,18 @@
             font-size: 1.6rem;
             color: var(--text-color);
             margin-top: 5px;
+            margin-bottom: 20px;
             font-weight: 500;
+        }
+
+        .home-filter__page-control {
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            width: 100%;
+            height: 144px;
         }
     </style>
 

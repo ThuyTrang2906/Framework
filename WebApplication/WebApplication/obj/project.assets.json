@@ -7767,8 +7767,8 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TanTh\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {},
+    "C:\\Users\\TanTh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
