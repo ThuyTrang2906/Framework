@@ -1012,6 +1012,9 @@ namespace WebApplication.Models
             }
         }
 
+        /*int Matk = Convert.ToInt32(matk);
+        int Masach = Convert.ToInt32(masach);
+        int Soluong = Convert.ToInt32(soluong);*/
         public void themvaogiohang(string matk, string masach, string soluong)
         {
             int Matk = Convert.ToInt32(matk);
