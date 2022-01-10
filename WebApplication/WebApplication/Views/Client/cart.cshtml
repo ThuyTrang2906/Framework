@@ -140,9 +140,10 @@
                     </div>
 
                 </div>
-                <a href="/payment">
-                    <button type="submit" class="btn__buy-book" id="buy">Xác nhận đặt sách</button>
-                </a>
+                <form method="post" action='/Client/payment'>
+                    <input class='data-send' name="data" value="Hello" hidden />
+                    <button type="submit" class="confirm-buy btn__buy-book" id="buy">Xác nhận đặt sách</button>
+                </form>
 
             </div>
     </div>
@@ -229,11 +230,11 @@
            }
            var temp = soluong
            if (soluong > 1) temp = soluong - 1
-           $.get('/Client/updategiohang', {
-               matk: $('.ma-tai-khoan').text(),
-               masach: $('.ma-sach').text(),
-               soluong: $('.soluong').text(),
-           })
+           var codetk = $('.ma-tai-khoan').val()
+           var codesach = $(this).parent().parent().find('.ma-sach').text()
+           var codesl = $(this).parent().find('.soluong').val()
+
+           $.get('/Client/updategiohang?matk=' + codetk + '&masach=' + codesach + '&soluong=' + codesl)
                .done(
 
                )
@@ -268,17 +269,40 @@
                }
            }
 
-           $.ajax({
-               url: '/updategiohang',
-               method: 'POST',
-               data: JSON.stringify({
-                   matk: matk,
-                   tensach: tensach,
-                   soluong: soluong + 1,
-               }),
-               contentType: 'application/json',
-           })
+           var codetk = $('.ma-tai-khoan').val()
+           var codesach = $(this).parent().parent().find('.ma-sach').text()
+           var codesl = $(this).parent().find('.soluong').val()
+
+           $.get('/Client/updategiohang?matk=' + codetk + '&masach=' + codesach + '&soluong=' + codesl)
+               .done(
+
+               )
        });
+
+        $('.confirm-buy').on('click', function ()
+        {
+            var sanpham = $('.san_pham')
+            var ListBuyed = []
+            var index=0
+            sanpham.each(function (e) {
+                if ($(this).find('.checkbuy').prop('checked') === true) {
+                    const Sach = {
+                        masach: $(this).find('.ma-sach').text(),
+                        tensach: $(this).find('.item__name').text(),
+                        giaban: $(this).find('#id_giaban').text(),
+                        soluong: $(this).find('#id_soluong').val(),
+                        tongtien: $(this).find('#id_thanhtien').text(),
+                        hinhanh: $(this).find('.cart__img').attr('src'),
+                        theloai: $(this).find('.theloai').text()
+                    }
+                    ListBuyed.push(Sach)
+                }
+            })
+            //console.log(ListBuyed[0])
+            var DATA = JSON.stringify(ListBuyed)
+            $(this).parent().find('.data-send').val(DATA)
+
+        })
 
      // RESTRICT INPUTS TO NUMBERS ONLY WITH A MIN OF 0 AND A MAX 100
      $('input').on('blur', function(){

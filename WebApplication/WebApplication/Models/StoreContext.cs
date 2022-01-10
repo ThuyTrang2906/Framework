@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Text.Json;
 
 namespace WebApplication.Models
 {
@@ -241,7 +242,7 @@ namespace WebApplication.Models
                     tk.Ngaysinh = Convert.ToDateTime(reader["ngaysinh"]);
                 }
             }
-            
+
             return tk;
         }
 
@@ -305,7 +306,7 @@ namespace WebApplication.Models
                             Theloai = reader["theloai"].ToString(),
                             Giaban = Convert.ToInt32(reader["giaban"]),
                             Soluong = Convert.ToInt32(reader["soluong"]),
-                            Thanhtien = Convert.ToInt32(reader["giaban"])* Convert.ToInt32(reader["soluong"]),
+                            Thanhtien = Convert.ToInt32(reader["giaban"]) * Convert.ToInt32(reader["soluong"]),
                         });
                     }
                     reader.Close();
@@ -839,6 +840,149 @@ namespace WebApplication.Models
                 }    
             }    
             return count;
+        }
+
+        public void updategiohang(string matk, string masach, string soluong)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "update cart set soluong=@soluong where matk=@matk and masach=@masach";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("matk", matk);
+                cmd.Parameters.AddWithValue("masach", masach);
+                cmd.Parameters.AddWithValue("soluong", soluong);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public class sach
+        {
+            public string masach { get; set; }
+            public string tensach { get; set; }
+            public string giaban { get; set; }
+            public string soluong { get; set; }
+            public string tongtien { get; set; }
+            public string hinhanh { get; set; }
+            public string theloai { get; set; }
+        }
+
+        public class voucher
+        {
+            public string makm { get; set; }
+            public string matk { get; set; }
+            public string manhap { get; set; }
+            public string phantram { get; set; }
+            public string dieukien { get; set; }
+            public string ngaybd { get; set; }
+            public string ngaykt { get; set; }
+            public string loaikm { get; set; }
+
+        }
+
+        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str = "SELECT madh FROM orders ORDER BY madh DESC LIMIT 1";
+                MySqlCommand mySql = new MySqlCommand(str, conn);
+                var madh = 0;
+                using (var reader = mySql.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        madh = Convert.ToInt32(reader["madh"]);
+                    }
+                }
+
+
+                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien) " +
+                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien)";
+                MySqlCommand mySql1 = new MySqlCommand(str1, conn);
+
+                mySql1.Parameters.AddWithValue("hinhthucthanhtoan", hinhthucthanhtoan);
+                mySql1.Parameters.AddWithValue("matk", matk);
+                mySql1.Parameters.AddWithValue("tinhtrangdonhang", tinhtrangdonhang);
+                mySql1.Parameters.AddWithValue("tinhtrangthanhtoan", tinhtrangthanhtoan);
+                mySql1.Parameters.AddWithValue("tongtien", tongtien);
+
+                mySql1.ExecuteNonQuery();
+
+
+
+                var str2 = "insert into detail_order values(@madh,@masach,@soluong)";
+                var list_sach = JsonSerializer.Deserialize<sach[]>(data);
+                foreach(var item in list_sach)
+                {
+                    MySqlCommand mySql2 = new MySqlCommand(str2, conn);
+                    mySql2.Parameters.AddWithValue("madh", madh + 1);
+                    mySql2.Parameters.AddWithValue("masach", item.masach);
+                    mySql2.Parameters.AddWithValue("soluong", item.soluong);
+                    mySql2.ExecuteNonQuery();
+                }
+
+               /* var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(listvoucher);
+                var str3 = "delete from user_voucher where matk=@matk and makm=@makm";
+                foreach(var item in list_voucher_used)
+                {
+                    MySqlCommand mySql3 = new MySqlCommand(str3, conn);
+                    mySql3.Parameters.AddWithValue("matk", matk);
+                    mySql3.Parameters.AddWithValue("makm", item.makm);
+                }*/
+                
+
+                conn.Close();
+
+            }
+        }
+
+        public List<object> get_voucher(string matk)
+        {
+            List<object> list = new List<object>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                var str = "select user_voucher.matk as matk, user_voucher.makm as makm ,manhap ,phantram ,dieukien ,ngaybd ,ngaykt, loai from user_voucher,khuyenmais where khuyenmais.makm=user_voucher.makm and user_voucher.matk=@matk";
+                MySqlCommand mySql = new MySqlCommand(str, conn);
+                mySql.Parameters.AddWithValue("matk", matk);
+                conn.Open();
+                using (var reader = mySql.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new 
+                        { 
+                            Matk= reader["matk"].ToString(),
+                            Makm = reader["makm"].ToString(),
+                            MaNhap = reader["manhap"].ToString(),
+                            PhanTram = reader["phantram"].ToString(),
+                            DieuKien = reader["dieukien"].ToString(),
+                            NgayBD = Convert.ToDateTime(reader["ngaybd"]).ToString("MM/dd/yyyy"),
+                            NgayKT = Convert.ToDateTime(reader["ngaykt"]).ToString("MM/dd/yyyy"),
+                            Loai = reader["loai"].ToString()
+                        });
+                    }
+                }
+            }
+            return list;
+        }
+        
+        public void deletevoucher(string matk,string data)
+        {
+            var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(data);
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str3 = "delete from user_voucher where matk=@matk and makm=@makm";
+                foreach (var item in list_voucher_used)
+                {
+                    MySqlCommand mySql3 = new MySqlCommand(str3, conn);
+                    mySql3.Parameters.AddWithValue("matk", matk);
+                    mySql3.Parameters.AddWithValue("makm", item.makm);
+                    mySql3.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
