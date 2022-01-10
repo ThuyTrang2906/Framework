@@ -62,7 +62,7 @@
                             <h1><b class="tensach">@ViewBag.book.Tensach</b></h1>
                         </div>
 
-                        <div class="product-price-discount"><span class="giaban" name="giaban">@ViewBag.book.Giaban</span><span class="line-through">{{format_price books.giagoc}}</span></div>
+                        <div class="product-price-discount"><span class="giaban" name="giaban">@ViewBag.book.Giaban</span><span class="line-through">@ViewBag.book.Giagoc</span></div>
                     </div>
                     <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
                     <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
@@ -75,7 +75,16 @@
                             <input type="text" name="soluong" value="1" class="soluong qty">
                             <div class="qtyplus">+</div>
                         </form>
-                        <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
+                          @if (ViewBag.Status == "Success")
+                            {
+                               <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
+                            }
+                            else
+                            {
+                                <a onclick="show()" class="round-black-btn">Thêm vào giỏ hàng</a>
+
+                            }
+
                     </div>
 
                 </div>
@@ -121,7 +130,7 @@
                     @foreach (var item in ViewBag.books)
                     {
                         <div class="grid__column-2 swiper-slide box">
-                            <a class="home-product-item" href="/chitietsach/@item.Tensach">
+                            <a class="home-product-item" href="/Client/chitietsach?name=@item.Masach">
                                 <div class="home-product-item__img"
                                      style="background-image: url(@item.Hinhanh);">
                                 </div>
@@ -387,13 +396,10 @@
                         Sosao: sosao,
                     },
                 })
-                alert("Comment ok nha!");
             } else {
                 alert("Vui lòng đăng nhập!");
                 event.preventDefault();
             }
-
-
          })
 			 @* var star = 0;
 		var list = document.querySelectorAll('#star_review');
@@ -592,8 +598,8 @@
                 var theloai = $('.theloai').text()
                 var masach = $('.ma-sach').text()
                 var matk = $('.ma-tai-khoan').val()
-				//console.log(theloai)
-                //console.log(matk)
+				console.log(theloai)
+                console.log(matk)
                 console.log(masach)
                 $.get('/Client/themgiohang?matk=' + matk + '&masach=' + masach + '&soluong=' + soluong.toString())
                     .done(function (res)
@@ -601,10 +607,19 @@
                         var sl = $('.sl_giohang').text()
                         sl = (parseInt(sl) + 1).toString();
                         $('.sl_giohang').text(sl);
+                        alert("Thêm được rồi nha")
                     })
+               
 			})
 
 			// Submit review
+    </script>
+
+
+    <script>
+        function show() {
+            alert("Bạn chưa đăng nhập");
+        }
     </script>
 
     <style>
