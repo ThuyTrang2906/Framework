@@ -129,8 +129,7 @@
                                         </label>
                                         <!-- form-check.// -->
                                         <label class="form-check giaban_ft">
-                                            <input 
-                                                   class="form-check-input"
+                                            <input class="form-check-input"
                                                    type="radio"
                                                    value="150000" />
                                             <span class="form-check-label">
@@ -139,8 +138,7 @@
                                         </label>
                                         <!-- form-check.// -->
                                         <label class="form-check giaban_ft">
-                                            <input 
-                                                   class="form-check-input"
+                                            <input class="form-check-input"
                                                    type="radio"
                                                    value="200000" />
                                             <span class="form-check-label">
@@ -149,8 +147,7 @@
                                         </label>
                                         <!-- form-check.// -->
                                         <label class="form-check giaban_ft">
-                                            <input 
-                                                   class="form-check-input"
+                                            <input class="form-check-input"
                                                    type="radio"
                                                    value="200001" />
                                             <span class="form-check-label">
@@ -355,18 +352,18 @@
                                     {
                                         <div class="swiper-slide box">
                                             <div class="icons">
-                                                <a href="/chitietsach/@item.Tensach" class="fas fa-search"></a>
+                                                <a href="/Client/chitietsach?name=@item.Masach" class="fas fa-search"></a>
                                                 <a href="#" class="fas fa-heart"></a>
-                                                <a href="/chitietsach/@item.Tensach" class="fas fa-eye"></a>
+                                                <a href="/Client/chitietsach?name=@item.Masach" class="fas fa-eye"></a>
                                             </div>
-                                            <a class="image" href="/chitietsach/@item.Tensach">
+                                            <a class="image" href="/Client/chitietsach?name=@item.Masach">
                                                 <img src="@item.Hinhanh" alt="">
                                             </a>
 
                                             <div class="content">
                                                 <h3>@item.Tensach</h3>
                                                 <div class="price">@item.Giaban<span>@item.Giagoc</span></div>
-                                                <a href="/themgiohang?tensach=@item.Tensach&giaban=@item.Giaban&hinhanh=@item.Hinhanh&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
+                                                <a href="/Client/themgiohang?tensach=@item.Tensach&giaban=@item.Giaban&hinhanh=@item.Hinhanh&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
                                             </div>
                                         </div>
                                     }
@@ -388,7 +385,7 @@
                                     <p for="" class="page-control__name">Flash sale</p>
                                 </div>
                                 <div class="home-filter__page-control">
-                                    <a href="/khuyenmai">
+                                    <a href="/Client/khuyenmai">
                                         <img src="~/assets/img/icon_12_12.png" alt="" class="page-control-img" />
                                     </a>
                                     <p for="" class="page-control__name">Siêu sale tháng 12</p>
@@ -400,7 +397,7 @@
                                     <p for="" class="page-control__name">Sách sắp xuất bản</p>
                                 </div>
                                 <div class="home-filter__page-control">
-                                    <a href="/khuyenmai">
+                                    <a href="/Client/khuyenmai">
                                         <img src="~/assets/img/magg.png" alt="" class="page-control-img" />
                                     </a>
                                     <p for="" class="page-control__name">Mã giảm giá</p>
@@ -412,7 +409,7 @@
                                     <p for="" class="page-control__name">Xu hướng</p>
                                 </div>
                                 <div class="home-filter__page-control">
-                                    <a href="/khuyenmai">
+                                    <a href="/Client/khuyenmai">
                                         <img src="~/assets/img/miễn_phí_vận_chuyển.png" alt="" class="page-control-img" />
                                     </a>
                                     <p for="" class="page-control__name">Mã freeship</p>
@@ -457,7 +454,7 @@
                                 {
                                     <div class="grid__column-2">
 
-                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Tensach">
+                                        <a class="home-product-item" asp-controller="Client" asp-action="chitietsach" asp-route-name="@item.Masach">
                                             <div class="home-product-item__img"
                                                  style="background-image: url(@item.Hinhanh);">
                                             </div>
@@ -705,7 +702,7 @@
 
                 giaban.each(function () {
                     if ($(this).find('.form-check-input').prop('checked') === true) {
-                            giaban_send = $(this).find('.form-check-input').val()
+                        giaban_send = $(this).find('.form-check-input').val()
                     }
                 })
 
@@ -731,15 +728,14 @@
                     }
                 })
 
-                $('.timkiem_z').attr("href", '/Client/Search_Filter?giaban=' + giaban_send +'&ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
+                $('.timkiem_z').attr("href", '/Client/Search_Filter?giaban=' + giaban_send + '&ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
 
             })
         })
-    </style>
+    </script>
 
     <script>
-        $(document).ready(function ()
-        {
+        $(document).ready(function () {
             console.log('Hello')
             var ngonngu_send = '';
             var nxb_send = '';
@@ -750,11 +746,9 @@
             console.log(ngonngu)
             console.log(nhaxuatban)
 
-            $('.timkiem_z').on('click', function()
-            {
+            $('.timkiem_z').on('click', function () {
                 console.log("Hello")
-                ngonngu.each(function ()
-                {
+                ngonngu.each(function () {
                     if ($(this).find('.form-check-input').prop('checked') === true) {
                         if (ngonngu_send === '') {
                             ngonngu_send += $(this).find('.form-check-input').val()
@@ -765,21 +759,20 @@
                     }
                 })
 
-                    nhaxuatban.each(function () {
-                        if ($(this).find('.form-check-input').prop('checked') === true) {
-                            if (nxb_send === '')
-                        {
+                nhaxuatban.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (nxb_send === '') {
                             nxb_send += $(this).find('.form-check-input').val()
                         }
                         else {
                             nxb_send += ("$$" + $(this).find('.form-check-input').val())
                         }
-                        }
-                    })
+                    }
+                })
 
                 $('.timkiem_z').attr("href", '/Client/Search_Filter?ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
-                
-             })
+
+            })
         })
 
     </script>
@@ -906,7 +899,7 @@
         var list = document.querySelectorAll('.category-item__link');
         Array.prototype.forEach.call(list, function (element, index) {
             var value = element.innerHTML;
-            element.href = "/theloai/" + value;
+            element.href = "/Client/Search_Category?cate=" + value;
         });
     </script>
 
@@ -936,6 +929,12 @@
         }, 1000);
     </script>
 
+
+    <script>
+        function show() {
+            alert("Bạn chưa đăng nhập");
+        }
+    </script>
 
     <!-- Bootstrap js -->
     <!-- <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script> -->
