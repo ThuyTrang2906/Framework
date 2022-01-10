@@ -108,6 +108,18 @@ namespace WebApplication.Controllers
         }
 
 
+        public IActionResult themgiohang(string matk, string masach, string soluong)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            context.themvaogiohang(matk, masach, soluong);
+            return Redirect("/Home/Index");
+        }
+
+        public IActionResult updategiohang(string matk, string masach, string soluong)
+        {
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            return Redirect("/Home/cart");
+        }
 
         public IActionResult Login()
         {
@@ -296,12 +308,12 @@ namespace WebApplication.Controllers
         }
 
 
-        public IActionResult updategiohang(string matk, string masach, string soluong)
+        /*public IActionResult updategiohang(string matk, string masach, string soluong)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             context.updategiohang(matk, masach, soluong);
             return View();
-        }
+        }*/
 
         public class sach
         {
@@ -403,11 +415,11 @@ namespace WebApplication.Controllers
             return View();
         }
 
-        public IActionResult themgiohang(string matk, string masach, string soluong)
+       /* public IActionResult themgiohang(string matk, string masach, string soluong)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             context.themvaogiohang(matk, masach, soluong);
             return Redirect("/Home/Index");
-        }
+        }*/
     }
 }

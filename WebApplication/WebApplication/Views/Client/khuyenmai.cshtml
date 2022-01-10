@@ -59,12 +59,24 @@
         <div class="text-center">
             <img src="~/assets/img/SIÊU KHUYẾN MÃI.png" style="min-width: 50%; min-height:50%;">
         </div>
-        <div class="text-center sale__voucher">
-            <a href="/Client/taikhoan#khovoucher" style="text-decoration:none" class="myvoucher">
-                <span>MÃ GIẢM GIÁ CỦA TÔI</span>
-                <i class="fas fa-angle-right"></i>
-            </a>
-        </div>
+        @if (ViewBag.Status == "Success")
+        {
+            <div class="text-center sale__voucher">
+                <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk" style="text-decoration:none" class="myvoucher">
+                    <span>MÃ GIẢM GIÁ CỦA TÔI</span>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+        }
+        else
+        {
+            <div class="text-center sale__voucher">
+                <a onclick="show()" style="text-decoration:none" class="myvoucher">
+                    <span>MÃ GIẢM GIÁ CỦA TÔI</span>
+                    <i class="fas fa-angle-right"></i>
+                </a>
+            </div>
+        }
         <div class="grid">
             <div class="justify-content-around sale__list">
                 <a href="#magiamgia" style="text-decoration: none;">
@@ -145,12 +157,12 @@
                                             @foreach (var item1 in ViewBag.ds_voucher)
                                             {
                                                 @if (item.Makm == item1.Makm)  // kiểm tra voucher đã lưu chưa
-                                                    {
-                                                     count = 0;
-                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button> //Lưu rồi
+                                                {
+                                                    count = 0;
+                                                    <button class="btn__save btn__save--disable"><b>Đã lưu</b></button>//Lưu rồi
 
                                                     break;
-                                                    }
+                                                }
                                                 else //Chưa lưu
                                                 {
                                                     count = count + 1;
@@ -159,13 +171,13 @@
                                             @if (count > 0)
                                             {
                                                 @if (item.Sl > 0)
-                                                   {
-                                                     <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
-                                                    }
-                                                 else
-                                                    {
-                                                        <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
-                                                    }
+                                                {
+                                                    <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                                }
+                                                else
+                                                {
+                                                    <button class="btn__save btn__save--disable"><b>Đã hết</b></button>
+                                                }
                                             }
 
                                         }
@@ -325,6 +337,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function show() {
+            alert("Bạn chưa đăng nhập");
+        }
+    </script>
 
 </body>
 </html>
