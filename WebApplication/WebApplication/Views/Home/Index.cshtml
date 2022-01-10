@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
-@*    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
-*@    <link rel="stylesheet" href="~/assets/css/base.css" />
+    @*    {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.x.x/css/swiper.min.css"> --}}
+    *@
+    <link rel="stylesheet" href="~/assets/css/base.css" />
     <link rel="stylesheet" href="~/assets/css/main.css" />
     <link rel="stylesheet"
           href="~/assets/fonts/themify-icons/themify-icons.css" />
@@ -32,6 +33,7 @@
     <link rel="stylesheet" href="./Dangky.html">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.3/js/swiper.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
 
 </head>
@@ -49,8 +51,9 @@
                             <ul class="category-list">
                                 <li class="category-item category-item--active">
                                     <a href="" class="category-item__link">Giả tưởng</a>
-@*                                    
-*@                                </li>
+                                    @*
+                                    *@
+                                </li>
                                 <li class="category-item">
                                     <a href="" class="category-item__link">Ngôn tình</a>
                                 </li>
@@ -97,172 +100,157 @@
                             </ul>
                         </nav>
 
-                        <form name="boloc-form" method="GET" action="/boloc">
-                            <div class="card" style="margin-top: -2px ;">
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Giá </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                        <div class="card" style="margin-top: -2px ;">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Giá </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="50000" />
-                                                <span class="form-check-label">
-                                                    Dưới 50.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="100000" />
-                                                <span class="form-check-label">
-                                                    50.000 - 100.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="150000" />
-                                                <span class="form-check-label">
-                                                    100.000 - 150.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="200000" />
-                                                <span class="form-check-label">
-                                                    150.000 - 200.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="giaban"
-                                                       class="form-check-input"
-                                                       type="radio"
-                                                       value="200001" />
-                                                <span class="form-check-label">
-                                                    Trên 200.000
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="50000" />
+                                            <span class="form-check-label">
+                                                Dưới 50.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="100000" />
+                                            <span class="form-check-label">
+                                                50.000 - 100.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="150000" />
+                                            <span class="form-check-label">
+                                                100.000 - 150.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200000" />
+                                            <span class="form-check-label">
+                                                150.000 - 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200001" />
+                                            <span class="form-check-label">
+                                                Trên 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
 
 
-                                        </div>
-                                        <!-- card-body.// -->
                                     </div>
-                                </article>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
 
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Ngôn ngữ sách </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Ngôn ngữ sách </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Tiếng Anh" />
-                                                <span class="form-check-label">
-                                                    Tiếng Anh
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Tiếng Việt" />
-                                                <span class="form-check-label">
-                                                    Tiếng Việt
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                            <label class="form-check">
-                                                <input name="ngonngu[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="Khác" />
-                                                <span class="form-check-label">
-                                                    Khác
-                                                </span>
-                                            </label>
-                                            <!-- form-check.// -->
-                                        </div>
-                                        <!-- card-body.// -->
+                                        <label class="form-check ngonngu">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="Tiếng Anh" />
+                                            <span class="form-check-label">
+                                                Tiếng Anh
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check ngonngu">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="Tiếng Việt" />
+                                            <span class="form-check-label">
+                                                Tiếng Việt
+                                            </span>
+                                        </label>
+
                                     </div>
-                                </article>
+                                    <!-- card-body.// -->
+                                </div>
+                            </article>
 
-                                <article class="card-group-item">
-                                    <header class="card-header">
-                                        <h6 class="title">Nhà xuất bản </h6>
-                                    </header>
-                                    <div class="filter-content">
-                                        <div class="card-body">
+                            <article class="card-group-item">
+                                <header class="card-header">
+                                    <h6 class="title">Nhà xuất bản </h6>
+                                </header>
+                                <div class="filter-content">
+                                    <div class="card-body">
 
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Trẻ" />
-                                                <span class="form-check-label">
-                                                    NXB Trẻ
-                                                </span>
-                                            </label>
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Kim Đồng" />
-                                                <span class="form-check-label">
-                                                    NXB Kim Đồng
-                                                </span>
-                                            </label>
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Giáo dục" />
-                                                <span class="form-check-label">
-                                                    NXB Giáo dục
-                                                </span>
-                                            </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Trẻ" />
+                                            <span class="form-check-label">
+                                                NXB Trẻ
+                                            </span>
+                                        </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Kim Đồng" />
+                                            <span class="form-check-label">
+                                                NXB Kim Đồng
+                                            </span>
+                                        </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Giáo dục" />
+                                            <span class="form-check-label">
+                                                NXB Giáo dục
+                                            </span>
+                                        </label>
 
-                                            <label class="form-check">
-                                                <input name="nxb[]"
-                                                       class="form-check-input"
-                                                       type="checkbox"
-                                                       value="NXB Văn Học" />
-                                                <span class="form-check-label">
-                                                    NXB Văn Học
-                                                </span>
-                                            </label>
+                                        <label class="form-check nhaxuatban">
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   value="NXB Văn Học" />
+                                            <span class="form-check-label">
+                                                NXB Văn Học
+                                            </span>
+                                        </label>
 
-                                        </div>
                                     </div>
-                                </article>
+                                </div>
+                            </article>
 
-                            </div>
-                            <!-- card.// -->
+                        </div>
+
+                        <a class="timkiem_z">
                             <button id="btn-timkiem-boloc"
-                                    type="submit"
+                                    @* type="submit"*@
                                     class="btn btn-primary"
                                     style="width: 188px; margin-top: 4px; padding: -4px 0px">
                                 Tìm kiếm
                             </button>
-                        </form>
+                        </a>
+
                     </div>
 
                     <div class="grid__column-10">
@@ -334,7 +322,7 @@
                             </div>
                         </div>
 
-                       @*Count Down*@
+                        @*Count Down*@
                         <div class="featured" id="featured">
 
                             <div class="swiper featured-slider">
@@ -444,21 +432,21 @@
                                 <img src="~/assets/img/dammouoc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/dungcuidau.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/dungcuidau.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/noluc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/noluc.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                         </div>
                         <div class="row align-items-start future_sale">
                             <div class="col-sm">
-                                <img src="~/assets/img/buongtay.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/buongtay.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/diudang.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/diudang.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                             <div class="col-sm">
-                                <img src="~/assets/img/tq.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;"/>
+                                <img src="~/assets/img/tq.jpg" alt="" class="future_sale-img" style="border-radius: 15px; width: 350px; margin: 10px 5px;" />
                             </div>
                         </div>
                     </div>
@@ -600,23 +588,23 @@
                 padding: 4px 15px 10px 15px;
             }
 
-            .featured .featured-slider .box .content h3 {
-                font-size: 1.8rem;
-                color: var(--black-color);
-                overflow: hidden;
-                height: 4.4rem;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-            }
+                .featured .featured-slider .box .content h3 {
+                    font-size: 1.8rem;
+                    color: var(--black-color);
+                    overflow: hidden;
+                    height: 4.4rem;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                }
 
-            .featured .featured-slider .box .content .price {
-                font-size: 1.8rem;
-                color: var(--text-color);
-                padding-bottom: 5px;
-                display: flex;
-                justify-content: space-between;
-            }
+                .featured .featured-slider .box .content .price {
+                    font-size: 1.8rem;
+                    color: var(--text-color);
+                    padding-bottom: 5px;
+                    display: flex;
+                    justify-content: space-between;
+                }
 
                     .featured .featured-slider .box .content .price span {
                         font-size: 1.8rem;
@@ -654,9 +642,54 @@
             cursor: default;
             background-color: rgba(0,0,0,0.2);
         }
-
     </style>
 
+    <script>
+        $(document).ready(function ()
+        {
+            console.log('Hello')
+            var ngonngu_send = '';
+            var nxb_send = '';
+
+            var ngonngu = $('.ngonngu');
+            var nhaxuatban = $('.nhaxuatban');
+
+            console.log(ngonngu)
+            console.log(nhaxuatban)
+
+            $('.timkiem_z').on('click', function()
+            {
+                console.log("Hello")
+                ngonngu.each(function ()
+                {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (ngonngu_send === '') {
+                            ngonngu_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                    nhaxuatban.each(function () {
+                        if ($(this).find('.form-check-input').prop('checked') === true) {
+                            if (nxb_send === '')
+                        {
+                            nxb_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                        }
+                    })
+
+                $('.timkiem_z').attr("href", '/Client/Search_Filter?ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
+                
+             })
+        })
+
+    </script>
 
     <!-- Js tm kiếm  theo -->
     <script>
@@ -680,7 +713,7 @@
     </script>
 
     <script>
-      window.onload = function()
+     @* window.onload = function()
       {
         //--------------------------------------------------
         var count=0
@@ -732,7 +765,7 @@
           //console.log(typeof params.get('page'))
           $('.cdp').attr('actpage', params.get('page'));
         });
-      };
+      };*@
     </script>
 
     <script>
