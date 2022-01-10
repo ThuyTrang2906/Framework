@@ -26,7 +26,9 @@ namespace WebApplication.Controllers
                 string tentk = ViewBag.infor.Tentk;
                 ViewBag.ds_voucher = context.User_Voucher(tentk);
                 int Matk = Convert.ToInt32(usersession.Matk);
-                ViewBag.sl = context.User_Vouchers(Matk);
+                int sl = 0;
+                sl = context.User_Vouchers(Matk);
+                ViewBag.soluong = sl;
             }
             else
             {

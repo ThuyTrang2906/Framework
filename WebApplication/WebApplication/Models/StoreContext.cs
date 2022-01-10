@@ -812,8 +812,9 @@ namespace WebApplication.Models
             }
         }
         public int User_Vouchers(int matk)
-        {         
-            List<object> list = new List<object>();
+        {
+            int count = 0;
+            List<int> termsList = new List<int>();
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -823,22 +824,20 @@ namespace WebApplication.Models
                 {
                     while (reader.Read())
                     {
-                        list.Add(new 
-                        {
-                            Matk = Convert.ToInt32(reader["matk"])
-
-                        }) ; 
-                    }             
+                        termsList.Add(Convert.ToInt32(reader["matk"]));
+                    }
+                    var ob = matk;
                 }
             }
-            int count = 0;
-            for (int item = 1; item < list.Count; item++ )
+           
+            
+            for(int i = 0; i < termsList.Count; i++)
             {
-                if(list[item].Equals(matk))
+                if (termsList[i] == matk)
                 {
-                    count = count+1;
-                }    
-            }    
+                    count = count + 1;
+                }
+            }
             return count;
         }
 
