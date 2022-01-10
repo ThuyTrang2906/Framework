@@ -108,6 +108,56 @@
                                 <div class="filter-content">
                                     <div class="card-body">
 
+                                        <label class="form-check giaban_ft">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="50000" />
+                                            <span class="form-check-label">
+                                                Dưới 50.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="100000" />
+                                            <span class="form-check-label">
+                                                50.000 - 100.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="150000" />
+                                            <span class="form-check-label">
+                                                100.000 - 150.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200000" />
+                                            <span class="form-check-label">
+                                                150.000 - 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check giaban_ft">
+                                            <input 
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200001" />
+                                            <span class="form-check-label">
+                                                Trên 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
                                         <label class="form-check">
                                             <input name="giaban"
                                                    class="form-check-input"
@@ -242,7 +292,7 @@
 
                         </div>
 
-                        <a class="timkiem_z">
+                        <a class="timkiem_z" style="text-decoration:none">
                             <button id="btn-timkiem-boloc"
                                     @* type="submit"*@
                                     class="btn btn-primary"
@@ -642,6 +692,58 @@
             cursor: default;
             background-color: rgba(0,0,0,0.2);
         }
+    </style>
+
+    <script>
+        $(document).ready(function () {
+            console.log('Hello')
+            var giaban_send = '';
+            var ngonngu_send = '';
+            var nxb_send = '';
+
+            var giaban = $('.giaban_ft')
+            var ngonngu = $('.ngonngu');
+            var nhaxuatban = $('.nhaxuatban');
+
+            console.log(giaban)
+            console.log(ngonngu)
+            console.log(nhaxuatban)
+
+            $('.timkiem_z').on('click', function () {
+                console.log("Hello")
+
+                giaban.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                            giaban_send = $(this).find('.form-check-input').val()
+                    }
+                })
+
+                ngonngu.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (ngonngu_send === '') {
+                            ngonngu_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                nhaxuatban.each(function () {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (nxb_send === '') {
+                            nxb_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                $('.timkiem_z').attr("href", '/Client/Search_Filter?giaban=' + giaban_send +'&ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
+
+            })
+        })
     </style>
 
     <script>

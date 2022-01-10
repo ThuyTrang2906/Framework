@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Framework_Admin.Models
+namespace WebApplication.Models
 {
-    public class detail_order
+    public class detail_orders
     {
-
         private int madh;
         private int masach;
         private int soluong;
@@ -16,9 +15,7 @@ namespace Framework_Admin.Models
         public int Masach { get => masach; set => masach = value; }
         public int Soluong { get => soluong; set => soluong = value; }
 
-        public detail_order() { }
 
-        public detail_order(int madh, int masach, int soluong)
         {
             this.madh = madh;
             this.masach = masach;

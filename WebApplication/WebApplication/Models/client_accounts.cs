@@ -9,7 +9,7 @@ namespace WebApplication.Models
     {
         private string tentk, diachi, email, giohang, gioitinh, hoten, matk, matkhau,  sodt, tinhtrang;
         private DateTime ngaysinh, ngaytao;
-        private int diem, sl_giohang ;
+        private int diem, sl_giohang;
 
         public string Diachi { get => diachi; set => diachi = value; }
         public int Diem { get => diem; set => diem = value; }
