@@ -15,12 +15,13 @@ namespace WebApplication.Models
         public int Masach { get => masach; set => masach = value; }
         public int Soluong { get => soluong; set => soluong = value; }
 
+        public detail_orders() { }
 
+        public detail_orders(int madh, int masach, int soluong)
         {
             this.madh = madh;
             this.masach = masach;
             this.soluong = soluong;
         }
-
     }
 }

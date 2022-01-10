@@ -150,7 +150,9 @@
 
     <script>
         var TongTien = 0
-        var TongSoLuong=0
+        var TongSoLuong = 0
+        var dem = 0
+        $('.confirm-buy').attr("disabled", true)
         $('.checkbuy').on('click', function ()
         {
             console.log("Hello")
@@ -172,6 +174,20 @@
                 $('#tongtien').text(TongTien.toString())
                 $('#id_soluong_sanpham').text('(' + TongSoLuong.toString() + ') Sản phẩm')
             }
+
+            var list_check = $('.checkbuy')
+            dem = 0;
+            list_check.each(function () {
+
+                if ($(this).prop('checked') === true)
+                {
+                    dem=dem+1
+                }
+            })
+
+            if (dem > 0) {
+                $('.confirm-buy').attr("disabled", false)
+            } else $('.confirm-buy').attr("disabled", true)
         })
 
         $('.visibility-cart').on('click',function(){
@@ -283,7 +299,8 @@
         {
             var sanpham = $('.san_pham')
             var ListBuyed = []
-            var index=0
+            var index = 0
+            var dem=0
             sanpham.each(function (e) {
                 if ($(this).find('.checkbuy').prop('checked') === true) {
                     const Sach = {
@@ -295,12 +312,16 @@
                         hinhanh: $(this).find('.cart__img').attr('src'),
                         theloai: $(this).find('.theloai').text()
                     }
+                    dem=dem+1
                     ListBuyed.push(Sach)
                 }
             })
+            if (dem > 0) {
+                var DATA = JSON.stringify(ListBuyed)
+                $(this).parent().find('.data-send').val(DATA)
+            }
+            else alert("Không có sản phẩm nào được chọn")
             //console.log(ListBuyed[0])
-            var DATA = JSON.stringify(ListBuyed)
-            $(this).parent().find('.data-send').val(DATA)
 
         })
 

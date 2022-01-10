@@ -880,7 +880,7 @@ namespace WebApplication.Models
 
         }
 
-        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang)
+        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
         {
             using (MySqlConnection conn = GetConnection())
             {
@@ -897,8 +897,8 @@ namespace WebApplication.Models
                 }
 
 
-                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien) " +
-                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien)";
+                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship) " +
+                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship)";
                 MySqlCommand mySql1 = new MySqlCommand(str1, conn);
 
                 mySql1.Parameters.AddWithValue("hinhthucthanhtoan", hinhthucthanhtoan);
@@ -906,7 +906,7 @@ namespace WebApplication.Models
                 mySql1.Parameters.AddWithValue("tinhtrangdonhang", tinhtrangdonhang);
                 mySql1.Parameters.AddWithValue("tinhtrangthanhtoan", tinhtrangthanhtoan);
                 mySql1.Parameters.AddWithValue("tongtien", tongtien);
-
+                mySql1.Parameters.AddWithValue("tienship", phiship);
                 mySql1.ExecuteNonQuery();
 
 
@@ -922,15 +922,15 @@ namespace WebApplication.Models
                     mySql2.ExecuteNonQuery();
                 }
 
-               /* var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(listvoucher);
+                /*var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(listvoucher);
                 var str3 = "delete from user_voucher where matk=@matk and makm=@makm";
-                foreach(var item in list_voucher_used)
+                foreach (var item in list_voucher_used)
                 {
                     MySqlCommand mySql3 = new MySqlCommand(str3, conn);
                     mySql3.Parameters.AddWithValue("matk", matk);
                     mySql3.Parameters.AddWithValue("makm", item.makm);
                 }*/
-                
+
 
                 conn.Close();
 

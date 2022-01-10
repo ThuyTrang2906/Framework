@@ -101,9 +101,8 @@ namespace WebApplication.Controllers
                 ViewBag.Hoten = usersession.Hoten;
                 ViewBag.Diachi = usersession.Diachi;
                 ViewBag.Sodt = usersession.Sodt;
-            }
-
-            return View();
+                return View();
+            } else return Redirect("/Home/Index");
         }
 
 
@@ -316,39 +315,39 @@ namespace WebApplication.Controllers
         public IActionResult payment()
         {
             string data = HttpContext.Request.Form["data"];
-            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            var res = HttpContext.Session.GetString("UserSession");
-            if (res != null)
-            {
-                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
-                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
-                ViewBag.infor = usersession;
-                ViewBag.status = "Success";
-                var temp = JsonSerializer.Deserialize<sach[]>(data);
-                int soluong = 0, thanhtien = 0;
-                foreach(var item in temp)
+                StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+                var res = HttpContext.Session.GetString("UserSession");
+                if (res != null)
                 {
-                    soluong += Convert.ToInt32(item.soluong);
-                    thanhtien += Convert.ToInt32(item.giaban) * Convert.ToInt32(item.soluong);
+                    client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                    usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                    ViewBag.infor = usersession;
+                    ViewBag.status = "Success";
+                    var temp = JsonSerializer.Deserialize<sach[]>(data);
+                    int soluong = 0, thanhtien = 0;
+                    foreach (var item in temp)
+                    {
+                        soluong += Convert.ToInt32(item.soluong);
+                        thanhtien += Convert.ToInt32(item.giaban) * Convert.ToInt32(item.soluong);
+                    }
+                    List<object> ListVoucher = context.get_voucher(usersession.Matk.ToString());
+                    ViewBag.ListVoucher = ListVoucher;
+                    DateTime dateTime = DateTime.Today;
+                    string date = dateTime.ToString("dd/MM/yyyy");
+                    ViewBag.Ngaygiao = date;
+                    ViewBag.Soluong = soluong;
+                    ViewBag.Thanhtien = thanhtien;
+                    ViewBag.ListBuyed = temp;
+                    ViewBag.Hoten = usersession.Hoten;
+                    ViewBag.Diachi = usersession.Diachi;
+                    ViewBag.Sodt = usersession.Sodt;
                 }
-                List<object> ListVoucher = context.get_voucher(usersession.Matk.ToString());
-                ViewBag.ListVoucher = ListVoucher;
-                DateTime dateTime = DateTime.Today;
-                string date = dateTime.ToString("dd/MM/yyyy");
-                ViewBag.Ngaygiao = date;
-                ViewBag.Soluong = soluong;
-                ViewBag.Thanhtien = thanhtien;
-                ViewBag.ListBuyed = temp;
-                ViewBag.Hoten = usersession.Hoten;
-                ViewBag.Diachi = usersession.Diachi;
-                ViewBag.Sodt = usersession.Sodt;
-            }
             return View();
         }
 
         
 
-        public IActionResult thanhyou(string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string list_user)
+        public IActionResult thanhyou(string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string tienship)
         {
             /*var data = HttpContext.Request.Form["data"];
             string tongtien = HttpContext.Request.Form["tongtien"];
@@ -365,9 +364,8 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
-                string AAA = list_user;
                 string matk = usersession.Matk;
-                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang);
+                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
             }
             
             return View();
