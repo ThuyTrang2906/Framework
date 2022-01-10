@@ -416,18 +416,81 @@ namespace WebApplication.Models
             return list;
         }
 
-        public List<Book> Search_Filter( string ngonngu, string nxb)
+        public List<Book> Search_Filter(string giaban, string ngonngu, string nhaxuatban)
         {
             List<Book> list = new List<Book>();
+            string str = "select * from booklist where ";
+            string str2 = "select * from booklist where ";
+            string str3 = "";
+
+            Boolean flag1 = false;
+            Boolean flag2 = false;
+
+            if (Convert.ToInt32(giaban) == 50000)
+            {
+                str3 = "select * from booklist where giaban < 50000";
+            }else if (Convert.ToInt32(giaban) == 100000)
+            {
+                str3 = "select * from booklist where giaban between 50000 and 100000";
+            }else if (Convert.ToInt32(giaban) == 150000)
+            {
+                str3 = "select * from booklist where giaban between 100000 and 150000";
+            }else if (Convert.ToInt32(giaban) == 200000)
+            {
+                str3 = "select * from booklist where giaban between 150000 and 200000";
+            }else if (Convert.ToInt32(giaban) == 200001)
+            {
+                str3 = "select * from booklist where giaban > 200000";
+            }
+
+            if (ngonngu != null)
+            {
+                string[] list_ngonngu = ngonngu.Split("$$");
+                for (int i = 0; i < list_ngonngu.Length; i++)
+                {
+                    if (flag1 == false)
+                    {
+                        flag1 = true;
+                        str += "ngonngu like " + "'%" + list_ngonngu[i] + "%'";
+                    }
+                    else
+                    {
+                        str += "or ngonngu like " + "'%" + list_ngonngu[i] + "%'";
+                    }
+                }
+            }
+            else{
+                str += "ngonngu like " + "'%" + "" + "%'" ;
+            }
+
+            if (nhaxuatban != null)
+            {
+                string[] list_nxb = nhaxuatban.Split("$$");
+
+                for (int i = 0; i < list_nxb.Length; i++)
+                {
+                    if (flag2 == false)
+                    {
+                        flag2 = true;
+                        str2 += "nxb like " + "'%" + list_nxb[i] + "%'";
+                    }
+                    else
+                    {
+                        str2 += "or nxb like " + "'%" + list_nxb[i] + "%'";
+                    }
+                }
+            }
+            else
+            {
+                str2 += "nxb like " + "'%" + "" + "%'";
+            }
+
 
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "select * from booklist where ngonngu in (@ngonngu) intersect (select * from booklist where nxb in (@nxb)) limit 40";
-                MySqlCommand cmd = new MySqlCommand(str, conn);
-               /* cmd.Parameters.AddWithValue("price", price);*/
-                cmd.Parameters.AddWithValue("ngonngu", ngonngu);
-                cmd.Parameters.AddWithValue("nxb", nxb);
+                string str_com =str3 + " intersect " + "(" + str + " intersect " + "(" + str2 + ")" + ")";
+                MySqlCommand cmd = new MySqlCommand(str_com, conn); 
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -718,6 +781,63 @@ namespace WebApplication.Models
 
         }
 
+        public int Save_voucher(int matk, int makm)
+        {
+            int count = Update_khuyenmai(makm);
+            if(count > 0)
+            {
+                using (MySqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    string str = "insert into user_voucher values (@matk, @makm)";
+                            MySqlCommand cmd = new MySqlCommand(str, conn);
+                    cmd.Parameters.AddWithValue("matk", matk);
+                    cmd.Parameters.AddWithValue("makm", makm);
+                    return (cmd.ExecuteNonQuery());
+                }
+            }
+            else { return 0; }
+        }
 
+        public int Update_khuyenmai(int makm)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "update khuyenmais set sl = sl-1 where makm = @makm";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("makm", makm);
+                return (cmd.ExecuteNonQuery());
+            }
+        }
+        public int User_Vouchers(int matk)
+        {
+            int count = 0;
+            List<int> termsList = new List<int>();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string str = "select matk from user_voucher";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        termsList.Add(Convert.ToInt32(reader["matk"]));
+                    }
+                    var ob = matk;
+                }
+            }
+           
+            
+            for(int i = 0; i < termsList.Count; i++)
+            {
+                if (termsList[i] == matk)
+                {
+                    count = count + 1;
+                }
+            }
+            return count;
+        }
     }
 }

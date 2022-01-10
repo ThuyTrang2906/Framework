@@ -15,8 +15,26 @@ namespace WebApplication.Controllers
         public IActionResult khuyenmai()
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-
-            return View(context.GetVoucher());
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                string tentk = ViewBag.infor.Tentk;
+                ViewBag.ds_voucher = context.User_Voucher(tentk);
+                int Matk = Convert.ToInt32(usersession.Matk);
+                int sl = 0;
+                sl = context.User_Vouchers(Matk);
+                ViewBag.soluong = sl;
+            }
+            else
+            {
+                ViewBag.Status = "Failed";
+            }
+            ViewBag.khuyenmai = context.GetVoucher();
+            return View();
         }
 
         /*public IActionResult chitietsach()
@@ -218,12 +236,11 @@ namespace WebApplication.Controllers
             return View(books);
         }
 
-
-        public ActionResult Search_Filter(string ngonngu, string nxb)
+        public ActionResult Search_Filter(string giaban, string ngonngu, string nhaxuatban)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             List<Book> books = new List<Book>();
-            books = context.Search_Filter(ngonngu, nxb);
+            books = context.Search_Filter(giaban, ngonngu, nhaxuatban);
 
             return View(books);
         }
@@ -258,6 +275,24 @@ namespace WebApplication.Controllers
 
             }
             return View();
+        }
+
+        public IActionResult Luukhuyenmai( int Makm)
+        {
+            int count;
+
+            StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
+            var res = HttpContext.Session.GetString("UserSession");
+            if (res != null)
+            {
+                client_accounts usersession = JsonSerializer.Deserialize<client_accounts>(res);
+                usersession = context.Login(usersession.Tentk, usersession.Matkhau);
+                ViewBag.infor = usersession;
+                ViewBag.status = "Success";
+                int Matk = Convert.ToInt32(usersession.Matk);
+                count = context.Save_voucher( Matk, Makm);
+            }
+            return Redirect("/Client/khuyenmai");
         }
 
     }
