@@ -158,6 +158,56 @@
                                             </span>
                                         </label>
                                         <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="50000" />
+                                            <span class="form-check-label">
+                                                Dưới 50.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="100000" />
+                                            <span class="form-check-label">
+                                                50.000 - 100.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="150000" />
+                                            <span class="form-check-label">
+                                                100.000 - 150.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200000" />
+                                            <span class="form-check-label">
+                                                150.000 - 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
+                                        <label class="form-check">
+                                            <input name="giaban"
+                                                   class="form-check-input"
+                                                   type="radio"
+                                                   value="200001" />
+                                            <span class="form-check-label">
+                                                Trên 200.000
+                                            </span>
+                                        </label>
+                                        <!-- form-check.// -->
 
 
                                     </div>
@@ -693,6 +743,52 @@
                 $('.timkiem_z').attr("href", '/Client/Search_Filter?giaban=' + giaban_send +'&ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
 
             })
+        })
+    </style>
+
+    <script>
+        $(document).ready(function ()
+        {
+            console.log('Hello')
+            var ngonngu_send = '';
+            var nxb_send = '';
+
+            var ngonngu = $('.ngonngu');
+            var nhaxuatban = $('.nhaxuatban');
+
+            console.log(ngonngu)
+            console.log(nhaxuatban)
+
+            $('.timkiem_z').on('click', function()
+            {
+                console.log("Hello")
+                ngonngu.each(function ()
+                {
+                    if ($(this).find('.form-check-input').prop('checked') === true) {
+                        if (ngonngu_send === '') {
+                            ngonngu_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                    }
+                })
+
+                    nhaxuatban.each(function () {
+                        if ($(this).find('.form-check-input').prop('checked') === true) {
+                            if (nxb_send === '')
+                        {
+                            nxb_send += $(this).find('.form-check-input').val()
+                        }
+                        else {
+                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
+                        }
+                        }
+                    })
+
+                $('.timkiem_z').attr("href", '/Client/Search_Filter?ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
+                
+             })
         })
 
     </script>
