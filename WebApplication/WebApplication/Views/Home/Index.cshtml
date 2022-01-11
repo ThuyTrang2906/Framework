@@ -1,6 +1,11 @@
 ﻿@*@model WebApplication.Models.Book;*@
 @{
     ViewData["Title"] = "Home Page";
+    string change(int number)
+    {
+        string a = String.Format("{0:#,##0.##}", number);
+        return a;
+    }
 }
 @{
     IEnumerable<Book> flashsale = ViewData["FlashSale"] as IEnumerable<Book>;
@@ -154,59 +159,6 @@
                                                 Trên 200.000
                                             </span>
                                         </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input name="giaban"
-                                                   class="form-check-input"
-                                                   type="radio"
-                                                   value="50000" />
-                                            <span class="form-check-label">
-                                                Dưới 50.000
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input name="giaban"
-                                                   class="form-check-input"
-                                                   type="radio"
-                                                   value="100000" />
-                                            <span class="form-check-label">
-                                                50.000 - 100.000
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input name="giaban"
-                                                   class="form-check-input"
-                                                   type="radio"
-                                                   value="150000" />
-                                            <span class="form-check-label">
-                                                100.000 - 150.000
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input name="giaban"
-                                                   class="form-check-input"
-                                                   type="radio"
-                                                   value="200000" />
-                                            <span class="form-check-label">
-                                                150.000 - 200.000
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-                                        <label class="form-check">
-                                            <input name="giaban"
-                                                   class="form-check-input"
-                                                   type="radio"
-                                                   value="200001" />
-                                            <span class="form-check-label">
-                                                Trên 200.000
-                                            </span>
-                                        </label>
-                                        <!-- form-check.// -->
-
-
                                     </div>
                                     <!-- card-body.// -->
                                 </div>
@@ -415,7 +367,7 @@
 
                                             <div class="content">
                                                 <h3>@item.Tensach</h3>
-                                                <div class="price">@item.Giaban<span>@item.Giagoc</span></div>
+                                                <div class="price">@change(@item.Giaban) đ<span>@change(@item.Giagoc) đ</span></div>
                                                 <a href="/Client/themgiohang?tensach=@item.Tensach&giaban=@item.Giaban&hinhanh=@item.Hinhanh&soluong=1" class="btn btn--primary">Thêm vào giỏ</a>
                                             </div>
                                         </div>
@@ -472,7 +424,7 @@
 
                     </div>
 
-                    <div class="grid__row future">
+                    <div class="grid__row future" style="margin-top: 10px">
                         <span class="future_sale-name">Bộ sách "Cảm hứng sống" siêu hot sắp xuất bản vào đầu năm 2022!!!</span>
                         <div class="row align-items-start future_sale">
                             <div class="col-sm">
@@ -503,7 +455,7 @@
                             <!-- Grid -> row -> column -->
                             <div class="grid__row">
                                 <!-- Product item -->
-                                @foreach (Book item in Model)
+                                @foreach (Book item in ViewBag.listbook)
                                 {
                                     <div class="grid__column-2">
 
@@ -515,8 +467,8 @@
                                                 @item.Tensach
                                             </h4>
                                             <div class="home-product-item__price">
-                                                <span class="home-product-item__price-old">@item.Giagoc</span>
-                                                <span class="home-product-item__price-current">@item.Giaban đ</span>
+                                                <span class="home-product-item__price-old">@change(@item.Giagoc) đ</span>
+                                                <span class="home-product-item__price-current">@change(@item.Giaban) đ</span>
                                             </div>
                                             <div class="home-product-item__action">
                                                 <span class="home-product-item__like home-product-item--liked">
@@ -547,17 +499,70 @@
                             </div>
                         </div>
 
-
-                        <div class="content_detail__pagination cdp" actpage="1">
-                            <a href="#!-1" class="cdp_i">prev</a>
-                        </div>
                     </div>
+
+
+                    <ul class="pagination home-product__pagination" style="padding-left: 300px">
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__prev" class="pagination-item__linkicon">
+                                <i class="pagination-item__icon fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=1" id="pagination-item__link" class="pagination-item__link">1</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=2" id="pagination-item__link" class="pagination-item__link">2</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=3" id="pagination-item__link" class="pagination-item__link">3</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=4" id="pagination-item__link" class="pagination-item__link">4</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=5" id="pagination-item__link" class="pagination-item__link">5</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=6" id="pagination-item__link" class="pagination-item__link">6</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__link" class="pagination-item__link">...</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="/Home/Index?page=14" id="pagination-item__link" class="pagination-item__link">14</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__next" class="pagination-item__linkicon">
+                                <i class="pagination-item__icon fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+
+
     <style>
+
+        .pagination-item__linkicon:hover {
+            text-decoration: none;
+        }
+
+        .pagination-item__linkicon {
+            display: block;
+            font-size: 1.8rem;
+            color: #807f7f;
+            min-width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 3px;
+            font-weight: 400;
+        }
+
         .featured-slider {
             max-width: 100%;
             height: auto;
@@ -689,7 +694,97 @@
             cursor: default;
             background-color: rgba(0,0,0,0.2);
         }
+
+        .home-filter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px 22px;
+            border-radius: 2px;
+            background-color: #B0E2FF;
+        }
+
+        .home-filter__label {
+            font-size: 1.6rem;
+            color: rgb(49, 49, 49);
+            font-weight: 500;
+            margin-right: 16px;
+        }
+
+        .home-filter__btn {
+            min-width: 100px;
+            font-size: 1.4rem;
+            margin-right: 12px;
+            background-color: var(--white-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .home-filter__page {
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .page-control-img {
+            margin: 12px 38px;
+            width: 80px;
+            height: 80px;
+        }
+
+        .page-control__name {
+            font-size: 1.6rem;
+            color: var(--text-color);
+            margin-top: 5px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .home-filter__page-control {
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            text-align: center;
+            flex-direction: column;
+            width: 100%;
+            height: 144px;
+        }
     </style>
+
+    <script>
+        $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search)
+            console.log(@ViewBag.page)
+            var dem = @ViewBag.page;
+            if (dem == -1) {
+                dem = 1
+            }
+            var dsnut = $('.pagination-item__link')
+            var count = 1
+            dsnut.each(function () {
+
+                if (count === dem) {
+                    $(this).parent().addClass("pagination-item--active")
+                }
+                count++
+            })
+
+            $("#pagination-item__prev").on('click', function () {
+                var prev = dem - 1;
+                if (prev >= 1) {
+                    $(this).attr('href', '?page=' + prev.toString())
+                    $.get("/Home/Index?page=" + prev)
+                }
+            });
+
+            $("#pagination-item__next").on('click', function () {
+                var next = dem + 1;
+                $(this).attr('href', '?page=' + next.toString())
+                $.get("/Home/Index?page=" + next)
+            });
+
+        })
+    </script>
 
     <script>
         $(document).ready(function () {
@@ -743,48 +838,6 @@
         })
     </script>
 
-    <script>
-        $(document).ready(function () {
-            console.log('Hello')
-            var ngonngu_send = '';
-            var nxb_send = '';
-
-            var ngonngu = $('.ngonngu');
-            var nhaxuatban = $('.nhaxuatban');
-
-            console.log(ngonngu)
-            console.log(nhaxuatban)
-
-            $('.timkiem_z').on('click', function () {
-                console.log("Hello")
-                ngonngu.each(function () {
-                    if ($(this).find('.form-check-input').prop('checked') === true) {
-                        if (ngonngu_send === '') {
-                            ngonngu_send += $(this).find('.form-check-input').val()
-                        }
-                        else {
-                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
-                        }
-                    }
-                })
-
-                nhaxuatban.each(function () {
-                    if ($(this).find('.form-check-input').prop('checked') === true) {
-                        if (nxb_send === '') {
-                            nxb_send += $(this).find('.form-check-input').val()
-                        }
-                        else {
-                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
-                        }
-                    }
-                })
-
-                $('.timkiem_z').attr("href", '/Client/Search_Filter?ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
-
-            })
-        })
-
-    </script>
 
     <!-- Js tm kiếm  theo -->
     <script>
@@ -805,62 +858,6 @@
             li[0].classList.remove('header__search-option-item--active')
         }
 
-    </script>
-
-    <script>
-     @* window.onload = function()
-      {
-        //--------------------------------------------------
-        var count=0
-        {{#each sl_sach}}
-          count++
-        {{/each}}
-        count=Math.ceil(count/20)
-        var temp=count
-        count=1
-        while(count<temp)
-        {
-          var linkE ="?page="+count.toString()
-          var final="<a href=\""+linkE+"\" class=\"cdp_i\">"+count.toString()+"</a>"
-         // console.log(final)
-          $('.cdp').append(final)
-          count++
-        }
-        $('.cdp').append("<a href=\"#!+1\" class=\"cdp_i\">next</a>")
-        //----------------------------------------------------
-
-        const params = new URLSearchParams(window.location.search)
-        //console.log(typeof params.get('page'))
-        if(Boolean(params.get('page')))
-        {
-            $('.cdp').attr('actpage', params.get('page'));
-        } else  $('.cdp').attr('actpage',1);
-        var paginationPage = parseInt($('.cdp').attr('actpage'), 10);
-        $('.cdp_i').on('click', function()
-        {
-          var go = $(this).attr('href').replace('#!', '');
-
-          if (go === '+1')
-          {
-            let temp="?page="+(parseInt(params.get('page'))+1).toString()
-            $(this).attr('href',temp)
-          }
-          else if (go === '-1')
-           {
-            let temp="?page="+(parseInt(params.get('page'))-1).toString()
-            $(this).attr('href',temp)
-          }
-          else
-          {
-            //$('.cdp').attr('actpage', params.get('page'));
-            paginationPage = parseInt(go, 10);
-          }
-
-          //const params = new URLSearchParams(window.location.search)
-          //console.log(typeof params.get('page'))
-          $('.cdp').attr('actpage', params.get('page'));
-        });
-      };*@
     </script>
 
     <script>

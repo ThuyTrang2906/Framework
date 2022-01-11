@@ -2,6 +2,11 @@
 
 @{
     ViewBag.Title = "Book Detail Page";
+    string change(int number)
+    {
+        string a = String.Format("{0:#,##0.##}", number);
+        return a;
+    }
 }
 <html lang="en">
 <head>
@@ -62,7 +67,7 @@
                             <h1><b class="tensach">@ViewBag.book.Tensach</b></h1>
                         </div>
 
-                        <div class="product-price-discount"><span class="giaban" name="giaban">@ViewBag.book.Giaban</span><span class="line-through">@ViewBag.book.Giagoc</span></div>
+                        <div class="product-price-discount"><span class="giaban" name="giaban">@change(@ViewBag.book.Giaban) đ</span><span class="line-through">@change(@ViewBag.book.Giagoc) đ</span></div>
                     </div>
                     <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
                     <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
@@ -136,8 +141,8 @@
                                 </div>
                                 <h4 class="home-product-item__name d-inline-block" style="display:-webkit-box">@item.Tensach</h4>
                                 <div class="home-product-item__price">
-                                    <span class="home-product-item__price-old">@item.Giagoc</span>
-                                    <span class="home-product-item__price-current">@item.Giaban</span>
+                                    <span class="home-product-item__price-old">@change(@item.Giagoc) đ</span>
+                                    <span class="home-product-item__price-current">@change(@item.Giaban) đ</span>
                                 </div>
                                 <div class="home-product-item__action">
                                     <span class="home-product-item__like home-product-item--liked">
@@ -298,29 +303,29 @@
                     </div>
 
                     <!-- <form class="review-form">
-                            <div class="form-group">
-                                <label>Đánh giá của bạn</label>
-                                <div class="reviews-counter">
-                                    <div class="rate">
-                                        <input type="radio" id="star5" name="rate" value="5" />
-                                        <label for="star5" title="text">5 stars</label>
-                                        <input type="radio" id="star4" name="rate" value="4" />
-                                        <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                        <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                        <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                        <label for="star1" title="text">1 star</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label></label>
-                                <textarea class="form-control" id="review-text" rows="3"></textarea>
-                            </div>
-                            <a href="" class="review-btn round-black-btn">Submit Review</a>
-                        </form> -->
+            <div class="form-group">
+                <label>Đánh giá của bạn</label>
+                <div class="reviews-counter">
+                    <div class="rate">
+                        <input type="radio" id="star5" name="rate" value="5" />
+                        <label for="star5" title="text">5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" />
+                        <label for="star4" title="text">4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" />
+                        <label for="star3" title="text">3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" />
+                        <label for="star2" title="text">2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" />
+                        <label for="star1" title="text">1 star</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label></label>
+                <textarea class="form-control" id="review-text" rows="3"></textarea>
+            </div>
+            <a href="" class="review-btn round-black-btn">Submit Review</a>
+        </form> -->
 
                     <div class="card" style="margin-top:15px;">
                         <div class="card-body">
@@ -338,7 +343,7 @@
                                 <form>
                                     <input type="hidden" name="name" value="@ViewBag.book.Masach" />
                                     <input type="hidden" id="star_input" value="0">
-                                    <textarea class="form-control" rows="3" style="resize: none" id="review-text"></textarea>
+                                    <textarea class="form-control" rows="3" style="resize: none; font-size: 14px" id="review-text"></textarea>
                                     <span class="float-right" style="margin-top:15px;line-height:35px;">
                                         <span id="stars_confirm">
                                         </span>
@@ -348,10 +353,9 @@
                             </div>
                         </div>
                     </div>
-
-                    @foreach (comment item in ViewBag.comments)
-                    {
-                        <div class="reviews">
+                    <div class="reviews" style="margin-top: 20px; margin-right: 16px; margin-left: 16px">
+                        @foreach (comment item in ViewBag.comments)
+                        {
                             <div class="row blockquote review-item">
                                 <div class="col-md-3 text-center">
                                     <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
@@ -363,14 +367,14 @@
                                     <h4>@item.Matk</h4>
                                     <div class="ratebox text-center" data-id="0" data-rating="5"></div>
                                     <p class="review-text">@item.Binhluan</p>
-
-                                    <small class="review-date">@item.Ngaybl</small>
+                                    <small class="review-date" style="font-size: 12px; color: #666">@item.Ngaybl</small>
                                 </div>
                             </div>
-                        </div>
-                    }
+
+                        }
+                    </div>  
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -378,10 +382,11 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript">
         $('.review-btn').click(function () {
-
+            event.preventDefault();
             var now = $('#review-text').val();
             var sosao = $('#star_input').val();
             var Matk = $('.ma-tai-khoan').val();
+
             if (Boolean(Matk) != false) {
                 @*this.href = "/Client/thembinhluan?Matk=@ViewBag.infor.Matk&Masach=" + @ViewBag.book.Masach + "&Binhluan=" + now + "&Ngaybl=" + DateTime.Now;*@
                 $.ajax({
@@ -396,6 +401,26 @@
                         Sosao: sosao,
                     },
                 })
+                var currentdate = new Date();
+                 var date = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/"
+                + currentdate.getFullYear() + "   "
+                + currentdate.getHours() + ":"
+                + currentdate.getMinutes() + ":"
+                + currentdate.getSeconds();
+                $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Matk}</h4>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
             } else {
                 alert("Vui lòng đăng nhập!");
                 event.preventDefault();

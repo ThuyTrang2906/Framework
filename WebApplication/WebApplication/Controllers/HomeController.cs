@@ -30,12 +30,21 @@ namespace WebApplication.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page)
         {
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
-            List<Book> flashsale = context.FlashSales();
-            List<Book> listbook = context.GetBook();
-
+            if (page == -1)
+            {
+                ViewBag.flashsale = context.FlashSales();
+                ViewBag.listbook = context.GetBook(0);
+                ViewBag.page = 1;
+            }
+            else
+            {
+                ViewBag.flashsale = context.FlashSales();
+                ViewBag.listbook = context.GetBook(page-1);
+                ViewBag.page = page;
+            }
             var res = HttpContext.Session.GetString("UserSession");
             if (res != null)
             {
@@ -44,13 +53,7 @@ namespace WebApplication.Controllers
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
             }
-
-            /*ViewData["FlashSale"] = context.FlashSales();
-            ViewData["ListBook"] = context.GetBook();*/
-            ViewBag.flashsale = context.FlashSales();
-            ViewBag.listbook = context.GetBook();
-            /*ViewData.Model = listbook;*/
-            return View(listbook);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
