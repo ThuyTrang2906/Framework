@@ -583,7 +583,7 @@ namespace WebApplication.Models
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
-                string str = "update booklist set danhgia = danhgia+1 where masach = @masch";
+                string str = "update booklist set danhgia = danhgia+1 where masach = @masach";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("masach", masach);
                 return (cmd.ExecuteNonQuery());

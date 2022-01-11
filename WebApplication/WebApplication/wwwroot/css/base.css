@@ -211,6 +211,22 @@ html {
     font-weight: 400;
 }
 
+.pagination-item__linkicon:hover {
+    text-decoration: none;
+}
+
+.pagination-item__linkicon {
+    display: block;
+    font-size: 1.8rem;
+    color: #807f7f;
+    min-width: 40px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 400;
+}
+
 .pagination-item__icon {
     padding-top: 7px;
 }

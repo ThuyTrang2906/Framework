@@ -158,7 +158,7 @@
                                             <span class="form-check-label">
                                                 Trên 200.000
                                             </span>
-                                        </label> 
+                                        </label>
                                     </div>
                                     <!-- card-body.// -->
                                 </div>
@@ -499,17 +499,70 @@
                             </div>
                         </div>
 
-
-                        <div class="content_detail__pagination cdp" actpage="1">
-                            <a href="#!-1" class="cdp_i">prev</a>
-                        </div>
                     </div>
+                    
+
+                    <ul class="pagination home-product__pagination" style="padding-left: 300px">
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__prev" class="pagination-item__linkicon">
+                                <i class="pagination-item__icon fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=1" id="pagination-item__link" class="pagination-item__link">1</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=2" id="pagination-item__link" class="pagination-item__link">2</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=3" id="pagination-item__link" class="pagination-item__link">3</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=4" id="pagination-item__link" class="pagination-item__link">4</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=5" id="pagination-item__link" class="pagination-item__link">5</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=5" id="pagination-item__link" class="pagination-item__link">6</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__link" class="pagination-item__link">...</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="?page=14" id="pagination-item__link" class="pagination-item__link">14</a>
+                        </li>
+                        <li class="pagination-item">
+                            <a href="" id="pagination-item__next" class="pagination-item__linkicon">
+                                <i class="pagination-item__icon fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
+
+
     <style>
+
+        .pagination-item__linkicon:hover {
+            text-decoration: none;
+        }
+
+        .pagination-item__linkicon {
+            display: block;
+            font-size: 1.8rem;
+            color: #807f7f;
+            min-width: 40px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            border-radius: 3px;
+            font-weight: 400;
+        }
+
         .featured-slider {
             max-width: 100%;
             height: auto;
@@ -700,6 +753,39 @@
 
     <script>
         $(document).ready(function () {
+            const params = new URLSearchParams(window.location.search)
+            console.log(params.get('page'))
+            var dem = parseInt(params.get('page'))
+            if (Boolean(params.get('page')) === false) {
+                dem=1
+            }
+            var dsnut = $('.pagination-item__link')
+            var count = 1
+            dsnut.each(function () {
+                
+                if (count === dem) {
+                    $(this).parent().addClass("pagination-item--active")
+                }
+                count++
+            })
+
+            $("#pagination-item__prev").on('click', function () {
+                var prev = dem - 1;
+                if (prev >= 1) {
+                    $(this).attr('href', '?page=' + prev.toString())
+                }
+            });
+
+            $("#pagination-item__next").on('click', function () {
+                var next = dem + 1;
+                $(this).attr('href', '?page=' + next.toString())
+            });
+
+        })
+    </script>
+
+    <script>
+        $(document).ready(function () {
             console.log('Hello')
             var giaban_send = '';
             var ngonngu_send = '';
@@ -750,48 +836,6 @@
         })
     </script>
 
-    <script>
-        $(document).ready(function () {
-            console.log('Hello')
-            var ngonngu_send = '';
-            var nxb_send = '';
-
-            var ngonngu = $('.ngonngu');
-            var nhaxuatban = $('.nhaxuatban');
-
-            console.log(ngonngu)
-            console.log(nhaxuatban)
-
-            $('.timkiem_z').on('click', function () {
-                console.log("Hello")
-                ngonngu.each(function () {
-                    if ($(this).find('.form-check-input').prop('checked') === true) {
-                        if (ngonngu_send === '') {
-                            ngonngu_send += $(this).find('.form-check-input').val()
-                        }
-                        else {
-                            ngonngu_send += ("$$" + $(this).find('.form-check-input').val())
-                        }
-                    }
-                })
-
-                nhaxuatban.each(function () {
-                    if ($(this).find('.form-check-input').prop('checked') === true) {
-                        if (nxb_send === '') {
-                            nxb_send += $(this).find('.form-check-input').val()
-                        }
-                        else {
-                            nxb_send += ("$$" + $(this).find('.form-check-input').val())
-                        }
-                    }
-                })
-
-                $('.timkiem_z').attr("href", '/Client/Search_Filter?ngonngu=' + ngonngu_send + '&nhaxuatban=' + nxb_send)
-
-            })
-        })
-
-    </script>
 
     <!-- Js tm kiếm  theo -->
     <script>
@@ -812,62 +856,6 @@
             li[0].classList.remove('header__search-option-item--active')
         }
 
-    </script>
-
-    <script>
-     @* window.onload = function()
-      {
-        //--------------------------------------------------
-        var count=0
-        {{#each sl_sach}}
-          count++
-        {{/each}}
-        count=Math.ceil(count/20)
-        var temp=count
-        count=1
-        while(count<temp)
-        {
-          var linkE ="?page="+count.toString()
-          var final="<a href=\""+linkE+"\" class=\"cdp_i\">"+count.toString()+"</a>"
-         // console.log(final)
-          $('.cdp').append(final)
-          count++
-        }
-        $('.cdp').append("<a href=\"#!+1\" class=\"cdp_i\">next</a>")
-        //----------------------------------------------------
-
-        const params = new URLSearchParams(window.location.search)
-        //console.log(typeof params.get('page'))
-        if(Boolean(params.get('page')))
-        {
-            $('.cdp').attr('actpage', params.get('page'));
-        } else  $('.cdp').attr('actpage',1);
-        var paginationPage = parseInt($('.cdp').attr('actpage'), 10);
-        $('.cdp_i').on('click', function()
-        {
-          var go = $(this).attr('href').replace('#!', '');
-
-          if (go === '+1')
-          {
-            let temp="?page="+(parseInt(params.get('page'))+1).toString()
-            $(this).attr('href',temp)
-          }
-          else if (go === '-1')
-           {
-            let temp="?page="+(parseInt(params.get('page'))-1).toString()
-            $(this).attr('href',temp)
-          }
-          else
-          {
-            //$('.cdp').attr('actpage', params.get('page'));
-            paginationPage = parseInt(go, 10);
-          }
-
-          //const params = new URLSearchParams(window.location.search)
-          //console.log(typeof params.get('page'))
-          $('.cdp').attr('actpage', params.get('page'));
-        });
-      };*@
     </script>
 
     <script>

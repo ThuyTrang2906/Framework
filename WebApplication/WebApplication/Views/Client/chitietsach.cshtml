@@ -343,7 +343,7 @@
                                 <form>
                                     <input type="hidden" name="name" value="@ViewBag.book.Masach" />
                                     <input type="hidden" id="star_input" value="0">
-                                    <textarea class="form-control" rows="3" style="resize: none" id="review-text"></textarea>
+                                    <textarea class="form-control" rows="3" style="resize: none; font-size: 14px" id="review-text" ></textarea>
                                     <span class="float-right" style="margin-top:15px;line-height:35px;">
                                         <span id="stars_confirm">
                                         </span>
@@ -356,7 +356,7 @@
 
                     @foreach (comment item in ViewBag.comments)
                     {
-                        <div class="reviews">
+                        <div class="reviews" style="margin-top: 20px; margin-right: 16px; margin-left: 16px">
                             <div class="row blockquote review-item">
                                 <div class="col-md-3 text-center">
                                     <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
@@ -368,8 +368,7 @@
                                     <h4>@item.Matk</h4>
                                     <div class="ratebox text-center" data-id="0" data-rating="5"></div>
                                     <p class="review-text">@item.Binhluan</p>
-
-                                    <small class="review-date">@item.Ngaybl</small>
+                                    <small class="review-date" style="font-size: 12px; color: #666">@item.Ngaybl</small>
                                 </div>
                             </div>
                         </div>
