@@ -48,6 +48,7 @@ namespace WebApplication.Models
                         string Gia_ban = gia_ban.ToString("N1");
                         list.Add(new Book()
                         {
+                            Danhgia = Convert.ToInt32(reader["danhgia"]),
                             Masach = Convert.ToInt32(reader["masach"]),
                             Tensach = reader["tensach"].ToString(),
                             Hinhanh = reader["hinhanh"].ToString(),

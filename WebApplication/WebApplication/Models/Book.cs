@@ -7,7 +7,7 @@ namespace WebApplication.Models
 {
     public class Book
     {
-        private int masach;
+        private int masach, danhgia;
         private string tensach;
         private string hinhanh;
         private string theloai;
@@ -34,8 +34,9 @@ namespace WebApplication.Models
         public string Nxb { get => nxb; set => nxb = value; }
         public string Hinhthuc { get => hinhthuc; set => hinhthuc = value; }
         public int Soluong { get => soluong; set => soluong = value; }
+        public int Danhgia { get => danhgia; set => danhgia = value; }
 
-        public Book(int MASACH,int SOLUONG, string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
+        public Book(int DANHGIA, int MASACH,int SOLUONG, string TENSACH, string HINHANH, string THELOAI, int GIABAN, int GIAGOC, int GIAMGIA, string MOTA, string TACGIA, DateTime NAMXB, string NXB, string HINHTHUC)
         {
             this.masach = MASACH;
             this.tensach = TENSACH;
@@ -50,6 +51,7 @@ namespace WebApplication.Models
             this.nxb = NXB;
             this.hinhthuc = HINHTHUC;
             this.soluong = SOLUONG;
+            this.danhgia = DANHGIA;
         }
 
         public Book()
