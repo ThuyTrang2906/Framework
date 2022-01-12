@@ -36,6 +36,7 @@ namespace WebApplication.Controllers
                 ViewBag.Status = "Failed";
             }
             ViewBag.khuyenmai = context.GetVoucher();
+            ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             return View();
         }
 
@@ -161,6 +162,7 @@ namespace WebApplication.Controllers
             }
             ViewBag.taikhoan = context.Client_Accounts(tentk);
             ViewBag.khuyenmai = context.User_Voucher(tentk);
+            ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             int matk = Convert.ToInt32(ViewBag.taikhoan.Matk);
             ViewBag.orders = context.DonHang(matk);
             ViewBag.books = context.BookOfOrder(matk);

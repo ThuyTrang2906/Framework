@@ -13,12 +13,6 @@ html {
 }
 
 /* Responsive */
-.grid {
-    width: 1200px;
-    max-width: 100%;
-    margin: 0 auto;
-    min-height: 700px !important;
-}
 
 body {
     background-color: #f5f5f5;
@@ -26,7 +20,6 @@ body {
 
 .cart__container {
     max-width: 1200px;
-    min-height: 700px !important;
     margin: 20px auto;
     overflow: hidden;
     position: relative;
@@ -35,7 +28,6 @@ body {
 }
 
 .col-8 {
-    background-color: #fff;
     margin: 10px 0;
     border-radius: 3px;
     padding: 0;
@@ -52,23 +44,23 @@ body {
     border-top-right-radius: 3px;
 }
 
-    .shipping__address--header h3 {
-        font-size: 2.0rem;
-    }
+.shipping__address--header h3 {
+    font-size: 2.0rem;
+}
 
-    .shipping__address--header a {
-        font-size: 1.6rem;
-        text-decoration: none;
-    }
+.shipping__address--header a {
+    font-size: 1.6rem;
+    text-decoration: none;
+}
 
 .shipping__info--user {
     font-size: 1.6rem;
     padding: 10px 0;
 }
 
-    .shipping__info--user span {
-        padding: 10px;
-    }
+.shipping__info--user span {
+    padding: 10px;
+}
 
 .shipping__info span {
     font-size: 1.6rem;
@@ -112,11 +104,11 @@ body {
     margin: 0 100px;
 }
 
-    .bill__info--time span {
-        font-size: 1.7rem;
-        font-weight: 500;
-        color: #0ac914;
-    }
+.bill__info--time span {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: #0ac914;
+}
 
 .delivery__logo {
     width: 120px;
@@ -209,10 +201,10 @@ body {
     border-top: 1px solid #43c3c7;
 }
 
-    .list-cart-item i {
-        margin-right: 8px;
-        color: #1A94FF;
-    }
+.list-cart-item i {
+    margin-right: 8px;
+    color: #1A94FF;
+}
 
 .user__cart-delivery {
     padding: 20px 0;
@@ -312,92 +304,3 @@ body {
 }
 
 /* Responsive */
-.grid {
-    width: 1200px;
-    max-width: 100%;
-    margin: 0 auto;
-    min-height: 700px !important;
-}
-
-body {
-    background-color: #f5f5f5;
-}
-
-.container {
-    max-width: 1200px;
-    min-height: 700px !important;
-    margin: 20px auto;
-    background-color: #f5f5f5;
-    border-radius: 4px;
-}
-
-.col-12 {
-    background-color: #fff;
-    padding-bottom: 10px;
-    border-radius: 4px;
-    padding-top: 20px;
-}
-
-.receipt__info {
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-}
-
-.receipt__thank {
-    width: 100%;
-}
-
-.thank_img {
-    width: 600px;
-}
-
-.thanking {
-    font-size: 18;
-    color: #31cf09;
-    font-style: italic;
-}
-
-h1 {
-    color: #33CC33;
-    justify-self: end;
-}
-
-.receipt_noti {
-    font-size: 1.8rem;
-}
-
-.receipt_pay {
-    display: flex;
-    text-align: center;
-    align-self: center;
-    flex-direction: column;
-}
-
-.receipt__code {
-    background-color: #f75409;
-    width: 220px;
-    height: 50px;
-}
-
-.receipt__code p {
-    font-size: 2rem;
-    color: #fff;
-    padding-top: 10px;
-}
-
-.receipt__success {
-    display: flex;
-    text-align: center;
-    align-self: center;
-    flex-direction: row;
-    font-size: 1.8rem;
-    padding-top: 10px;
-    margin-top: 10px;
-}
-
-.receipt__success a {
-    text-decoration: none;
-    margin-left: 20px;
-}
-

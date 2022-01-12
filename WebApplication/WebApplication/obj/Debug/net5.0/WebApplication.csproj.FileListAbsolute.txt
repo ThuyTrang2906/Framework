@@ -1962,3 +1962,5 @@ D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Facebook.dll
 D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Facebook.dll
 C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Framework\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Facebook.dll
+D:\Framework\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll

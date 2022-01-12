@@ -615,7 +615,7 @@ namespace WebApplication.Models
                     
                         while (reader.Read())
                         {
-                        if (reader["madh"] == DBNull.Value)
+                        if (reader["madh"] != DBNull.Value)
                         {
                             list.Add(new orders()
                             {
@@ -926,6 +926,7 @@ namespace WebApplication.Models
 
         public int thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
         {
+            DateTime Ngaylap = DateTime.Now;
             int madh = 0;
             using (MySqlConnection conn = GetConnection())
             {
@@ -941,8 +942,8 @@ namespace WebApplication.Models
                 }
 
 
-                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship) " +
-                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship)";
+                var str1 = "insert into orders(hinhthucthanhtoan, matk, ngaylap,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship) " +
+                    "values(@hinhthucthanhtoan,@matk, @ngaylap, @tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship)";
                 MySqlCommand mySql1 = new MySqlCommand(str1, conn);
 
                 mySql1.Parameters.AddWithValue("hinhthucthanhtoan", hinhthucthanhtoan);
@@ -951,6 +952,7 @@ namespace WebApplication.Models
                 mySql1.Parameters.AddWithValue("tinhtrangthanhtoan", tinhtrangthanhtoan);
                 mySql1.Parameters.AddWithValue("tongtien", tongtien);
                 mySql1.Parameters.AddWithValue("tienship", phiship);
+                mySql1.Parameters.AddWithValue("ngaylap", Ngaylap);
                 mySql1.ExecuteNonQuery();
 
 

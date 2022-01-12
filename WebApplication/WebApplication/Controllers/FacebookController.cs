@@ -21,8 +21,8 @@ namespace WebApplication.Controllers
         public FacebookController()
         {
             //var configuration = GetConfiguration();
-            appid = "458452809025982";
-            appsecret = "e7d2f8aa891e042d31338b45b6097bc5";
+            appid = "751828025807001";
+            appsecret = "c83b94a3bba48d441d700ecd5c6766c6";
         }
 
         private Uri RedirectUri
