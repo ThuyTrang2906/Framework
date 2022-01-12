@@ -924,7 +924,7 @@ namespace WebApplication.Models
 
         }
 
-        public int thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
+        public int thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship, string voucher_used)
         {
             DateTime Ngaylap = DateTime.Now;
             int madh = 0;
@@ -944,6 +944,7 @@ namespace WebApplication.Models
 
                 var str1 = "insert into orders(hinhthucthanhtoan, matk, ngaylap,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship) " +
                     "values(@hinhthucthanhtoan,@matk, @ngaylap, @tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship)";
+
                 MySqlCommand mySql1 = new MySqlCommand(str1, conn);
 
                 mySql1.Parameters.AddWithValue("hinhthucthanhtoan", hinhthucthanhtoan);
@@ -953,6 +954,7 @@ namespace WebApplication.Models
                 mySql1.Parameters.AddWithValue("tongtien", tongtien);
                 mySql1.Parameters.AddWithValue("tienship", phiship);
                 mySql1.Parameters.AddWithValue("ngaylap", Ngaylap);
+                mySql1.Parameters.AddWithValue("makm", voucher_used);
                 mySql1.ExecuteNonQuery();
 
 
@@ -1024,12 +1026,10 @@ namespace WebApplication.Models
         {
             int Matk = Convert.ToInt32(matk);
             var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(data);
-
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 var str3 = "delete from user_voucher where matk=@matk and makm=@makm";
-                
                 foreach (var item in list_voucher_used)
                 {
                     int Makm = Convert.ToInt32(item.makm);
