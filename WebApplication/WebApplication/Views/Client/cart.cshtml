@@ -46,7 +46,7 @@
                         <div class="theloai" hidden>@item.GetType().GetProperty("Theloai").GetValue(item, null)</div>
                         <div class="col-auto col-qty layout-inline">
                             <a href="#" class="qty qty-minus"><span>-</span></a>
-                            <input class="soluong input__qty" id="id_soluong" type="numeric" value="@item.GetType().GetProperty("Soluong").GetValue(item, null)" />
+                            <input class="soluong input__qty" id="id_soluong" type="numberic" value="@item.GetType().GetProperty("Soluong").GetValue(item, null)" />
                             <a href="#" class="qty qty-plus"><span>+</span></a>
                         </div>
 
@@ -107,7 +107,7 @@
                             <div class="cart_address">
                                 <span style="font-weight: 400;">Địa chỉ: @ViewBag.Diachi</span>
                             </div>
-                            <a href="" style="text-decoration: none; justify-content: space-around;">Thay đổi</a>
+                            <a href="/Client/taikhoan?tentk=@ViewBag.Tentk" style="text-decoration: none; justify-content: space-around;">Thay đổi</a>
                         </div>
                         <div class="cart-delivery" style="padding: 5px 0 4px;">
                             <p style="font-weight: 400; font-size: 1.8rem; color: #666;">Thông tin đơn hàng</p>
@@ -122,27 +122,18 @@
                         </div>
                         <ul class="list-cart">
                             <li class="list-cart-item">
-                                <div class="input__sale">
-                                    <input class="form__code-sale" id="input__code-sale" type="input" placeholder="Nhập mã khuyến mãi">
-                                    <button type="submit" class="btn__apply" id="apply">Áp dụng</button>
-                                </div>
-                                <div class="cart__sale">
-                                    <span>Giảm giá:</span>
-                                    <span class="totals-value" id="cart-sale">0 </span>
-                                </div>
                                 <div class="cart__total">
                                     <span>Tổng tiền:</span>
                                     <span class="totals-value" id="tongtien">0</span>
                                 </div>
                             </li>
-
+                           
                         </ul>
                     </div>
-
                 </div>
                 <form method="post" action='/Client/payment'>
                     <input class='data-send' name="data" value="Hello" hidden />
-                    <button type="submit" class="confirm-buy btn__buy-book" id="buy">Xác nhận đặt sách</button>
+                    <button type="submit" class="confirm-buy btn__buy-book" id="buy" style="top:540px">Xác nhận đặt sách</button>
                 </form>
 
             </div>

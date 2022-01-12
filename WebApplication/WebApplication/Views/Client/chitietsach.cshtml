@@ -68,21 +68,22 @@
                         </div>
 
                         <div class="product-price-discount"><span class="giaban" name="giaban">@change(@ViewBag.book.Giaban) đ</span><span class="line-through">@change(@ViewBag.book.Giagoc) đ</span></div>
-                    </div>
-                    <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
-                    <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
-                    <p>Nhà xuất bản: <span>View</span> </p>
+                        <div class="review-star line-through">
+                        </div>
+                        <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
+                        <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
+                        <p>Nhà xuất bản: <span>View</span> </p>
 
-                    <div class="product-count">
-                        <label for="size">Số lượng</label>
-                        <form class="display-flex">
-                            <div class="qtyminus">-</div>
-                            <input type="text" name="soluong" value="1" class="soluong qty">
-                            <div class="qtyplus">+</div>
-                        </form>
-                          @if (ViewBag.Status == "Success")
+                        <div class="product-count">
+                            <label for="size">Số lượng</label>
+                            <form class="display-flex">
+                                <div class="qtyminus">-</div>
+                                <input type="text" name="soluong" value="1" class="soluong qty">
+                                <div class="qtyplus">+</div>
+                            </form>
+                            @if (ViewBag.Status == "Success")
                             {
-                               <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
+                                <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
                             }
                             else
                             {
@@ -90,8 +91,8 @@
 
                             }
 
+                        </div>
                     </div>
-
                 </div>
                 <div class="info-item col-auto border" style="position: absolute; top: 200px; right: 20px; border-radius: 4px; border: 1px solid black; width: 244px !important; ">
                     <div class="info-store">
@@ -364,10 +365,9 @@
             var now = $('#review-text').val();
             var sosao = $('#star_input').val();
             var Matk = $('.ma-tai-khoan').val();
-
+            var Tentk = $('.ten-dang-nhap').text();
 
             if (Boolean(Matk) != false) {
-                @*this.href = "/Client/thembinhluan?Matk=@ViewBag.infor.Matk&Masach=" + @ViewBag.book.Masach + "&Binhluan=" + now + "&Ngaybl=" + DateTime.Now;*@
                 $.ajax({
                     type: "GET",
                     url: '/Client/thembinhluan',
@@ -381,26 +381,109 @@
                     },
                 })
                 var currentdate = new Date();
-                 var date = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
-                + currentdate.getFullYear() + "   "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-                $('.reviews').append(` <div class="row blockquote review-item">
+                var date = currentdate.getDate() + "/"
+                    + (currentdate.getMonth() + 1) + "/"
+                    + currentdate.getFullYear() + "   "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+                if (sosao == 1) {
+                    $('.reviews').append(`<div class="row blockquote review-item">
                                 <div class="col-md-3 text-center">
                                     <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                     <div class="caption">
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <h4>${Matk}</h4>
-                                    <div class="review-star"></div>
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
                                     <div class="ratebox text-center" data-id="0" data-rating="5"></div>
-                                    <i class="review-text">${now}</i>
+                                    <p class="review-text">${now}</p>
                                     <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
                                 </div>
                             </div>`);
+                } else if (sosao == 2) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                } else if (sosao == 3) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                }else if (sosao == 4) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                } else {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                }
+            
             } else {
                 alert("Vui lòng đăng nhập!");
                 event.preventDefault();
@@ -612,7 +695,7 @@
                         var sl = $('.sl_giohang').text()
                         sl = (parseInt(sl) + 1).toString();
                         $('.sl_giohang').text(sl);
-                        alert("Thêm được rồi nha")
+                        alert("Thêm vào giỏ hàng thành công!")
                     })
                
 			})

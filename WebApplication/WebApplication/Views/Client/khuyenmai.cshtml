@@ -172,7 +172,13 @@
                                             {
                                                 @if (item.Sl > 0)
                                                 {
-                                                    <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                                    if (ViewBag.status == "Success")
+                                                    {
+                                                        <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a> }
+                                                    else
+                                                    {
+                                                        <a onclick="show()" class="btn__save btn__save--primary">Lưu</a>
+                                                    }
                                                 }
                                                 else
                                                 {
@@ -185,7 +191,13 @@
                                         {
                                             @if (item.Sl > 0)
                                             {
-                                                <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a>
+                                                if (ViewBag.status == "Success")
+                                                {
+                                                    <a href="/Client/Luukhuyenmai?makm=@item.Makm" class="btn__save btn__save--primary">Lưu</a> }
+                                                else
+                                                {
+                                                    <a onclick="show()" class="btn__save btn__save--primary">Lưu</a>
+                                                }
                                             }
                                             else
                                             {
