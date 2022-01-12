@@ -338,6 +338,39 @@
         </div>
     </div>
 
+    <style>
+
+        .btn {
+            min-width: 180px;
+            max-width: 230px;
+            height: 40px;
+            text-decoration: none;
+            border: none;
+            border-radius: 3px;
+            font-size: 1.5rem;
+            padding: 0 8px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn:hover {
+                background-color: rgba(0,0,0,0.2);
+            }
+
+        .btn--primary {
+            color: var(--white-color);
+            background-color: var(--blue-color);
+            cursor: pointer;
+        }
+
+        .btn .btn--disable {
+            cursor: default;
+            background-color: rgba(0,0,0,0.2);
+        }
+    </style>
+
     <script>
         function show() {
             alert("Bạn chưa đăng nhập");
