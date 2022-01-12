@@ -262,13 +262,13 @@
 
                 console.log(voucher_used_list)
                 console.log(Boolean(voucher_dadung) != false)
-                @*if (voucher_dadung.length > 0)
+                if (voucher_dadung.length > 0)
                 {
                     $.get('/Client/deletevoucher?data=' + JSON.stringify(voucher_dadung))
                         .done(function () {
 
                         })
-                }*@
+                }
 
                 console.log(listProduct)
                 $(this).parent().attr('href', '/Client/thanhyou?data=' + JSON.stringify(listProduct) + "&tongtien=" + $('.thanhtien').text() + "&soluong=" + $('.soluong-sp').text() + "&hinhthucthanhtoan=" + loaithanhtoan + "&tinhtrangthanhtoan=" + tinhtrangthanhtoan + '&tinhtrangdonhang=' + 'chờ xác nhận' + '&tienship=' + $('.phiship').text() + '&voucher_used=' + voucher_used_list)
