@@ -135,7 +135,7 @@ namespace WebApplication.Controllers
             {
                 ViewBag.status = "Fail";
             }
-            return View();
+            return Redirect("/Home/Index");
         }
 
         public IActionResult Logout()
