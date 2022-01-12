@@ -124,12 +124,12 @@ namespace WebApplication.Models
                         bo.Hinhthuc = reader["hinhthuc"].ToString();
                         bo.Mota = reader["mota"].ToString();
                         bo.Giamgia = Convert.ToInt32(reader["giamgia"]);
+                        bo.Danhgia = Convert.ToInt32(reader["danhgia"]);
                     }
                 }
             }
             return (bo);
         }
-
         public List<Book> DsLienQuan(int name)
         {
             List<Book> list = new List<Book>();
@@ -610,27 +610,32 @@ namespace WebApplication.Models
                 string str = "select * from orders where matk = @matk";
                 MySqlCommand cmd = new MySqlCommand(str, conn);
                 cmd.Parameters.AddWithValue("matk", matk);
-                
                 using (var reader = cmd.ExecuteReader())
                 {
-                    while (reader.Read())
-                    {
-                        list.Add(new orders()
+                    
+                        while (reader.Read())
                         {
+                        if (reader["madh"] == DBNull.Value)
+                        {
+                            list.Add(new orders()
+                            {
 
-                            Madh = Convert.ToInt32(reader["madh"]),
-                            Matk = Convert.ToInt32(reader["matk"]),
-                            Makm = Convert.ToInt32(reader["makm"]),
-                            Tienship = Convert.ToInt32(reader["tienship"]),
-                            Phanhoi = reader["phanhoi"].ToString(),
-                            Tinhtrangdonhang = reader["tinhtrangdonhang"].ToString(),
-                            Tinhtrangthanhtoan = reader["tinhtrangthanhtoan"].ToString(),
-                            Tongtien = Convert.ToInt32(reader["tongtien"]),
-                            Hinhthucthanhtoan = reader["hinhthucthanhtoan"].ToString(),
-                            Ngaycapnhat = Convert.ToDateTime(reader["ngaycapnhat"]),
-                            Ngaylap = Convert.ToDateTime(reader["ngaylap"]),
-                        });
-                    }
+                                Madh = Convert.ToInt32(reader["madh"]),
+                                Matk = Convert.ToInt32(reader["matk"]),
+                                Makm = Convert.ToInt32(reader["makm"]),
+                                Tienship = Convert.ToInt32(reader["tienship"]),
+                                Phanhoi = reader["phanhoi"].ToString(),
+                                Tinhtrangdonhang = reader["tinhtrangdonhang"].ToString(),
+                                Tinhtrangthanhtoan = reader["tinhtrangthanhtoan"].ToString(),
+                                Tongtien = Convert.ToInt32(reader["tongtien"]),
+                                Hinhthucthanhtoan = reader["hinhthucthanhtoan"].ToString(),
+                                Ngaycapnhat = Convert.ToDateTime(reader["ngaycapnhat"]),
+                                Ngaylap = Convert.ToDateTime(reader["ngaylap"]),
+                            });
+                        }
+                        }
+                    
+                   
                     reader.Close();
                 }
 
@@ -919,14 +924,14 @@ namespace WebApplication.Models
 
         }
 
-        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
+        public int thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
         {
+            int madh = 0;
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 var str = "SELECT madh FROM orders ORDER BY madh DESC LIMIT 1";
                 MySqlCommand mySql = new MySqlCommand(str, conn);
-                var madh = 0;
                 using (var reader = mySql.ExecuteReader())
                 {
                     while (reader.Read())
@@ -951,7 +956,7 @@ namespace WebApplication.Models
 
 
                 var str2 = "insert into detail_order values(@madh,@masach,@soluong)";
-                var str_anhhungtraidat = "update booklist set soluong=soluong-@soluongmua where masach=@masach";
+                var str_anhhungtraidat = "update booklist set soluongban=soluongban+@soluongmua where masach=@masach";
                 var list_sach = JsonSerializer.Deserialize<sach[]>(data);
                 foreach(var item in list_sach)
                 {
@@ -980,6 +985,7 @@ namespace WebApplication.Models
                 conn.Close();
 
             }
+            return madh + 1;
         }
 
         public List<object> get_voucher(string matk)
@@ -1044,7 +1050,7 @@ namespace WebApplication.Models
                 sql_com.Parameters.AddWithValue("masach", masach);
                 sql_com.ExecuteNonQuery();
 
-                var str4 = "update client_accounts set sl_giohang=sl_giohang-1 wherer matk=@matk";
+                var str4 = "update client_accounts set sl_giohang=sl_giohang-1 where matk=@matk";
                 MySqlCommand mySql = new MySqlCommand(str4, conn);
                 mySql.Parameters.AddWithValue("matk", matk);
                 mySql.ExecuteNonQuery();

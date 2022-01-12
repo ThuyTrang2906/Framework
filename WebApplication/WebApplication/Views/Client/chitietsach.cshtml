@@ -68,21 +68,22 @@
                         </div>
 
                         <div class="product-price-discount"><span class="giaban" name="giaban">@change(@ViewBag.book.Giaban) đ</span><span class="line-through">@change(@ViewBag.book.Giagoc) đ</span></div>
-                    </div>
-                    <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
-                    <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
-                    <p>Nhà xuất bản: <span>View</span> </p>
+                        <div class="review-star line-through">
+                        </div>
+                        <p>Tác giả: <span>@ViewBag.book.Tacgia</span> </p>
+                        <p>Thể loại: <span>@ViewBag.book.Theloai</span> </p>
+                        <p>Nhà xuất bản: <span>View</span> </p>
 
-                    <div class="product-count">
-                        <label for="size">Số lượng</label>
-                        <form class="display-flex">
-                            <div class="qtyminus">-</div>
-                            <input type="text" name="soluong" value="1" class="soluong qty">
-                            <div class="qtyplus">+</div>
-                        </form>
-                          @if (ViewBag.Status == "Success")
+                        <div class="product-count">
+                            <label for="size">Số lượng</label>
+                            <form class="display-flex">
+                                <div class="qtyminus">-</div>
+                                <input type="text" name="soluong" value="1" class="soluong qty">
+                                <div class="qtyplus">+</div>
+                            </form>
+                            @if (ViewBag.Status == "Success")
                             {
-                               <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
+                                <a class="add-to-cart round-black-btn">Thêm vào giỏ hàng</a>
                             }
                             else
                             {
@@ -90,8 +91,8 @@
 
                             }
 
+                        </div>
                     </div>
-
                 </div>
                 <div class="info-item col-auto border" style="position: absolute; top: 200px; right: 20px; border-radius: 4px; border: 1px solid black; width: 244px !important; ">
                     <div class="info-store">
@@ -212,95 +213,6 @@
                 </div>
                 <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
                     <div class="review-heading">Đánh giá sản phẩm</div>
-                    <p class="mb-20">Chưa có đánh giá</p>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xs-12 col-md-6">
-                                <div class="well well-sm">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-md-6 text-center">
-                                            <h1 class="rating-num">
-                                                4.0
-                                            </h1>
-                                            <div class="rating">
-                                                <i class="ti-star"></i><i class="ti-star">
-                                                </i><i class="ti-star"></i><i class="ti-star">
-                                                </i><i class="ti-star"></i>
-                                            </div>
-                                            <div>
-                                                <span class="glyphicon glyphicon-user"></span> 1,050,008 total
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-md-6">
-                                            <div class="row rating-desc">
-                                                <div class="col-xs-3 col-md-3 text-right">
-                                                    <i class="ti-star"></i>5
-                                                </div>
-                                                <div class="col-xs-8 col-md-9">
-                                                    <div class="progress progress-striped">
-                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                                            <span class="sr-only">80%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end 5 -->
-                                                <div class="col-xs-3 col-md-3 text-right">
-                                                    <i class="ti-star"></i>4
-                                                </div>
-                                                <div class="col-xs-8 col-md-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                                            <span class="sr-only">60%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end 4 -->
-                                                <div class="col-xs-3 col-md-3 text-right">
-                                                    <i class="ti-star"></i>3
-                                                </div>
-                                                <div class="col-xs-8 col-md-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                                            <span class="sr-only">40%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end 3 -->
-                                                <div class="col-xs-3 col-md-3 text-right">
-                                                    <i class="ti-star"></i>2
-                                                </div>
-                                                <div class="col-xs-8 col-md-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                                            <span class="sr-only">20%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end 2 -->
-                                                <div class="col-xs-3 col-md-3 text-right">
-                                                    <span class="glyphicon glyphicon-star"></span>1
-                                                </div>
-                                                <div class="col-xs-8 col-md-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80"
-                                                             aria-valuemin="0" aria-valuemax="100" style="width: 15%">
-                                                            <span class="sr-only">15%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- end 1 -->
-                                            </div>
-                                            <!-- end row -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- <form class="review-form">
             <div class="form-group">
@@ -365,18 +277,85 @@
                                 </div>
                                 <div class="col-md-9">
                                     <h4>@item.Matk</h4>
+                                    <div class="review-star">
+                                        @if (@item.Sosao == 1)
+                                        {
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                        }
+                                        else if (@item.Sosao == 2)
+                                        {
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                        }
+                                        else if (@item.Sosao == 3)
+                                        {
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                        }
+                                        else if (@item.Sosao == 4)
+                                        {
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                        }
+                                        else if (@item.Sosao == 5)
+                                        {
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                            <i class="home-product-item__star--gold fas fa-star"></i>
+                                        }
+
+                                    </div>
+
                                     <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+
                                     <p class="review-text">@item.Binhluan</p>
                                     <small class="review-date" style="font-size: 12px; color: #666">@item.Ngaybl</small>
                                 </div>
                             </div>
-
                         }
                     </div>  
                     </div>
                 </div>
         </div>
     </div>
+
+    <style>
+
+        .btn {
+            min-width: 180px;
+            max-width: 230px;
+            height: 40px;
+            text-decoration: none;
+            border: none;
+            border-radius: 3px;
+            font-size: 1.5rem;
+            padding: 0 8px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .btn:hover {
+                background-color: rgba(0,0,0,0.2);
+            }
+
+        .btn--primary {
+            color: var(--white-color);
+            background-color: var(--blue-color);
+            cursor: pointer;
+        }
+
+        .btn .btn--disable {
+            cursor: default;
+            background-color: rgba(0,0,0,0.2);
+        }
+    </style>
 
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
@@ -386,9 +365,9 @@
             var now = $('#review-text').val();
             var sosao = $('#star_input').val();
             var Matk = $('.ma-tai-khoan').val();
+            var Tentk = $('.ten-dang-nhap').text();
 
             if (Boolean(Matk) != false) {
-                @*this.href = "/Client/thembinhluan?Matk=@ViewBag.infor.Matk&Masach=" + @ViewBag.book.Masach + "&Binhluan=" + now + "&Ngaybl=" + DateTime.Now;*@
                 $.ajax({
                     type: "GET",
                     url: '/Client/thembinhluan',
@@ -402,25 +381,109 @@
                     },
                 })
                 var currentdate = new Date();
-                 var date = currentdate.getDate() + "/"
-                + (currentdate.getMonth()+1)  + "/"
-                + currentdate.getFullYear() + "   "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":"
-                + currentdate.getSeconds();
-                $('.reviews').append(` <div class="row blockquote review-item">
+                var date = currentdate.getDate() + "/"
+                    + (currentdate.getMonth() + 1) + "/"
+                    + currentdate.getFullYear() + "   "
+                    + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+                if (sosao == 1) {
+                    $('.reviews').append(`<div class="row blockquote review-item">
                                 <div class="col-md-3 text-center">
                                     <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
                                     <div class="caption">
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-                                    <h4>${Matk}</h4>
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
                                     <div class="ratebox text-center" data-id="0" data-rating="5"></div>
                                     <p class="review-text">${now}</p>
                                     <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
                                 </div>
                             </div>`);
+                } else if (sosao == 2) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                } else if (sosao == 3) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                }else if (sosao == 4) {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                } else {
+                    $('.reviews').append(` <div class="row blockquote review-item">
+                                <div class="col-md-3 text-center">
+                                    <img class="rounded-circle reviewer" src="http://standaloneinstaller.com/upload/avatar.png">
+                                    <div class="caption">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <h4>${Tentk}</h4>
+                                    <div class="review-star">
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                        <i class="home-product-item__star--gold fas fa-star"></i>
+                                    </div>
+                                    <div class="ratebox text-center" data-id="0" data-rating="5"></div>
+                                    <p class="review-text">${now}</p>
+                                    <small class="review-date" style="font-size: 12px; color: #666">${date}</small>
+                                </div>
+                            </div>`);
+                }
+            
             } else {
                 alert("Vui lòng đăng nhập!");
                 event.preventDefault();

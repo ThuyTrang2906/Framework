@@ -100,6 +100,7 @@ namespace WebApplication.Controllers
                 ViewBag.status = "Success";
                 List<object> list = context.Cart(usersession.Matk);
                 ViewBag.ListCart = list;
+                ViewBag.Tentk = usersession.Tentk;
                 ViewBag.Hoten = usersession.Hoten;
                 ViewBag.Diachi = usersession.Diachi;
                 ViewBag.Sodt = usersession.Sodt;
@@ -250,7 +251,7 @@ namespace WebApplication.Controllers
 
             return View(books);
         }
-
+        
         public ActionResult thembinhluan(comment c)
         {
             int count;
@@ -258,7 +259,7 @@ namespace WebApplication.Controllers
             count = context.thembinhluan(c);
             int name = Convert.ToInt32(c.Masach);
             if (count > 0) return Redirect("/Client/chitietsach?name=" + c.Masach);
-            return Redirect("/Home/Index");
+            return Redirect("/Client/chitietsach?name=" + c.Masach);
         }
 
         public ActionResult chitietdonhang(int madh)
@@ -349,7 +350,8 @@ namespace WebApplication.Controllers
                     ViewBag.Hoten = usersession.Hoten;
                     ViewBag.Diachi = usersession.Diachi;
                     ViewBag.Sodt = usersession.Sodt;
-                }
+                ViewBag.Tentk = usersession.Tentk;
+            }
             return View();
         }
 
@@ -373,7 +375,7 @@ namespace WebApplication.Controllers
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
                 string matk = usersession.Matk;
-                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
+               ViewBag.madh = context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
             }
             
             return View();
