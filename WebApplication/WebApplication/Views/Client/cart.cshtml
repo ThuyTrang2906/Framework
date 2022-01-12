@@ -253,7 +253,8 @@
         {
             var $this = $(this).parent().parent()
             $this.hide()
-
+            var sl_giohang = parseInt($('.sl_giohang').text())
+            $('.sl_giohang').text((sl_giohang - 1).toString())
             $.get("/Client/xoagiohang?masach=" + $this.find('.ma-sach').text())
 
 
