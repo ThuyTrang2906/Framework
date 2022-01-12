@@ -919,7 +919,7 @@ namespace WebApplication.Models
 
         }
 
-        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship)
+        public void thanhyou(string matk, string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string phiship, string voucher_used)
         {
             using (MySqlConnection conn = GetConnection())
             {
@@ -936,8 +936,8 @@ namespace WebApplication.Models
                 }
 
 
-                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship) " +
-                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship)";
+                var str1 = "insert into orders(hinhthucthanhtoan,matk,tinhtrangdonhang,tinhtrangthanhtoan,tongtien,tienship,makm) " +
+                    "values(@hinhthucthanhtoan,@matk,@tinhtrangdonhang,@tinhtrangthanhtoan,@tongtien,@tienship,@makm)";
                 MySqlCommand mySql1 = new MySqlCommand(str1, conn);
 
                 mySql1.Parameters.AddWithValue("hinhthucthanhtoan", hinhthucthanhtoan);
@@ -946,6 +946,7 @@ namespace WebApplication.Models
                 mySql1.Parameters.AddWithValue("tinhtrangthanhtoan", tinhtrangthanhtoan);
                 mySql1.Parameters.AddWithValue("tongtien", tongtien);
                 mySql1.Parameters.AddWithValue("tienship", phiship);
+                mySql1.Parameters.AddWithValue("makm", voucher_used);
                 mySql1.ExecuteNonQuery();
 
 
@@ -1016,12 +1017,10 @@ namespace WebApplication.Models
         {
             int Matk = Convert.ToInt32(matk);
             var list_voucher_used = JsonSerializer.Deserialize<voucher[]>(data);
-
             using (MySqlConnection conn = GetConnection())
             {
                 conn.Open();
                 var str3 = "delete from user_voucher where matk=@matk and makm=@makm";
-                
                 foreach (var item in list_voucher_used)
                 {
                     int Makm = Convert.ToInt32(item.makm);

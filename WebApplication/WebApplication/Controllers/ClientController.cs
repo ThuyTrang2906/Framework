@@ -363,7 +363,7 @@ namespace WebApplication.Controllers
 
         
 
-        public IActionResult thanhyou(string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string tienship)
+        public IActionResult thanhyou(string data, string tongtien, string soluong, string hinhthucthanhtoan, string tinhtrangthanhtoan, string tinhtrangdonhang, string tienship, string voucher_used)
         {
             /*var data = HttpContext.Request.Form["data"];
             string tongtien = HttpContext.Request.Form["tongtien"];
@@ -381,7 +381,7 @@ namespace WebApplication.Controllers
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
                 string matk = usersession.Matk;
-                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
+                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship, voucher_used);
                 ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             
