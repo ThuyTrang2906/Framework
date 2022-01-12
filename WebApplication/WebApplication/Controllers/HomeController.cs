@@ -52,6 +52,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             return View();
         }

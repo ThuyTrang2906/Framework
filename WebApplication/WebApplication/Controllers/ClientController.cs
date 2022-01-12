@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using WebApplication.Models;
 using System.Web;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace WebApplication.Controllers
 {
@@ -54,6 +55,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
 
             //StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
@@ -104,6 +106,7 @@ namespace WebApplication.Controllers
                 ViewBag.Hoten = usersession.Hoten;
                 ViewBag.Diachi = usersession.Diachi;
                 ViewBag.Sodt = usersession.Sodt;
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
                 return View();
             } else return Redirect("/Home/Index");
         }
@@ -120,7 +123,7 @@ namespace WebApplication.Controllers
         {
             string username = HttpContext.Request.Form["username"];
             string password = HttpContext.Request.Form["password"];
-
+            var url = HttpContext.Request.GetEncodedUrl();
             StoreContext context = HttpContext.RequestServices.GetService(typeof(WebApplication.Models.StoreContext)) as StoreContext;
             client_accounts res = context.Login(username, password);
             if (res != null)
@@ -221,6 +224,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             List<Book> books = new List<Book>();
             books = context.Search_Book(ten_sach);
@@ -237,6 +241,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             List<Book> books = new List<Book>();
             books = context.Search_Category(cate);
@@ -277,6 +282,7 @@ namespace WebApplication.Controllers
                 ViewBag.tamtinh = context.Tamtinh(madh);
                 ViewBag.orders = context.ViewDonHang(Matk);
                 ViewBag.slmua = context.SoluongMua(madh);
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
                 int giamgia = ViewBag.tamtinh + ViewBag.orders.Tienship - ViewBag.orders.Tongtien;
                 ViewBag.giamgia = giamgia;
 
@@ -296,6 +302,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
                 int Matk = Convert.ToInt32(usersession.Matk);
                 count = context.Save_voucher( Matk, Makm);
             }
@@ -350,7 +357,8 @@ namespace WebApplication.Controllers
                     ViewBag.Hoten = usersession.Hoten;
                     ViewBag.Diachi = usersession.Diachi;
                     ViewBag.Sodt = usersession.Sodt;
-                ViewBag.Tentk = usersession.Tentk;
+                    ViewBag.Tentk = usersession.Tentk;
+                    ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             return View();
         }
@@ -376,6 +384,8 @@ namespace WebApplication.Controllers
                 ViewBag.status = "Success";
                 string matk = usersession.Matk;
                ViewBag.madh = context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
+                context.thanhyou(matk, data, tongtien, soluong, hinhthucthanhtoan, tinhtrangthanhtoan, tinhtrangdonhang, tienship);
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
             }
             
             return View();
@@ -391,6 +401,7 @@ namespace WebApplication.Controllers
                 usersession = context.Login(usersession.Tentk, usersession.Matkhau);
                 ViewBag.infor = usersession;
                 ViewBag.status = "Success";
+                ViewBag.avatar = HttpContext.Session.GetString("Avatar");
                 context.deletevoucher(usersession.Matk,data);
             }
             return View();

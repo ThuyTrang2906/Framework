@@ -1958,3 +1958,7 @@ D:\Framework\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplica
 D:\Framework\Framework\WebApplication\WebApplication\obj\Debug\net5.0\ref\WebApplication.dll
 D:\Framework\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.pdb
 D:\Framework\Framework\WebApplication\WebApplication\obj\Debug\net5.0\WebApplication.genruntimeconfig.cache
+D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Facebook.dll
+D:\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Facebook.dll
+C:\Users\USER\Source\Repos\Framework\WebApplication\WebApplication\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
