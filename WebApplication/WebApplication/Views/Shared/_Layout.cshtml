@@ -99,7 +99,14 @@
                                 </a>
                             </li>
                             <li class="header__navbar-item header__navbar-user">
-                                <img class="header__navbar-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
+                                @if (@ViewBag.avatar == null)
+                                {
+                                    <img class="header__navbar-user-img" src="https://anhdep123.com/wp-content/uploads/2021/05/hinh-avatar-trang.jpg" alt="">
+                                }
+                                else
+                                {
+                                    <img class="header__navbar-user-img" src="@ViewBag.avatar" alt="">
+                                }
                                 <input class="ma-tai-khoan" value="@ViewBag.infor.Matk" type="hidden" />
                                 <a href="/Client/taikhoan?tentk=@ViewBag.infor.Tentk"><p class="header__navbar-user-name header__navbar-item--link ten-dang-nhap">@ViewBag.infor.Tentk</p><a>
                             </li>
@@ -245,7 +252,7 @@
                                 </form>
 
                                 <div class="auth-form__socials">
-                                    <a href="/auth/facebook"
+                                    <a href="/Facebook/Facebook"
                                        class="auth-form__socials--fb btn btn--with-icon">
                                         <i class="auth-form__socials-icon fab fa-facebook-square"></i>
                                         <span>Đăng nhập với Facebook</span>
@@ -365,7 +372,7 @@
                         </button>
                     </form>
 
-                    
+
                     <div class="header__cart">
                         <a class="header__logo-link" onclick="show()">
                             <i class="header__cart-icon ti-shopping-cart"></i>

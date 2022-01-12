@@ -1075,5 +1075,73 @@ namespace WebApplication.Models
                 conn.Close();
             }
         }
+
+        public client_accounts CheckLoginFacebook(string id, string first_name, string last_name, string email, string gender)
+        {
+            client_accounts client_Accounts = new client_accounts();
+            using (MySqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                var str2 = "select * from client_accounts where tentk=@username";
+                MySqlCommand cmd2 = new MySqlCommand(str2, conn);
+                cmd2.Parameters.AddWithValue("username", id);
+                int dem = 0;
+                using (var res = cmd2.ExecuteReader())
+                {
+
+                    while (res.Read())
+                    {
+                        dem++;
+                    }
+                }
+
+
+                if (dem == 0)
+                {
+                    var cmm = "insert into client_accounts(hoten,tentk,matkhau,email,gioitinh,diem,tinhtrang,ngaysinh,ngaytao,sl_giohang) " +
+                        "values(@hoten,@tentk,@matkhau,@email,@gioitinh,@diem,@tinhtrang,@ngaysinh,@ngaytao,@sl_giohang)";
+                    MySqlCommand Cmm = new MySqlCommand(cmm, conn);
+                    Cmm.Parameters.AddWithValue("hoten", first_name + " " + last_name);
+                    Cmm.Parameters.AddWithValue("matkhau", "asdialhdashdawuqihydiuashiu23y94y2837yh893yr98hyefyu832yr9f8ywhe98f");
+                    Cmm.Parameters.AddWithValue("tentk", id);
+                    Cmm.Parameters.AddWithValue("email", email);
+                    Cmm.Parameters.AddWithValue("gioitinh", gender);
+                    Cmm.Parameters.AddWithValue("diem", "0");
+                    Cmm.Parameters.AddWithValue("tinhtrang", "Đang sử dụng");
+                    Cmm.Parameters.AddWithValue("ngaysinh", "0000-00-00");
+                    Cmm.Parameters.AddWithValue("ngaytao", "0000-00-00");
+                    Cmm.Parameters.AddWithValue("sl_giohang", "0000-00-00");
+                    Cmm.ExecuteNonQuery();
+                }
+
+                var str = "select * from client_accounts where tentk=@username and matkhau=@password";
+                MySqlCommand cmd = new MySqlCommand(str, conn);
+                cmd.Parameters.AddWithValue("username", id);
+                cmd.Parameters.AddWithValue("password", "asdialhdashdawuqihydiuashiu23y94y2837yh893yr98hyefyu832yr9f8ywhe98f");
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        client_Accounts.Diachi = reader["diachi"].ToString();
+                        client_Accounts.Diem = Convert.ToInt32(reader["diem"]);
+                        client_Accounts.Email = reader["email"].ToString();
+                        client_Accounts.Gioitinh = reader["gioitinh"].ToString();
+                        client_Accounts.Hoten = reader["hoten"].ToString();
+                        client_Accounts.Matk = reader["matk"].ToString();
+                        client_Accounts.Matkhau = reader["matkhau"].ToString();
+                        client_Accounts.Ngaysinh = DateTime.Parse(reader["ngaysinh"].ToString());
+                        client_Accounts.Ngaytao = DateTime.Parse(reader["ngaytao"].ToString());
+                        client_Accounts.Sl_giohang = Convert.ToInt32(reader["sl_giohang"]);
+                        client_Accounts.Sodt = reader["sodt"].ToString();
+                        client_Accounts.Tinhtrang = reader["tinhtrang"].ToString();
+                        client_Accounts.Tentk = reader["tentk"].ToString();
+                    }
+                    reader.Close();
+                }
+
+            }
+            Console.WriteLine(client_Accounts);
+            return client_Accounts;
+        }
     }
 }
